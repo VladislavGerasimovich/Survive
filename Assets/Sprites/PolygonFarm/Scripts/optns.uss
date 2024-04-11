@@ -1,0 +1,14 @@
+
+
+.optns {position: absolute; border-color:black; border-width:6px;  top:100%; translate: -50% -115%; background-color:rgba(255,200,100,0.4);
+
+width:20%; height:auto; border-radius: 12px 8px 12px 8px;-unity-font:url('project:/Assets/PolygonFarm/Scripts/AmusingFont.otf');-unity-font-definition:none; 
+
+color:rgba(0,0,0,1); font-size: 35px; transition: background-color 1s ease-out;}
+
+.optns:hover {background-color: rgba(200,255,100,0.4);}
+
+#bttn_1 {left:12.5%;}
+#bttn_2 {left:37.5%;}
+#bttn_3 {left:62.5%;}
+#bttn_4 {left:87.5%;}

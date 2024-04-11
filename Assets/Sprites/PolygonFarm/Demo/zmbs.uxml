@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
+>
+
+    <engine:Style src="zmbs.uss" />
+    <engine:Box name="box" >
+    
+        <engine:Button name="play" label="Boots" text="Play"/>
+        
+        <engine:Button name="options" label="Helmet" text="Options" />
+        
+         <engine:Button name="exit" label="Helmet" text="Exit" />
+        
+       
+    </engine:Box>
+  
+</engine:UXML>

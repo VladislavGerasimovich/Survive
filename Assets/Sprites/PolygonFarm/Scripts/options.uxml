@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd"
+>
+    <engine:Style src="optns.uss"/>
+    <engine:Button name="bttn_1" class="optns" text="Option 1"/>
+    <engine:Button name="bttn_2" class="optns" text="Option 2"/>
+    <engine:Button name="bttn_3" class="optns" text="Option 3"/>
+    <engine:Button name="bttn_4" class="optns" text="Option 4"/>
+    
+</engine:UXML>
