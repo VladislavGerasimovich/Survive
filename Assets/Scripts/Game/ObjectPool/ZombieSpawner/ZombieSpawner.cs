@@ -13,8 +13,14 @@ public class ZombieSpawner : MonoBehaviour
     [SerializeField] private List<GameObject> _firstZombiePositions;
     [SerializeField] private ZombiesPools _zombiesPools;
 
+    private const string LEVEL = "DIFFICULTY_LEVEL";
+
     private int _firstZombieIndex;
     private List<int> _typesOfZombies;
+    private int _currentDifficultyLevel;
+    private List<List<int>> _firstDifficultyLevel;
+    private List<List<int>> _secondDifficultyLevel;
+    private List<List<List<int>>> _typesOfZombiesDependingOfDifficultyLevel;
     private WaitForSeconds _delay;
     private float _pastTime;
     private int _firstTimeToIncreaseDifficulty;
@@ -25,13 +31,19 @@ public class ZombieSpawner : MonoBehaviour
 
     private void Awake()
     {
+        _currentDifficultyLevel = PlayerPrefs.GetInt(LEVEL, 0);
         _firstZombieIndex = 1;
         _firstTimeToIncreaseDifficulty = 30;
         _secondTimeToIncreaseDifficulty = 60;
         _thirdTimeToIncreaseDifficulty = 90;
         _fourthTimeToIncreaseDifficulty = 120;
         _fifthTimeToIncreaseDifficulty = 150;
-        _typesOfZombies = new List<int>() {1, 1, 1, 2};
+        _typesOfZombiesDependingOfDifficultyLevel = new List<List<List<int>>>();
+        _firstDifficultyLevel = new List<List<int>>() { new List<int>{ 1, 1, 1, 2 }, new List<int>{ 1, 1, 2, 2 }, new List<int> { 1, 2, 2, 2 } };
+        _typesOfZombiesDependingOfDifficultyLevel.Add(_firstDifficultyLevel);
+        _secondDifficultyLevel = new List<List<int>>() { new List<int>{ 1, 2, 2, 2 }, new List<int>{ 1, 2, 2, 3 }, new List<int> { 1, 2, 3, 3 } };
+        _typesOfZombiesDependingOfDifficultyLevel.Add(_secondDifficultyLevel);
+        _typesOfZombies = _typesOfZombiesDependingOfDifficultyLevel[_currentDifficultyLevel][0];
         _delay = new WaitForSeconds(5);
     }
 
@@ -105,13 +117,17 @@ public class ZombieSpawner : MonoBehaviour
 
     private void SetValues()
     {
-        if (_pastTime >= _firstTimeToIncreaseDifficulty && _pastTime < _secondTimeToIncreaseDifficulty)
+        if(_pastTime < _firstTimeToIncreaseDifficulty)
         {
-            _typesOfZombies = new List<int>() { 1, 1, 2, 2 };
+            _typesOfZombies = _typesOfZombiesDependingOfDifficultyLevel[_currentDifficultyLevel][0];
+        }
+        else if (_pastTime >= _firstTimeToIncreaseDifficulty && _pastTime < _secondTimeToIncreaseDifficulty)
+        {
+            _typesOfZombies = _typesOfZombiesDependingOfDifficultyLevel[_currentDifficultyLevel][1];
         }
         else if (_pastTime >= _secondTimeToIncreaseDifficulty && _pastTime < _thirdTimeToIncreaseDifficulty)
         {
-            _typesOfZombies = new List<int>() { 1, 2, 2, 3 };
+            _typesOfZombies = _typesOfZombiesDependingOfDifficultyLevel[_currentDifficultyLevel][2];
         }
         else if (_pastTime >= _thirdTimeToIncreaseDifficulty && _pastTime < _fourthTimeToIncreaseDifficulty)
         {
@@ -119,11 +135,11 @@ public class ZombieSpawner : MonoBehaviour
         }
         else if (_pastTime >= _fourthTimeToIncreaseDifficulty && _pastTime < _fifthTimeToIncreaseDifficulty)
         {
-            _typesOfZombies = new List<int>() { 2, 2, 3, 3 };
+            _delay = new WaitForSeconds(3);
         }
         else if (_pastTime >= _fifthTimeToIncreaseDifficulty)
         {
-            _delay = new WaitForSeconds(3);
+            _delay = new WaitForSeconds(2);
         }
     }
 }

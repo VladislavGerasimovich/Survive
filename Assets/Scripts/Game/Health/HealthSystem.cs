@@ -1,12 +1,14 @@
 using System;
+using System.Collections;
 using System.Diagnostics;
 using UnityEngine;
 
-public class HealthSystem
+public class HealthSystem : MonoBehaviour
 {
     private int _value;
     private int _maxValue;
     private float _currentValue;
+    private bool _isImmortal;
 
     public event Action Died;
     public event Action<float> OnValueChanged;
@@ -19,26 +21,41 @@ public class HealthSystem
 
     public void TakeDamage(int damage)
     {
-        _value -= damage;
-        _currentValue = (float)_value / _maxValue;
-        OnValueChanged?.Invoke(_currentValue);
-
-        if (_value < 0)
+        if(_isImmortal == false)
         {
-            _value = 0;
-        }
+            _value -= damage;
+            _currentValue = (float)_value / _maxValue;
+            OnValueChanged?.Invoke(_currentValue);
 
-        if(_value == 0)
-        {
-            Died?.Invoke();
-            _value = _maxValue;
+            if (_value < 0)
+            {
+                _value = 0;
+            }
+
+            if(_value == 0)
+            {
+                Died?.Invoke();
+                _value = _maxValue;
+            }
         }
     }
 
     public void Restore()
     {
+        UnityEngine.Debug.Log("восстановилось");
         _value = _maxValue;
         _currentValue = (float)_value / _maxValue;
         OnValueChanged?.Invoke(_currentValue);
+    }
+
+    public void MakeImmortal()
+    {
+        UnityEngine.Debug.Log("бессмертен!!!!!!!!!!!!!!");
+        _isImmortal = true;
+    }
+
+    public void MakeMortal()
+    {
+        _isImmortal = false;
     }
 }

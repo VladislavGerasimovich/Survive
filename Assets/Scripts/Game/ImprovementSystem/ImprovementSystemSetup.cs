@@ -63,6 +63,15 @@ public class ImprovementSystemSetup : MonoBehaviour
 
     [SerializeField] private VideoAdForImprovement _videoAdForIncreaseMaxCountOfCards;
     [SerializeField] private VideoAdForImprovement _videoAdForShuffleCards;
+
+    private const string MELLE_WEAPON_DAMAGE = "MELLE_WEAPON_DAMAGE";
+    private const string RANGE_WEAPON_DAMAGE = "RANGE_WEAPON_DAMAGE";
+    private const string THROWING_WEAPON_DAMAGE = "THROWING_WEAPON_DAMAGE";
+
+    private const string MELLE_WEAPON_RELOADING = "MELLE_WEAPON_RELOADING";
+    private const string RANGE_WEAPON_RELOADING = "RANGE_WEAPON_RELOADING";
+    private const string THROWING_WEAPON_RELOADING = "THROWING_WEAPON_RELOADING";
+
     private List<Improvement> _allImprovements;
     private List<ImprovementCard> _allCards;
     private ImprovementSystemPresenter _presenter;
@@ -71,31 +80,39 @@ public class ImprovementSystemSetup : MonoBehaviour
     {
         _allImprovements = new List<Improvement>();
         _allCards = new List<ImprovementCard>();
-        string languageCode = YandexGamesSdk.Environment.i18n.lang;
-        ChangeLanguage(languageCode);
-        
-        CreateImprovement(_throwingDamageValues, _throwingWeaponDamage.Level, _throwingWeaponDamage.Type);
-        CreateCard(_throwingWeaponDamage.Icon, _throwingWeaponDamage.Text, _throwingDamageValues.Length, _throwingWeaponDamage.Type, true, _mainContainer);
+        //string languageCode = YandexGamesSdk.Environment.i18n.lang;
+        //ChangeLanguage(languageCode);
 
-        CreateImprovement(_ThrowingWeaponReloadingValues, _throwingWeaponReloading.Level, _throwingWeaponReloading.Type);
-        CreateCard(_throwingWeaponReloading.Icon, _throwingWeaponReloading.Text, _ThrowingWeaponReloadingValues.Length, _throwingWeaponReloading.Type, true, _mainContainer);
+        /*
+        int indexOfMelleWeaponDamage = PlayerPrefs.GetInt(MELLE_WEAPON_DAMAGE) + 1;
+        CreateImprovement(_melleDamageValues, _melleWeaponDamage.Level, indexOfMelleWeaponDamage, _melleWeaponDamage.Type);
+        CreateCard(_melleWeaponDamage.Icon, _melleWeaponDamage.Text, indexOfMelleWeaponDamage, _melleWeaponDamage.Type, true, _mainContainer);
+
+        int indexOfRangeWeaponDamage = PlayerPrefs.GetInt(RANGE_WEAPON_DAMAGE) + 1;
+        CreateImprovement(_rangeDamageValues, _rangeWeaponDamage.Level, indexOfRangeWeaponDamage, _rangeWeaponDamage.Type);
+        CreateCard(_rangeWeaponDamage.Icon, _rangeWeaponDamage.Text, indexOfRangeWeaponDamage, _rangeWeaponDamage.Type, true, _mainContainer);
+
+        int indexOfThrowingWeaponDamage = PlayerPrefs.GetInt(THROWING_WEAPON_DAMAGE,) + 1;
+        CreateImprovement(_throwingDamageValues, _throwingWeaponDamage.Level, indexOfThrowingWeaponDamage, _throwingWeaponDamage.Type);
+        CreateCard(_throwingWeaponDamage.Icon, _throwingWeaponDamage.Text, indexOfThrowingWeaponDamage, _throwingWeaponDamage.Type, true, _mainContainer);
+        */
+        int indexOfMelleWeaponReloading = PlayerPrefs.GetInt(MELLE_WEAPON_RELOADING) + 1;
+        CreateImprovement(_MelleWeaponReloadingValues, _melleWeaponReloading.Level, indexOfMelleWeaponReloading, _melleWeaponReloading.Type);
+        CreateCard(_melleWeaponReloading.Icon, _melleWeaponReloading.Text, indexOfMelleWeaponReloading, _melleWeaponReloading.Type, true, _mainContainer);
+
+        int indexOfRangeWeaponReloading = PlayerPrefs.GetInt(RANGE_WEAPON_RELOADING) + 1;
+        CreateImprovement(_RangeWeaponReloadingValues, _rangeWeaponReloading.Level, indexOfRangeWeaponReloading, _rangeWeaponReloading.Type);
+        CreateCard(_rangeWeaponReloading.Icon, _rangeWeaponReloading.Text, indexOfRangeWeaponReloading, _rangeWeaponReloading.Type, true, _mainContainer);
+
+        int indexOfThrowingWeaponReloading = PlayerPrefs.GetInt(THROWING_WEAPON_RELOADING) + 1;
+        CreateImprovement(_ThrowingWeaponReloadingValues, _throwingWeaponReloading.Level, indexOfThrowingWeaponReloading, _throwingWeaponReloading.Type);
+        CreateCard(_throwingWeaponReloading.Icon, _throwingWeaponReloading.Text, indexOfThrowingWeaponReloading, _throwingWeaponReloading.Type, true, _mainContainer);
         
-        CreateImprovement(_RangeWeaponReloadingValues, _rangeWeaponReloading.Level, _rangeWeaponReloading.Type);
-        CreateCard(_rangeWeaponReloading.Icon, _rangeWeaponReloading.Text, _RangeWeaponReloadingValues.Length, _rangeWeaponReloading.Type, true, _mainContainer);
-        
-        CreateImprovement(_rangeDamageValues, _rangeWeaponDamage.Level, _rangeWeaponDamage.Type);
-        CreateCard(_rangeWeaponDamage.Icon, _rangeWeaponDamage.Text, _rangeDamageValues.Length, _rangeWeaponDamage.Type, true, _mainContainer);
-        
+        /*
         CreateCard(_rangeWeaponImprovement.Icon, _rangeWeaponImprovement.Text, 1, _rangeWeaponImprovement.Type, true, _mainContainer);
         CreateCard(_throwingWeaponImprovement.Icon, _throwingWeaponImprovement.Text, 1, _throwingWeaponImprovement.Type, true, _mainContainer);
         CreateCard(_firstAidIcon, _firstAidCardInfo, 0, _firstAidType, false, _mainContainer);
-
-        CreateImprovement(_melleDamageValues, _melleWeaponDamage.Level, _melleWeaponDamage.Type);
-        CreateCard(_melleWeaponDamage.Icon, _melleWeaponDamage.Text, _melleDamageValues.Length, _melleWeaponDamage.Type, true, _mainContainer);
-
-        CreateImprovement(_MelleWeaponReloadingValues, _melleWeaponReloading.Level, _melleWeaponReloading.Type);
-        CreateCard(_melleWeaponReloading.Icon, _melleWeaponReloading.Text, _MelleWeaponReloadingValues.Length, _melleWeaponReloading.Type, true, _mainContainer);
-
+        */
         _presenter = new ImprovementSystemPresenter(_videoAdForIncreaseMaxCountOfCards, _videoAdForShuffleCards, _playerHealthSystemSetup.HealthSystem, _shuffleCardsButton, _twoCardsButton, _firstAidButton, _melleWeapon, _rangeWeaponLifeCyrcle, _throwingWeapon, _gameTime, _improvementPanel, _allImprovements, _allCards, _melleWeaponsDamage, _countOfCards, _weaponLifeCircle, _bulletsContainer, _rangeWeaponLifeCircle, _explosionAreaContainer, _grenadesTrajectory);
     }
 
@@ -121,9 +138,9 @@ public class ImprovementSystemSetup : MonoBehaviour
         _rangeWeaponReloading.ChangeLanguage(languageCode);
     }
 
-    private void CreateImprovement(int[] values, int _startLevel, string type)
+    private void CreateImprovement(int[] values, int _startLevel, int _maxLevel, string type)
     {
-        Improvement improvement = new Improvement(values, _startLevel, type);
+        Improvement improvement = new Improvement(values, _startLevel, _maxLevel, type);
         _allImprovements.Add(improvement);
     }
 

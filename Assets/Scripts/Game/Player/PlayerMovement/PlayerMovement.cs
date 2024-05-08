@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MobilePlayerInput))]
-[RequireComponent(typeof(DesktopPlayerInput))]
+[RequireComponent(typeof(DesktopWASDPlayerInput))]
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Animator))]
 public class PlayerMovement : MonoBehaviour
@@ -14,9 +14,9 @@ public class PlayerMovement : MonoBehaviour
     private Animator _animator;
     private AnimatorData _animatorData;
     private CharacterController _characterController;
-    private PlayerInput _playerInput;
+    private Input _playerInput;
     private MobilePlayerInput _mobilePlayerInput;
-    private DesktopPlayerInput _desktopPlayerInput;
+    private DesktopWASDPlayerInput _desktopPlayerInput;
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
         _animatorData = new AnimatorData();
         _characterController = GetComponent<CharacterController>();
         _mobilePlayerInput = GetComponent<MobilePlayerInput>();
-        _desktopPlayerInput = GetComponent<DesktopPlayerInput>();
+        _desktopPlayerInput = GetComponent<DesktopWASDPlayerInput>();
         
         _playerInput = _desktopPlayerInput;
         _desktopPlayerInput.enabled = true;

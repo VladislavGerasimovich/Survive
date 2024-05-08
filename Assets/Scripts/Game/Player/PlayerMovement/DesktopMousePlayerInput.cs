@@ -6,7 +6,7 @@ using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.InputSystem.HID;
 using UnityEngine.UI;
 
-public class DesktopPlayerInput : PlayerInput
+public class DesktopMousePlayerInput : Input
 {
     private bool _isMoving;
 
@@ -17,11 +17,11 @@ public class DesktopPlayerInput : PlayerInput
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (UnityEngine.Input.GetMouseButtonDown(0))
         {
             if(IsCan == true)
             {
-                OnFingerDown(Input.mousePosition);
+                OnFingerDown(UnityEngine.Input.mousePosition);
                 _isMoving = true;
             }
         }
@@ -31,7 +31,7 @@ public class DesktopPlayerInput : PlayerInput
             OnFingerMove();
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (UnityEngine.Input.GetMouseButtonUp(0))
         {
             _isMoving = false;
 
@@ -43,7 +43,7 @@ public class DesktopPlayerInput : PlayerInput
     {
         Vector2 handlerPosition;
         float maxMovement = _joystick.Size.x / 2;
-        Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        Vector2 mousePosition = new Vector2(UnityEngine.Input.mousePosition.x, UnityEngine.Input.mousePosition.y);
 
         if (Vector2.Distance(mousePosition, _joystick.Position) > maxMovement)
         {

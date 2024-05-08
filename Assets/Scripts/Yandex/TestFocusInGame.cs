@@ -46,10 +46,6 @@ public class TestFocusInGame : MonoBehaviour
     {
         if (_improvementPanel.IsOpen == false && _gameMenuPanel.IsOpen == false && _endGamePanel.IsOpen == false && _continueGamePanel.IsOpen == false)
         {
-            Debug.Log(_improvementPanel.IsOpen + " _improvementPanel!!!");
-            Debug.Log(_gameMenuPanel.IsOpen + " _gameMenuPanel!!!");
-            Debug.Log(_endGamePanel.IsOpen + " _endGamePanel!!!");
-            Debug.Log(_continueGamePanel.IsOpen + " _continueGamePanel!!!");
             _gameTime.Run();
             return;
         }

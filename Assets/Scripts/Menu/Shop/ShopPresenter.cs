@@ -9,18 +9,19 @@ public class ShopPresenter
     private Shop _shop;
     private List<Item> _items;
     private TMP_Text _moneyText;
+    private string _moneyType;
     
     public ShopPresenter(Shop shop, List<Item> items, TMP_Text moneyText)
     {
         _shop = shop;
         _items = items;
         _moneyText = moneyText;
+        _moneyType = "money";
     }
 
     public void Enable()
     {
         _moneyText.text = _shop.Money.ToString();
-        _shop.ItemBuyed += SetStatusOfItem;
 
         foreach (Item item in _items)
         {
@@ -30,8 +31,6 @@ public class ShopPresenter
 
     public void Disable()
     {
-        _shop.ItemBuyed += SetStatusOfItem;
-
         foreach (Item item in _items)
         {
             item.Clicked -= BuyItem;
@@ -40,22 +39,27 @@ public class ShopPresenter
 
     private void BuyItem(string money, string type)
     {
-        if (_shop.TrySpentMoney(int.Parse(money)))
+        if(type != _moneyType)
         {
-            _moneyText.text = _shop.Money.ToString();
-
-            foreach (Item item in _items)
+            if (_shop.TrySpentMoney(int.Parse(money)))
             {
-                if(item.Type == type)
+                _moneyText.text = _shop.Money.ToString();
+
+                foreach (Item item in _items)
                 {
-                    item.SetStatus();
+                    if(item.Type == type)
+                    {
+                        item.SetStatus();
+                    }
                 }
             }
+
+            return;
         }
-    }
-
-    private void SetStatusOfItem()
-    {
-
+        else
+        {
+            _shop.AddMoney(int.Parse(money));
+            _moneyText.text = _shop.Money.ToString();
+        }
     }
 }

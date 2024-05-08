@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class PressButton : MonoBehaviour
 {
     [SerializeField] private Image _adImage;
+    [SerializeField] private bool _interactable;
 
     private Button _button;
     private Image _image;
@@ -21,7 +22,7 @@ public class PressButton : MonoBehaviour
     {
         _button = GetComponent<Button>();
         _image = GetComponent<Image>();
-        StatusInteractableOn();
+        Interactable = _interactable;
     }
 
     private void OnEnable()

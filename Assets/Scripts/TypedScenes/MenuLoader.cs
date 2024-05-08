@@ -17,6 +17,7 @@ public class MenuLoader : MonoBehaviour
         if(_playerScore != null)
         {
             PlayerPrefs.SetInt("PlayerScore", _playerScore.Score);
+            PlayerPrefs.Save();
         }
 
         SceneManager.LoadScene(_menuSceneId);

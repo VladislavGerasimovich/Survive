@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 
-public class PlayerInput : MonoBehaviour
+public class Input : MonoBehaviour
 {
     [SerializeField] public Joystick _joystick;
 

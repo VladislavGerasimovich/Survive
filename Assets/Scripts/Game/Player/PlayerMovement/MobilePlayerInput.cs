@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
-public class MobilePlayerInput : PlayerInput
+public class MobilePlayerInput : Input
 {
     private Finger _movementFinger;
 

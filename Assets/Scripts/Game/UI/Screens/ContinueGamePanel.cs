@@ -1,5 +1,7 @@
+using Agava.YandexGames;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,24 +17,25 @@ public class ContinueGamePanel : Window
     [SerializeField] private MenuLoader _menuLoader;
     [SerializeField] private GameTime _gameTime;
     [SerializeField] private VideoAd _videoAd;
+    [SerializeField] private Timer _timer;
 
     public bool IsOpen { get; private set; }
 
     private void OnEnable()
     {
-        _continueButton.GetComponent<Button>().onClick.AddListener(Close);
+        _continueButton.GetComponent<Button>().onClick.AddListener(OnContinueButtonClick);
         _exitButton.GetComponent<Button>().onClick.AddListener(ExitMenu);
     }
 
     private void OnDisable()
     {
-        _continueButton.GetComponent<Button>().onClick.RemoveListener(Close);
+        _continueButton.GetComponent<Button>().onClick.RemoveListener(OnContinueButtonClick);
         _exitButton.GetComponent<Button>().onClick.RemoveListener(ExitMenu);
     }
 
     public override void Close()
     {
-        _videoAd.Show();
+        _videoAd.OnCloseAd -= Close;
         IsOpen = false;
 
         if (_improvementPanelCanvasGroup.alpha == 1)
@@ -82,5 +85,12 @@ public class ContinueGamePanel : Window
         Close();
         StopAllCoroutines();
         _menuLoader.RunMenu();
+    }
+
+    private void OnContinueButtonClick()
+    {
+        _timer.SetRemainingTime();
+        _videoAd.Show();
+        _videoAd.OnCloseAd += Close;
     }
 }

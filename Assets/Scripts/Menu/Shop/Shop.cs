@@ -1,26 +1,33 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using UnityEngine;
 
 public class Shop
 {
+    private const string MONEY = "MONEY";
     public event Action ItemBuyed;
 
     public int Money { get; private set; }
 
-    public Shop(int money)
+    public Shop()
     {
-        Money = money;
+        Money = PlayerPrefs.GetInt(MONEY, 0);
     }
 
     public void AddMoney(int money)
     {
         Money += money;
+        PlayerPrefs.SetInt(MONEY, Money);
+        PlayerPrefs.Save();
     }
 
     public void SpentMoney(int money)
     {
         Money -= money;
+        PlayerPrefs.SetInt(MONEY, Money);
+        PlayerPrefs.Save();
         ItemBuyed?.Invoke();
     }
 

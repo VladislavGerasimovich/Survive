@@ -8,13 +8,12 @@ public class ShopSetup : MonoBehaviour
 {
     [SerializeField] private List<Item> _items;
     [SerializeField] private TMP_Text _moneyText;
-    [SerializeField] private int _money;
 
     private ShopPresenter _shopPresenter;
 
     private void Awake()
     {
-        Shop shop = new Shop(_money);
+        Shop shop = new Shop();
         _shopPresenter = new ShopPresenter(shop, _items, _moneyText);
     }
 

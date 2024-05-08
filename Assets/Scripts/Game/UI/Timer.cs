@@ -8,6 +8,10 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] private float _remainigTime;
     [SerializeField] private ContinueGamePanel _continueGamePanel;
+    [SerializeField] private GameOverPanel _gameOverPanel;
+    [SerializeField] private float _extraTime;
+    [SerializeField] private int _countOfExtraLevels;
+    [SerializeField] private Reward _reward;
 
     private TMP_Text _text;
 
@@ -18,6 +22,12 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(Run());
+    }
+
+    public void SetRemainingTime()
+    {
+        _remainigTime = _extraTime;
         StartCoroutine(Run());
     }
 
@@ -34,6 +44,15 @@ public class Timer : MonoBehaviour
             _text.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
             yield return null;
+        }
+        _reward.Add();
+
+        _countOfExtraLevels--;
+
+        if(_countOfExtraLevels < 0)
+        {
+            _gameOverPanel.Open();
+            yield break;
         }
 
         _continueGamePanel.Open();

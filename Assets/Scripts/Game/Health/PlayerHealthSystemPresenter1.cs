@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealthSystemPresenter
+public class PlayerHealthSystemPresenter : MonoBehaviour
 {
     private VideoAd _videoAd;
     private HealthSystem _healthSystem;
@@ -14,14 +14,22 @@ public class PlayerHealthSystemPresenter
     private Vignette _vignette;
     private PressButton _firstAidButton;
     private PressButton _reliveButton;
+    private PressButton _immortalityButton;
     private PlayerTakeDamage _playerTakeDamage;
+    private PlayerMortality _playerMortality;
+    private ImmortalityCount _immortalityCount;
+    private FirstAidKitCount _firstAidKitCount;
 
-    public PlayerHealthSystemPresenter(PlayerTakeDamage playerTakeDamage,VideoAd videoAd, PressButton reliveButton, PressButton firstAidButton, HealthSystem healthSystem, PlayerDied died, HealthBar healthBar, Vignette vignette)
+    public PlayerHealthSystemPresenter(FirstAidKitCount firstAidKitCount, ImmortalityCount immortalityCount, PlayerMortality playerMortality, PlayerTakeDamage playerTakeDamage,VideoAd videoAd, PressButton reliveButton, PressButton firstAidButton, PressButton immortalityButton, HealthSystem healthSystem, PlayerDied died, HealthBar healthBar, Vignette vignette)
     {
+        _firstAidKitCount = firstAidKitCount;
+        _immortalityCount = immortalityCount;
+        _playerMortality = playerMortality;
         _playerTakeDamage = playerTakeDamage;
         _videoAd = videoAd;
-        _reliveButton = reliveButton;
         _firstAidButton = firstAidButton;
+        _reliveButton = reliveButton;
+        _immortalityButton = immortalityButton;
         _healthSystem = healthSystem;
         _playerDied = died;
         _healthBar = healthBar;
@@ -30,8 +38,9 @@ public class PlayerHealthSystemPresenter
 
     public void Enable()
     {
-        _reliveButton.GetComponent<Button>().onClick.AddListener(OnRelive);
-        _firstAidButton.Click += RestoreHealth;
+        _reliveButton.Click += OnReliveButtonClick;
+        _firstAidButton.Click += OnFirstAidButtonClick;
+        _immortalityButton.Click += OnImmortalityButtonClick;
         _healthSystem.OnValueChanged += ChangeSliderValue;
         _healthSystem.Died += OnDied;
         _playerTakeDamage.TakeDamage += OnTakeDamage;
@@ -39,7 +48,9 @@ public class PlayerHealthSystemPresenter
 
     public void Disable()
     {
-        _firstAidButton.Click -= RestoreHealth;
+        _reliveButton.Click -= OnReliveButtonClick;
+        _firstAidButton.Click -= OnFirstAidButtonClick;
+        _immortalityButton.Click -= OnImmortalityButtonClick;
         _healthSystem.OnValueChanged -= ChangeSliderValue;
         _healthSystem.Died -= OnDied;
         _playerTakeDamage.TakeDamage -= OnTakeDamage;
@@ -53,12 +64,6 @@ public class PlayerHealthSystemPresenter
         {
             _vignette.StartShowVignetteCoroutine();
         }
-    }
-
-    private void RestoreHealth()
-    {
-        _videoAd.Show();
-        RestoreAllHealth();
     }
 
     private void RestoreAllHealth()
@@ -81,8 +86,61 @@ public class PlayerHealthSystemPresenter
         _playerDied.Died();
     }
 
-    private void OnRelive()
+    private void OnFirstAidButtonClick()
     {
+        bool isGreaterThanZero = _firstAidKitCount.IsCountGreaterThenZero();
+
+        if (isGreaterThanZero == false)
+        {
+            Debug.Log("реклама");
+            _videoAd.Show();
+            _videoAd.OnCloseAd += RestoreAllHealth;
+            return;
+        }
+        else
+        {
+            _firstAidKitCount.ReduceCount();
+            RestoreAllHealth();
+        }
+    }
+
+    private void OnImmortalityButtonClick()
+    {
+        bool isGreaterThanZero = _immortalityCount.IsCountGreaterThenZero();
+
+        if(isGreaterThanZero == false)
+        {
+            Debug.Log("реклама");
+            _videoAd.Show();
+            _videoAd.OnCloseAd += MakeImmortal;
+            return;
+        }
+        else
+        {
+            _immortalityCount.ReduceCount();
+            MakeImmortal();
+        }
+    }
+
+    private void OnReliveButtonClick()
+    {
+        _videoAd.OnCloseAd += MakeImmortal;
+    }
+
+    private void MakeImmortal()
+    {
+        _videoAd.OnCloseAd -= MakeImmortal;
+        _immortalityButton.InteractableOff();
         _healthSystem.Restore();
+        _healthSystem.MakeImmortal();
+        _playerMortality.RunImmortalityCoroutine();
+        _playerMortality.IsMortal += MakeMortal;
+    }
+
+    private void MakeMortal()
+    {
+        _immortalityButton.InteractableOn();
+        _playerMortality.IsMortal -= MakeMortal;
+        _healthSystem.MakeMortal();
     }
 }

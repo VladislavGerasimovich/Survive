@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,20 +16,15 @@ public class EndGamePanel : Window
     [SerializeField] private MenuLoader _menuLoader;
     [SerializeField] private GameTime _gameTime;
     [SerializeField] private VideoAd _videoAd;
-
-    private bool _canUse;
+    [SerializeField] private TMP_Text _rewardText;
+    [SerializeField] private Reward _reward;
 
     public bool IsOpen { get; private set; }
-
-    private void Awake()
-    {
-        _canUse = true;
-    }
 
     private void OnEnable()
     {
         _videoAd.OnCloseAd += Close;
-        _reliveButton.GetComponent<Button>().onClick.AddListener(OnReliveButtonClick);
+        _reliveButton.Click += OnReliveButtonClick;
         _menuButton.GetComponent<Button>().onClick.AddListener(ExitMenu);
     }
 
@@ -71,31 +67,27 @@ public class EndGamePanel : Window
 
     public override void Open()
     {
-        if (_canUse == true)
+        if(_reliveButton.Interactable == true)
         {
-            _continueGamePanelCanvasGroup.blocksRaycasts = false;
-            _improvementPanelCanvasGroup.blocksRaycasts = false;
-            _gameMenuPanelCanvasGroup.blocksRaycasts = false;
-            IsOpen = true;
-            _firstAidButton.InteractableOff();
-            _menuButton.InteractableOn();
             _reliveButton.InteractableOn();
-            CanvasGroup.blocksRaycasts = true;
-            CanvasGroup.alpha = 1;
-            _gameTime.Stop();
-        
-            return;
         }
-        else
-        {
-            ExitMenu();
-        }
+
+        _continueGamePanelCanvasGroup.blocksRaycasts = false;
+        _improvementPanelCanvasGroup.blocksRaycasts = false;
+        _gameMenuPanelCanvasGroup.blocksRaycasts = false;
+        IsOpen = true;
+        _firstAidButton.InteractableOff();
+        _menuButton.InteractableOn();
+        CanvasGroup.blocksRaycasts = true;
+        CanvasGroup.alpha = 1;
+        _gameTime.Stop();
+        _rewardText.text = _reward.AllRewards.ToString();
     }
 
     private void OnReliveButtonClick()
     {
         _videoAd.Show();
-        _canUse = false;
+        _reliveButton.StatusInteractableOff();
         _firstAidButton.StatusInteractableOff();
     }
 

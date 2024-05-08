@@ -6,13 +6,13 @@ using UnityEngine;
 public class GameTime : MonoBehaviour
 {
     [SerializeField] private MobilePlayerInput _mobilePlayerInput;
-    [SerializeField] private DesktopPlayerInput _desktopPlayerInput;
+    [SerializeField] private DesktopWASDPlayerInput _desktopPlayerInput;
     [SerializeField] private ImprovementPanel _improvementPanel;
     [SerializeField] private GameMenuPanel _gameMenuPanel;
     [SerializeField] private EndGamePanel _endGamePanel;
     [SerializeField] private ContinueGamePanel _continueGamePanel;
 
-    private PlayerInput _playerInput;
+    private Input _playerInput;
 
     private void Awake()
     {
