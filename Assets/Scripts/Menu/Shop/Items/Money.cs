@@ -1,3 +1,4 @@
+using Agava.YandexGames;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,7 +16,8 @@ public class Money : Item
         _background = GetComponent<Image>();
         _button = GetComponent<Button>();
         Type = _type;
-        ChangeLanguage("ru");
+        string languageCode = YandexGamesSdk.Environment.i18n.lang;
+        ChangeLanguage(languageCode);
     }
 
     private void OnEnable()

@@ -11,6 +11,7 @@ public class EndGamePanel : Window
     [SerializeField] private CanvasGroup _gameMenuPanelCanvasGroup;
     [SerializeField] private CanvasGroup _continueGamePanelCanvasGroup;
     [SerializeField] private PressButton _firstAidButton;
+    [SerializeField] private PressButton _immortality;
     [SerializeField] private PressButton _reliveButton;
     [SerializeField] private PressButton _menuButton;
     [SerializeField] private MenuLoader _menuLoader;
@@ -55,6 +56,7 @@ public class EndGamePanel : Window
         CanvasGroup.blocksRaycasts = false;
         IsOpen = false;
         _reliveButton.InteractableOff();
+        _immortality.InteractableOn();
         _menuButton.InteractableOff();
         CanvasGroup.alpha = 0;
         _gameTime.Run();
@@ -77,6 +79,7 @@ public class EndGamePanel : Window
         _gameMenuPanelCanvasGroup.blocksRaycasts = false;
         IsOpen = true;
         _firstAidButton.InteractableOff();
+        _immortality.InteractableOff();
         _menuButton.InteractableOn();
         CanvasGroup.blocksRaycasts = true;
         CanvasGroup.alpha = 1;

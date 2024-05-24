@@ -11,6 +11,7 @@ public class ContinueGamePanel : Window
     [SerializeField] private CanvasGroup _gameMenuPanelCanvasGroup;
     [SerializeField] private CanvasGroup _endGamePanelCanvasGroup;
     [SerializeField] private PressButton _firstAidButton;
+    [SerializeField] private PressButton _immortality;
     [SerializeField] private PressButton _menuButton;
     [SerializeField] private PressButton _continueButton;
     [SerializeField] private PressButton _exitButton;
@@ -54,6 +55,7 @@ public class ContinueGamePanel : Window
         }
 
         _menuButton.InteractableOn();
+        _immortality.InteractableOn();
         _continueButton.InteractableOff();
         _exitButton.InteractableOff();
         CanvasGroup.blocksRaycasts = false;
@@ -72,6 +74,7 @@ public class ContinueGamePanel : Window
         _gameMenuPanelCanvasGroup.blocksRaycasts = false;
         _endGamePanelCanvasGroup.blocksRaycasts = false;
         _firstAidButton.InteractableOff();
+        _immortality.InteractableOff();
         _menuButton.InteractableOff();
         _continueButton.InteractableOn();
         _exitButton.InteractableOn();

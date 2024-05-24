@@ -13,6 +13,7 @@ public class GameMenuPanel : Window
     [SerializeField] private PressButton _menuButton;
     [SerializeField] private PressButton _returnToGameButton;
     [SerializeField] private PressButton _firstAidButton;
+    [SerializeField] private PressButton _immortality;
     [SerializeField] private GameTime _gameTime;
     [SerializeField] private MenuLoader _menuLoader;
 
@@ -51,6 +52,7 @@ public class GameMenuPanel : Window
 
         _gameMenuButton.interactable = true;
         IsOpen = false;
+        _immortality.InteractableOn();
         _returnToGameButton.InteractableOff();
         _menuButton.InteractableOff();
         CanvasGroup.blocksRaycasts = false;
@@ -71,6 +73,7 @@ public class GameMenuPanel : Window
         _continueGamePanelCanvasGroup.blocksRaycasts = false;
         IsOpen = true;
         _firstAidButton.InteractableOff();
+        _immortality.InteractableOff();
         _returnToGameButton.InteractableOn();
         _menuButton.InteractableOn();
         CanvasGroup.blocksRaycasts = true;

@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class ImprovementPanel : Window
 {
     [SerializeField] private PressButton _firstAidButton;
-    [SerializeField] private PressButton _firstAidRewardButton;
+    [SerializeField] private PressButton _immortality;
     [SerializeField] private CanvasGroup _gameMenuCanvasGroup;
     [SerializeField] private CanvasGroup _endGameCanvasGroup;
     [SerializeField] private CanvasGroup _continueGamePanelCanvasGroup;
@@ -24,8 +24,9 @@ public class ImprovementPanel : Window
         _endGameCanvasGroup.blocksRaycasts = true;
         CanvasGroup.alpha = 0;
         IsOpen = false;
+        _immortality.InteractableOn();
 
-        if(_firstAidButton.Interactable == true)
+        if (_firstAidButton.Interactable == true)
         {
             _firstAidButton.InteractableOn();
         }
@@ -39,6 +40,7 @@ public class ImprovementPanel : Window
         IsOpen = true;
         CanvasGroup.blocksRaycasts = true;
         _firstAidButton.InteractableOff();
+        _immortality.InteractableOff();
         CanvasGroup.alpha = 1;
         IsPanelOpen?.Invoke();
     }

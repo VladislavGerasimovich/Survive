@@ -1,3 +1,4 @@
+using Agava.YandexGames;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,8 +46,8 @@ public class Item : MonoBehaviour
         _background = GetComponent<Image>();
         _button = GetComponent<Button>();
         Type = _type;
-        //string languageCode = YandexGamesSdk.Environment.i18n.lang;
-        ChangeLanguage("ru");
+        string languageCode = YandexGamesSdk.Environment.i18n.lang;
+        ChangeLanguage(languageCode);
     }
 
     private void Start()

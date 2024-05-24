@@ -8,7 +8,7 @@
       "hash": "32d39130ea78dce0c3ea0ed83ec5f022efefde42"
     },
     "com.agava.yandexgames": {
-      "version": "https://github.com/forcepusher/com.agava.yandexgames.git",
+      "version": "https://github.com/forcepusher/com.agava.yandexgames.git#16.0.1",
       "depth": 0,
       "source": "git",
       "dependencies": {},
@@ -152,7 +152,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "1.7.4",
+      "version": "1.7.5",
       "depth": 0,
       "source": "registry",
       "dependencies": {

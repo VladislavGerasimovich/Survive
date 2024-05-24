@@ -13,6 +13,7 @@ public class GameOverPanel : Window
     [SerializeField] private PressButton _menuButton;
     [SerializeField] private PressButton _exitMenuButton;
     [SerializeField] private PressButton _firstAidButton;
+    [SerializeField] private PressButton _immortality;
     [SerializeField] private GameTime _gameTime;
     [SerializeField] private MenuLoader _menuLoader;
     [SerializeField] private TMP_Text _rewardText;
@@ -43,6 +44,7 @@ public class GameOverPanel : Window
         _gameMenuPanelCanvasGroup.blocksRaycasts = false;
         _endGamePanelCanvasGroup.blocksRaycasts = false;
         _exitMenuButton.InteractableOn();
+        _immortality.InteractableOn();
         _firstAidButton.InteractableOff();
         _menuButton.InteractableOff();
         CanvasGroup.blocksRaycasts = true;

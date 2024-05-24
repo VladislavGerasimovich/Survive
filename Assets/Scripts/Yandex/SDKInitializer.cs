@@ -16,6 +16,7 @@ public sealed class SDKInitializer : MonoBehaviour
     private IEnumerator Start()
     {
         yield return YandexGamesSdk.Initialize(OnInitialized);
+        PlayerAccount.GetCloudSaveData();
     }
 
     private void OnInitialized()
