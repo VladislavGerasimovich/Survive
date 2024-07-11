@@ -2,11 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Grenade : MonoBehaviour
 {
     [SerializeField] private ExplosionArea _explosionArea;
     [SerializeField] private GameObject _grenadePrefab; 
     [SerializeField] private GrenadeCollisionHandler _collisionHandler;
+
+    private AudioSource _explosionSound;
+
+    private void Awake()
+    {
+        _explosionSound = GetComponent<AudioSource>();
+    }
 
     private void OnEnable()
     {
@@ -33,5 +41,6 @@ public class Grenade : MonoBehaviour
     private void Explosion(Vector3 position)
     {
         _explosionArea.GetComponent<ExplosionArea>().Run(position);
+        _explosionSound.Play();
     }
 }

@@ -29,8 +29,6 @@ public class ConsumableItem : Item
         _button.onClick.AddListener(OnClick);
     }
 
-    private void Start(){}
-
     private void OnDisable()
     {
         _button.onClick.RemoveListener(OnClick);
@@ -48,16 +46,24 @@ public class ConsumableItem : Item
         }
     }
 
-    public override void Buy()
-    {
-        _popUpWindow.YesButtonClicked -= Buy;
-        _popUpWindow.NoButtonClicked -= Cancel;
-        Clicked?.Invoke(_cost[0], _type);
-    }
-
     public void SetTextOfCount()
     {
         _textOfCount.text = $"{_currentCount} / {_maxCount}";
         _text.text = _cost[0];
+    }
+
+    public override void OnClick()
+    {
+        Clicked?.Invoke(_cost[0], _type);
+    }
+
+    public override void SetCost()
+    {
+        _text.text = _cost[0];
+
+        if (_currentCount == _maxCount)
+        {
+            _button.interactable = false;
+        }
     }
 }

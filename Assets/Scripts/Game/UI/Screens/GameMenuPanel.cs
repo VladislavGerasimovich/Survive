@@ -17,8 +17,6 @@ public class GameMenuPanel : Window
     [SerializeField] private GameTime _gameTime;
     [SerializeField] private MenuLoader _menuLoader;
 
-    public bool IsOpen { get; private set; }
-
     private void OnEnable()
     {
         _gameMenuButton.onClick.AddListener(Open);
@@ -35,6 +33,8 @@ public class GameMenuPanel : Window
 
     public override void Close()
     {
+        base.Close();
+
         if (_improvementPanelCanvasGroup.alpha == 1)
         {
             _improvementPanelCanvasGroup.blocksRaycasts = true;
@@ -51,7 +51,6 @@ public class GameMenuPanel : Window
         }
 
         _gameMenuButton.interactable = true;
-        IsOpen = false;
         _immortality.InteractableOn();
         _returnToGameButton.InteractableOff();
         _menuButton.InteractableOff();
@@ -67,11 +66,11 @@ public class GameMenuPanel : Window
 
     public override void Open()
     {
+        base.Open();
         _gameMenuButton.interactable = false;
         _improvementPanelCanvasGroup.blocksRaycasts = false;
         _endGamePanelCanvasGroup.blocksRaycasts = false;
         _continueGamePanelCanvasGroup.blocksRaycasts = false;
-        IsOpen = true;
         _firstAidButton.InteractableOff();
         _immortality.InteractableOff();
         _returnToGameButton.InteractableOn();
@@ -83,13 +82,7 @@ public class GameMenuPanel : Window
 
     private void ExitMenu()
     {
-        _gameTime.Run();
         StopAllCoroutines();
-        _menuLoader.RunMenu();
-    }
-
-    private void ExitGame()
-    {
-        Application.Quit();
+        _menuLoader.RunInterstitialAd();
     }
 }

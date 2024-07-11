@@ -4,19 +4,32 @@ using UnityEngine;
 
 public class BodyArmor : Item
 {
+    [SerializeField] private PlayerDataManager _playerDataManager;
+
     private const string BODY_ARMOR = "BODY_ARMOR";
 
-    private void Start()
+    private void OnEnable()
     {
-        _indexOfCost = PlayerPrefs.GetInt(BODY_ARMOR,0);
-        SetCost();
+        _button.onClick.AddListener(OnClick);
+        _playerDataManager.DataReceived += SetIndex;
+    }
+
+    private void OnDisable()
+    {
+        _button.onClick.RemoveListener(OnClick);
+        _playerDataManager.DataReceived -= SetIndex;
     }
 
     public override void SetStatus()
     {
         base.SetStatus();
 
-        PlayerPrefs.SetInt(BODY_ARMOR, _indexOfCost);
-        PlayerPrefs.Save();
+        _playerDataManager.Set(BODY_ARMOR, _indexOfCost);
+    }
+
+    private void SetIndex(PlayerData playerData)
+    {
+        _indexOfCost = playerData.BodyArmorIndex;
+        SetCost();
     }
 }

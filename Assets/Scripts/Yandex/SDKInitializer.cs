@@ -4,23 +4,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(PlatformMetrics))]
 public sealed class SDKInitializer : MonoBehaviour
 {
     [SerializeField] private int _menuSceneId;
 
+    private PlatformMetrics _platformMetrics;
+
     private void Awake()
     {
+        _platformMetrics = GetComponent<PlatformMetrics>();
         YandexGamesSdk.CallbackLogging = true;
     }
 
     private IEnumerator Start()
     {
         yield return YandexGamesSdk.Initialize(OnInitialized);
-        PlayerAccount.GetCloudSaveData();
     }
 
     private void OnInitialized()
     {
+        _platformMetrics.OnCallGameReadyButtonClick();
         SceneManager.LoadScene(_menuSceneId);
     }
 }

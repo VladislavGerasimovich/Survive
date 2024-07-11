@@ -11,6 +11,10 @@ public class ZombiePool : MonoBehaviour
     [SerializeField] private int _capacity;
     [SerializeField] private int _healthValue;
     [SerializeField] private Transform _container;
+    [SerializeField] private List<Window> _windows;
+    [SerializeField] private VideoAd _videoAd;
+    [SerializeField] private InterstitialAd _interstitialAd;
+    [SerializeField] private GameTime _gameTime;
 
     protected List<GameObject> _pool;
     protected List<CharacterHealthSystemPresenter> _healthSystemPresenters;
@@ -23,8 +27,31 @@ public class ZombiePool : MonoBehaviour
         _experienceSystemPresenters = new List<ExperienceSystemPresenter>();
     }
 
+    private void OnEnable()
+    {
+        foreach (var window in _windows)
+        {
+            window.IsPanelOpen += PauseSound;
+            window.IsPanelClose += PlaySound;
+        }
+
+        _videoAd.OnOpenAd += PauseSound;
+        _interstitialAd.OnOpenAd += PauseSound;
+        _videoAd.OnCloseAd += PlaySound;
+    }
+
     private void OnDisable()
     {
+        foreach (var window in _windows)
+        {
+            window.IsPanelOpen -= PauseSound;
+            window.IsPanelClose -= PlaySound;
+        }
+
+        _videoAd.OnOpenAd -= PauseSound;
+        _interstitialAd.OnOpenAd -= StopSound;
+        _videoAd.OnCloseAd -= PlaySound;
+
         foreach (var presenter in _healthSystemPresenters)
         {
             presenter.Disable();
@@ -67,7 +94,51 @@ public class ZombiePool : MonoBehaviour
     public bool TryGetObject(out GameObject result)
     {
         result = _pool.FirstOrDefault(p => p.activeSelf == false);
+        result.GetComponent<ZombieDied>().ReviveZombie();
 
         return result != null;
+    }
+
+    public void PauseSound()
+    {
+        foreach (GameObject zombie in _pool)
+        {
+            AudioSource audio = zombie.GetComponent<AudioSource>();
+            audio.Pause();
+            audio.volume = 0;
+        }
+    }
+
+    public void PlaySound()
+    {
+        foreach (var window in _windows)
+        {
+            if(window.IsOpen == true)
+            {
+                Debug.Log("одно из окон открыто");
+                return;
+            }
+        }
+
+        foreach (GameObject zombie in _pool)
+        {
+            AudioSource audio = zombie.GetComponent<AudioSource>();
+            audio.volume = 1;
+
+            if (audio.time != 0)
+            {
+                audio.Play();
+            }
+        }
+    }
+
+    public void StopSound()
+    {
+        foreach (GameObject zombie in _pool)
+        {
+            AudioSource audio = zombie.GetComponent<AudioSource>();
+
+            audio.Stop();
+        }
     }
 }

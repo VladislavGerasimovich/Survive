@@ -45,6 +45,7 @@ public class Timer : MonoBehaviour
 
             yield return null;
         }
+
         _reward.Add();
 
         _countOfExtraLevels--;

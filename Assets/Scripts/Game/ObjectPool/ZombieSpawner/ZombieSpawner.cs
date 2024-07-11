@@ -41,10 +41,10 @@ public class ZombieSpawner : MonoBehaviour
         _typesOfZombiesDependingOfDifficultyLevel = new List<List<List<int>>>();
         _firstDifficultyLevel = new List<List<int>>() { new List<int>{ 1, 1, 1, 2 }, new List<int>{ 1, 1, 2, 2 }, new List<int> { 1, 2, 2, 2 } };
         _typesOfZombiesDependingOfDifficultyLevel.Add(_firstDifficultyLevel);
-        _secondDifficultyLevel = new List<List<int>>() { new List<int>{ 1, 2, 2, 2 }, new List<int>{ 1, 2, 2, 3 }, new List<int> { 1, 2, 3, 3 } };
+        _secondDifficultyLevel = new List<List<int>>() { new List<int>{ 1, 2, 2, 3 }, new List<int>{ 1, 2, 3, 3 }, new List<int> { 2, 2, 3, 3 } };
         _typesOfZombiesDependingOfDifficultyLevel.Add(_secondDifficultyLevel);
         _typesOfZombies = _typesOfZombiesDependingOfDifficultyLevel[_currentDifficultyLevel][0];
-        _delay = new WaitForSeconds(5);
+        _delay = new WaitForSeconds(4);
     }
 
     private void Start()
@@ -124,6 +124,7 @@ public class ZombieSpawner : MonoBehaviour
         else if (_pastTime >= _firstTimeToIncreaseDifficulty && _pastTime < _secondTimeToIncreaseDifficulty)
         {
             _typesOfZombies = _typesOfZombiesDependingOfDifficultyLevel[_currentDifficultyLevel][1];
+            _delay = new WaitForSeconds(3);
         }
         else if (_pastTime >= _secondTimeToIncreaseDifficulty && _pastTime < _thirdTimeToIncreaseDifficulty)
         {
@@ -131,15 +132,13 @@ public class ZombieSpawner : MonoBehaviour
         }
         else if (_pastTime >= _thirdTimeToIncreaseDifficulty && _pastTime < _fourthTimeToIncreaseDifficulty)
         {
-            _delay = new WaitForSeconds(4);
         }
         else if (_pastTime >= _fourthTimeToIncreaseDifficulty && _pastTime < _fifthTimeToIncreaseDifficulty)
         {
-            _delay = new WaitForSeconds(3);
+            _delay = new WaitForSeconds(2);
         }
         else if (_pastTime >= _fifthTimeToIncreaseDifficulty)
         {
-            _delay = new WaitForSeconds(2);
         }
     }
 }

@@ -13,17 +13,13 @@ public class ImprovementPanel : Window
     [SerializeField] private CanvasGroup _endGameCanvasGroup;
     [SerializeField] private CanvasGroup _continueGamePanelCanvasGroup;
 
-    public event Action IsPanelOpen;
-
-    public bool IsOpen { get ; private set; }
-
     public override void Close()
     {
+        base.Close();
         _continueGamePanelCanvasGroup.blocksRaycasts = true;
         _gameMenuCanvasGroup.blocksRaycasts = true;
         _endGameCanvasGroup.blocksRaycasts = true;
         CanvasGroup.alpha = 0;
-        IsOpen = false;
         _immortality.InteractableOn();
 
         if (_firstAidButton.Interactable == true)
@@ -34,14 +30,13 @@ public class ImprovementPanel : Window
 
     public override void Open()
     {
+        base.Open();
         _continueGamePanelCanvasGroup.blocksRaycasts = false;
         _gameMenuCanvasGroup.blocksRaycasts = false;
         _endGameCanvasGroup.blocksRaycasts = false;
-        IsOpen = true;
         CanvasGroup.blocksRaycasts = true;
         _firstAidButton.InteractableOff();
         _immortality.InteractableOff();
         CanvasGroup.alpha = 1;
-        IsPanelOpen?.Invoke();
     }
 }

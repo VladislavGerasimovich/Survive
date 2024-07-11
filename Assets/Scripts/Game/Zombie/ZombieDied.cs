@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(ZombieMovement))]
@@ -15,6 +16,7 @@ public class ZombieDied : Die
 {
     [SerializeField] private CapsuleCollider _triggerCollider;
 
+    private AudioSource _audioSource;
     private PlayerScore _playerScore;
     private CapsuleCollider _capsuleCollider;
     private ZombieMovement _movement;
@@ -25,8 +27,11 @@ public class ZombieDied : Die
 
     public event Action Rip;
 
+    public bool IsDied { get; private set; }
+
     private void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
         _playerScore = GameObject.FindWithTag("PlayerScore").GetComponent<PlayerScore>();
         _capsuleCollider = GetComponent<CapsuleCollider>();
         _movement = GetComponent<ZombieMovement>();
@@ -39,8 +44,15 @@ public class ZombieDied : Die
 
     public override void Died()
     {
+        IsDied = true;
         _playerScore.SetScore(_score.Count);
+        _audioSource.Play();
         StartCoroutine(DiedCoroutine());
+    }
+
+    public void ReviveZombie()
+    {
+        IsDied = false;
     }
 
     private IEnumerator DiedCoroutine()
@@ -72,7 +84,7 @@ public class ZombieDied : Die
 
         yield return new WaitForSeconds(2);
 
-        transform.position = startPosition;
+        transform.position = new Vector3(924, 483, 0);
         _enemyBlink.EnableBlink();
         _rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
         gameObject.SetActive(false);

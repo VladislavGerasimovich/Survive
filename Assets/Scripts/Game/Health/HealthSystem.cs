@@ -42,7 +42,6 @@ public class HealthSystem : MonoBehaviour
 
     public void Restore()
     {
-        UnityEngine.Debug.Log("восстановилось");
         _value = _maxValue;
         _currentValue = (float)_value / _maxValue;
         OnValueChanged?.Invoke(_currentValue);
@@ -50,7 +49,6 @@ public class HealthSystem : MonoBehaviour
 
     public void MakeImmortal()
     {
-        UnityEngine.Debug.Log("бессмертен!!!!!!!!!!!!!!");
         _isImmortal = true;
     }
 

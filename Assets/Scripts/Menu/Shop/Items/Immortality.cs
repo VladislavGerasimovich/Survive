@@ -4,11 +4,32 @@ using UnityEngine;
 
 public class Immortality : ConsumableItem
 {
+    [SerializeField] private PlayerDataManager _playerDataManager;
+
     private const string IMMORTALITY = "IMMORTALITY";
 
-    private void Start()
+    private void OnEnable()
     {
-        _currentCount = PlayerPrefs.GetInt(IMMORTALITY);
+        _button.onClick.AddListener(OnClick);
+        _playerDataManager.DataReceived += SetIndex;
+    }
+
+    private void OnDisable()
+    {
+        _button.onClick.RemoveListener(OnClick);
+        _playerDataManager.DataReceived -= SetIndex;
+    }
+
+    public override void SetStatus()
+    {
+        base.SetStatus();
+
+        _playerDataManager.Set(IMMORTALITY, _currentCount);
+    }
+
+    private void SetIndex(PlayerData playerData)
+    {
+        _currentCount = playerData.ImmortalityCount;
 
         if (_currentCount >= _maxCount)
         {
@@ -16,13 +37,5 @@ public class Immortality : ConsumableItem
         }
 
         SetTextOfCount();
-    }
-
-    public override void SetStatus()
-    {
-        base.SetStatus();
-
-        PlayerPrefs.SetInt(IMMORTALITY, _currentCount);
-        PlayerPrefs.Save();
     }
 }

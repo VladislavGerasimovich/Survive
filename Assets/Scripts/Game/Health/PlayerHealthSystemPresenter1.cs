@@ -72,6 +72,7 @@ public class PlayerHealthSystemPresenter : MonoBehaviour
 
         _firstAidButton.StatusInteractableOff();
         _firstAidButton.InteractableOff();
+        _videoAd.OnRewardReceived -= RestoreAllHealth;
     }
 
     private void OnTakeDamage(int damage)
@@ -94,7 +95,8 @@ public class PlayerHealthSystemPresenter : MonoBehaviour
         {
             Debug.Log("реклама");
             _videoAd.Show();
-            _videoAd.OnCloseAd += RestoreAllHealth;
+            _videoAd.OnRewardReceived += RestoreAllHealth;
+            _videoAd.OnCloseAd += UnsubscribeEvents;
             return;
         }
         else
@@ -112,7 +114,8 @@ public class PlayerHealthSystemPresenter : MonoBehaviour
         {
             Debug.Log("реклама");
             _videoAd.Show();
-            _videoAd.OnCloseAd += MakeImmortal;
+            _videoAd.OnRewardReceived += MakeImmortal;
+            _videoAd.OnCloseAd += UnsubscribeEvents;
             return;
         }
         else
@@ -124,17 +127,17 @@ public class PlayerHealthSystemPresenter : MonoBehaviour
 
     private void OnReliveButtonClick()
     {
-        _videoAd.OnCloseAd += MakeImmortal;
+        _videoAd.OnRewardReceived += MakeImmortal;
     }
 
     private void MakeImmortal()
     {
-        _videoAd.OnCloseAd -= MakeImmortal;
         _immortalityButton.InteractableOff();
         _healthSystem.Restore();
         _healthSystem.MakeImmortal();
         _playerMortality.RunImmortalityCoroutine();
         _playerMortality.IsMortal += MakeMortal;
+        _videoAd.OnRewardReceived -= MakeImmortal;
     }
 
     private void MakeMortal()
@@ -142,5 +145,12 @@ public class PlayerHealthSystemPresenter : MonoBehaviour
         _immortalityButton.InteractableOn();
         _playerMortality.IsMortal -= MakeMortal;
         _healthSystem.MakeMortal();
+    }
+
+    private void UnsubscribeEvents()
+    {
+        _videoAd.OnRewardReceived -= MakeImmortal;
+        _videoAd.OnRewardReceived -= RestoreAllHealth;
+        _videoAd.OnCloseAd -= UnsubscribeEvents;
     }
 }

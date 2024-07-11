@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-
 public class ZombieCollisionHandler : CollisionHandler
 {
     [SerializeField] private ZombieAttack _zombieAttack;

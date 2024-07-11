@@ -9,6 +9,8 @@ public class Money : Item
 {
     [SerializeField] private VideoAd _videoAd;
 
+    private bool _isRewardReceived;
+
     public override event Action<string, string> Clicked;
 
     private void Awake()
@@ -32,16 +34,43 @@ public class Money : Item
         _button.onClick.RemoveListener(OnClick);
     }
 
-    public override void Buy()
+    public override void OnClick()
+    {
+        _popUpWindow.YesButtonClicked += Buy;
+        _popUpWindow.NoButtonClicked += Cancel;
+        _popUpWindow.Open(TranslatedText);
+    }
+
+    public void Buy()
     {
         _popUpWindow.YesButtonClicked -= Buy;
         _popUpWindow.NoButtonClicked -= Cancel;
         _videoAd.Show();
+        _videoAd.OnRewardReceived += PrepareReward;
         _videoAd.OnCloseAd += AddReward;
+    }
+
+    private void Cancel()
+    {
+        _popUpWindow.YesButtonClicked -= Buy;
+        _popUpWindow.NoButtonClicked -= Cancel;
+        _popUpWindow.Close();
     }
 
     private void AddReward()
     {
-        Clicked?.Invoke(_cost[0], _type);
+        _videoAd.OnRewardReceived -= PrepareReward;
+        _videoAd.OnCloseAd -= AddReward;
+
+        if(_isRewardReceived == true)
+        {
+            _isRewardReceived = false;
+            Clicked?.Invoke(_cost[0], _type);
+        }
+    }
+
+    private void PrepareReward()
+    {
+        _isRewardReceived = true;
     }
 }

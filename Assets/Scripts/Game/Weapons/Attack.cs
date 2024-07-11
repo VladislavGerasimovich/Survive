@@ -6,6 +6,7 @@ public class Attack : MonoBehaviour
 {
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private ParticleSystem _smoke;
+    [SerializeField] private AudioSource _audioSource;
 
     private BulletsCreator _bulletsCreator;
     private WaitForSeconds _delay;
@@ -42,6 +43,7 @@ public class Attack : MonoBehaviour
             bullet.GetComponent<Bullet>().SetActive();
             bullet.GetComponent<Bullet>().Shoot(_shootPoint.position, _shootPoint.transform.forward);
             _smoke.Play();
+            _audioSource.Play();
 
             yield return _delay;
         }

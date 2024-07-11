@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class Reward : MonoBehaviour
 {
+    [SerializeField] private PlayerDataManager _playerDataManager;
+
     private const string REWARD = "CURRENTREWARD";
     private const string MONEY = "MONEY";
 
+    private PlayerData _playerData;
     private int _normalLevelReward;
-    private int _extraLevelReward;
     private bool _isNormalLevelPassed;
 
+    public int ExtraLevelReward { get; private set; }
     public int AllRewards { get; private set; }
 
     private void Awake()
     {
         _normalLevelReward = PlayerPrefs.GetInt(REWARD, 0);
-        _extraLevelReward = _normalLevelReward / 4;
+        ExtraLevelReward = _normalLevelReward / 4;
         Debug.Log(_normalLevelReward + " normallevelreward");
-        Debug.Log(_extraLevelReward + " extralevelreward");
+        Debug.Log(ExtraLevelReward + " extralevelreward");
+    }
+
+    private void OnEnable()
+    {
+        _playerDataManager.DataReceived += SetPlayerData;
+    }
+
+    private void OnDisable()
+    {
+        _playerDataManager.DataReceived -= SetPlayerData;
     }
 
     public void Add()
@@ -36,18 +49,21 @@ public class Reward : MonoBehaviour
     private void AddNormalLevelReward()
     {
         AllRewards += _normalLevelReward;
-        int money = PlayerPrefs.GetInt(MONEY) + _normalLevelReward;
-        PlayerPrefs.SetInt(MONEY, money);
-        PlayerPrefs.Save();
+        _playerData.Money += _normalLevelReward;
+        _playerDataManager.Set(MONEY, _playerData.Money);
         Debug.Log(AllRewards + " normalRewards");
     }
 
     private void AddExtraLevelReward()
     {
-        AllRewards += _extraLevelReward;
-        int money = PlayerPrefs.GetInt(MONEY) + _extraLevelReward;
-        PlayerPrefs.SetInt(MONEY, money);
-        PlayerPrefs.Save();
+        AllRewards += ExtraLevelReward;
+        _playerData.Money += ExtraLevelReward;
+        _playerDataManager.Set(MONEY, _playerData.Money);
         Debug.Log(AllRewards + " extraRewards");
+    }
+
+    private void SetPlayerData(PlayerData playerData)
+    {
+        _playerData = playerData;
     }
 }

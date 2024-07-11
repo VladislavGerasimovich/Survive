@@ -26,10 +26,10 @@ public class Item : MonoBehaviour
     protected Button _button;
     protected int _indexOfCost;
     protected List<Color> _colors;
-    private string _translatedText;
 
     public virtual event Action<string, string> Clicked;
 
+    public string TranslatedText { get; private set; }
     public string Type { get; protected set; }
 
     private void Awake()
@@ -70,13 +70,13 @@ public class Item : MonoBehaviour
         switch (languageCode)
         {
             case English:
-                _translatedText = _englishText;
+                TranslatedText = _englishText;
                 break;
             case Turkish:
-                _translatedText = _turkishText;
+                TranslatedText = _turkishText;
                 break;
             case Russian:
-                _translatedText = _russianText;
+                TranslatedText = _russianText;
                 break;
         }
     }
@@ -85,6 +85,11 @@ public class Item : MonoBehaviour
     {
         _text.text = _cost[_indexOfCost];
         _background.color = _colors[_indexOfCost];
+
+        if (_indexOfCost == _cost.Count - 1)
+        {
+            _button.interactable = false;
+        }
     }
 
     public virtual void SetStatus()
@@ -105,23 +110,8 @@ public class Item : MonoBehaviour
         }
     }
 
-    public void OnClick()
+    public virtual void OnClick()
     {
-        _popUpWindow.YesButtonClicked += Buy;
-        _popUpWindow.NoButtonClicked += Cancel;
-        _popUpWindow.Open(_translatedText);
-    }
-
-    public virtual void Buy()
-    {
-        _popUpWindow.YesButtonClicked -= Buy;
-        _popUpWindow.NoButtonClicked -= Cancel;
         Clicked?.Invoke(_cost[_indexOfCost], _type);
-    }
-
-    public void Cancel()
-    {
-        _popUpWindow.YesButtonClicked -= Buy;
-        _popUpWindow.NoButtonClicked -= Cancel;
     }
 }

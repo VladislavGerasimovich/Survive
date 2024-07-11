@@ -14,6 +14,14 @@ public class TestFocus : MonoBehaviour
         WebApplication.InBackgroundChangeEvent += OnInBackgroundChangeWeb;
     }
 
+    private void Start()
+    {
+        if(_audioSource != null)
+        {
+            _audioSource.Play();
+        }
+    }
+
     private void OnDisable()
     {
         Application.focusChanged -= OnInBackgroundChangeApp;
@@ -34,7 +42,10 @@ public class TestFocus : MonoBehaviour
 
     private void MuteAudio(bool value)
     {
-        _audioSource.volume = value ? 0 : 1;
+        if (_audioSource != null)
+        {
+            _audioSource.volume = value ? 0 : 1;
+        }
     }
 
     private void PauseGame(bool value)

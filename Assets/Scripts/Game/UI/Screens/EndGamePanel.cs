@@ -20,11 +20,10 @@ public class EndGamePanel : Window
     [SerializeField] private TMP_Text _rewardText;
     [SerializeField] private Reward _reward;
 
-    public bool IsOpen { get; private set; }
+    private bool _isRewardReceived;
 
     private void OnEnable()
     {
-        _videoAd.OnCloseAd += Close;
         _reliveButton.Click += OnReliveButtonClick;
         _menuButton.GetComponent<Button>().onClick.AddListener(ExitMenu);
     }
@@ -38,46 +37,53 @@ public class EndGamePanel : Window
 
     public override void Close()
     {
-        if (_improvementPanelCanvasGroup.alpha == 1)
+        if(_isRewardReceived == true)
         {
-            _improvementPanelCanvasGroup.blocksRaycasts = true;
-        }
+            base.Close();
 
-        if (_gameMenuPanelCanvasGroup.alpha == 1)
-        {
-            _gameMenuPanelCanvasGroup.blocksRaycasts = true;
-        }
+            if (_improvementPanelCanvasGroup.alpha == 1)
+            {
+                _improvementPanelCanvasGroup.blocksRaycasts = true;
+            }
 
-        if (_continueGamePanelCanvasGroup.alpha == 1)
-        {
-            _continueGamePanelCanvasGroup.blocksRaycasts = true;
-        }
+            if (_gameMenuPanelCanvasGroup.alpha == 1)
+            {
+                _gameMenuPanelCanvasGroup.blocksRaycasts = true;
+            }
 
-        CanvasGroup.blocksRaycasts = false;
-        IsOpen = false;
-        _reliveButton.InteractableOff();
-        _immortality.InteractableOn();
-        _menuButton.InteractableOff();
-        CanvasGroup.alpha = 0;
-        _gameTime.Run();
+            if (_continueGamePanelCanvasGroup.alpha == 1)
+            {
+                _continueGamePanelCanvasGroup.blocksRaycasts = true;
+            }
 
-        if (_firstAidButton.Interactable == true)
-        {
-            _firstAidButton.InteractableOn();
+            CanvasGroup.blocksRaycasts = false;
+            _reliveButton.InteractableOff();
+            _immortality.InteractableOn();
+            _menuButton.InteractableOff();
+            CanvasGroup.alpha = 0;
+            _gameTime.Run();
+            _isRewardReceived = false;
+
+            if (_firstAidButton.Interactable == true)
+            {
+                _firstAidButton.InteractableOn();
+            }
         }
     }
 
     public override void Open()
     {
+        base.Open();
+
         if(_reliveButton.Interactable == true)
         {
             _reliveButton.InteractableOn();
         }
 
+        _videoAd.OnCloseAd += Close;
         _continueGamePanelCanvasGroup.blocksRaycasts = false;
         _improvementPanelCanvasGroup.blocksRaycasts = false;
         _gameMenuPanelCanvasGroup.blocksRaycasts = false;
-        IsOpen = true;
         _firstAidButton.InteractableOff();
         _immortality.InteractableOff();
         _menuButton.InteractableOn();
@@ -90,14 +96,21 @@ public class EndGamePanel : Window
     private void OnReliveButtonClick()
     {
         _videoAd.Show();
+        _videoAd.OnRewardReceived += SetStatus;
+        
         _reliveButton.StatusInteractableOff();
         _firstAidButton.StatusInteractableOff();
     }
 
     private void ExitMenu()
     {
-        Close();
         StopAllCoroutines();
-        _menuLoader.RunMenu();
+        _menuLoader.RunInterstitialAd();
+    }
+
+    private void SetStatus()
+    {
+        _isRewardReceived = true;
+        _videoAd.OnRewardReceived -= SetStatus;
     }
 }

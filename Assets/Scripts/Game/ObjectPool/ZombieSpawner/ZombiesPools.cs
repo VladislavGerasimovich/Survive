@@ -62,4 +62,25 @@ public class ZombiesPools : MonoBehaviour
         _bigZombiePool.TryGetObject(out GameObject bigZombie);
         zombie = bigZombie;
     }
+
+    public void StopSound()
+    {
+        _simpleZombiePool.StopSound();
+        _fastZombiePool.StopSound();
+        _bigZombiePool.StopSound();
+    }
+
+    public void PauseSound()
+    {
+        _simpleZombiePool.PauseSound();
+        _fastZombiePool.PauseSound();
+        _bigZombiePool.PauseSound();
+    }
+
+    public void PlaySound()
+    {
+        _simpleZombiePool.PlaySound();
+        _fastZombiePool.PlaySound();
+        _bigZombiePool.PlaySound();
+    }
 }

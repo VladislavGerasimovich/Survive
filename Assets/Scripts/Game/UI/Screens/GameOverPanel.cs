@@ -18,41 +18,52 @@ public class GameOverPanel : Window
     [SerializeField] private MenuLoader _menuLoader;
     [SerializeField] private TMP_Text _rewardText;
     [SerializeField] private Reward _reward;
+    [SerializeField] private AudioSource _shotSound;
+    [SerializeField] private ZombiesPools _zombiesPools;
+    [SerializeField] private List<AudioSource> _melleWeaponAudioSources;
 
     private const string MONEY = "MONEY";
 
     private void OnEnable()
     {
-        _exitMenuButton.Click += Close;
+        _exitMenuButton.Click += OnExitMenuButtonClick;
     }
 
     private void OnDisable()
     {
-        _exitMenuButton.Click -= Close;
-    }
-
-    public override void Close()
-    {
-        _menuLoader.RunMenu();
-        _gameTime.Run();
+        _exitMenuButton.Click -= OnExitMenuButtonClick;
     }
 
     public override void Open()
     {
+        base.Open();
         _continueGamePanelCanvasGroup.blocksRaycasts = false;
         _improvementPanelCanvasGroup.blocksRaycasts = false;
         _gameMenuPanelCanvasGroup.blocksRaycasts = false;
         _endGamePanelCanvasGroup.blocksRaycasts = false;
         _exitMenuButton.InteractableOn();
-        _immortality.InteractableOn();
+        _immortality.InteractableOff();
         _firstAidButton.InteractableOff();
         _menuButton.InteractableOff();
         CanvasGroup.blocksRaycasts = true;
         CanvasGroup.alpha = 1;
-        _gameTime.Stop();
         _rewardText.text = _reward.AllRewards.ToString();
+
+        foreach (AudioSource audio in _melleWeaponAudioSources)
+        {
+            audio.Stop();
+        }
+
+        _zombiesPools.StopSound();
+        _shotSound.Stop();
+        _gameTime.Stop();
         int money = PlayerPrefs.GetInt(MONEY) + _reward.AllRewards;
         PlayerPrefs.SetInt(MONEY, money);
         PlayerPrefs.Save();
+    }
+
+    private void OnExitMenuButtonClick()
+    {
+        _menuLoader.RunInterstitialAd();
     }
 }

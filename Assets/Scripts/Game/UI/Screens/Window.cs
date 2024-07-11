@@ -1,13 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public abstract class Window : MonoBehaviour
 {
     [SerializeField] protected CanvasGroup CanvasGroup;
 
-    public abstract void Open();
+    public event Action IsPanelOpen;
+    public event Action IsPanelClose;
 
-    public abstract void Close();
+    public bool IsOpen { get; private set; }
+
+
+    public virtual void Open()
+    {
+        IsOpen = true;
+        IsPanelOpen.Invoke();
+    }
+
+    public virtual void Close()
+    {
+        IsOpen = false;
+        IsPanelClose.Invoke();
+    }
 }

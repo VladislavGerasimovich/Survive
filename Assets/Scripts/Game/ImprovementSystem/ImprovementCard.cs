@@ -75,6 +75,11 @@ public class ImprovementCard : MonoBehaviour
         _button.interactable = true;
     }
 
+    public void DisableButton()
+    {
+        _button.interactable = false;
+    }
+
     private void OnCardClick()
     {
         _button.interactable = false;

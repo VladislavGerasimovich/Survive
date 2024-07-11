@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using Agava.YandexGames;
 using PlayerPrefs = Agava.YandexGames.Utility.PlayerPrefs;
 
 public class Shop
@@ -12,23 +13,19 @@ public class Shop
 
     public int Money { get; private set; }
 
-    public Shop()
+    public void Initialize(int money)
     {
-        Money = PlayerPrefs.GetInt(MONEY, 0);
+        Money = money;
     }
 
     public void AddMoney(int money)
     {
         Money += money;
-        PlayerPrefs.SetInt(MONEY, Money);
-        PlayerPrefs.Save();
     }
 
     public void SpentMoney(int money)
     {
         Money -= money;
-        PlayerPrefs.SetInt(MONEY, Money);
-        PlayerPrefs.Save();
         ItemBuyed?.Invoke();
     }
 
@@ -36,7 +33,6 @@ public class Shop
     {
         if (Money >= money)
         {
-            SpentMoney(money);
             return true;
         }
 

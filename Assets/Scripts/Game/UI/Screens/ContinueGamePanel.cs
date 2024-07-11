@@ -19,8 +19,11 @@ public class ContinueGamePanel : Window
     [SerializeField] private GameTime _gameTime;
     [SerializeField] private VideoAd _videoAd;
     [SerializeField] private Timer _timer;
+    [SerializeField] private TMP_Text _rewardText;
+    [SerializeField] private Reward _reward;
+    [SerializeField] private AudioSource _mainMusic;
 
-    public bool IsOpen { get; private set; }
+    private bool _isRewardReceived;
 
     private void OnEnable()
     {
@@ -36,40 +39,48 @@ public class ContinueGamePanel : Window
 
     public override void Close()
     {
+        _videoAd.OnRewardReceived -= OnRewardReceived;
         _videoAd.OnCloseAd -= Close;
-        IsOpen = false;
 
-        if (_improvementPanelCanvasGroup.alpha == 1)
+        if (_isRewardReceived == true)
         {
-            _improvementPanelCanvasGroup.blocksRaycasts = true;
-        }
+            base.Close();
 
-        if (_gameMenuPanelCanvasGroup.alpha == 1)
-        {
-            _gameMenuPanelCanvasGroup.blocksRaycasts = true;
-        }
+            if (_improvementPanelCanvasGroup.alpha == 1)
+            {
+                _improvementPanelCanvasGroup.blocksRaycasts = true;
+            }
 
-        if (_endGamePanelCanvasGroup.alpha == 1)
-        {
-            _endGamePanelCanvasGroup.blocksRaycasts = true;
-        }
+            if (_gameMenuPanelCanvasGroup.alpha == 1)
+            {
+                _gameMenuPanelCanvasGroup.blocksRaycasts = true;
+            }
 
-        _menuButton.InteractableOn();
-        _immortality.InteractableOn();
-        _continueButton.InteractableOff();
-        _exitButton.InteractableOff();
-        CanvasGroup.blocksRaycasts = false;
-        CanvasGroup.alpha = 0;
+            if (_endGamePanelCanvasGroup.alpha == 1)
+            {
+                _endGamePanelCanvasGroup.blocksRaycasts = true;
+            }
 
-        if (_firstAidButton.Interactable == true)
-        {
-            _firstAidButton.InteractableOn();
+            _isRewardReceived = false;
+            _menuButton.InteractableOn();
+            _immortality.InteractableOn();
+            _continueButton.InteractableOff();
+            _exitButton.InteractableOff();
+            CanvasGroup.blocksRaycasts = false;
+            CanvasGroup.alpha = 0;
+            _gameTime.Run();
+
+            if (_firstAidButton.Interactable == true)
+            {
+                _firstAidButton.InteractableOn();
+            }
         }
     }
 
     public override void Open()
     {
-        IsOpen = true;
+        base.Open();
+        _rewardText.text = _reward.ExtraLevelReward.ToString();
         _improvementPanelCanvasGroup.blocksRaycasts = false;
         _gameMenuPanelCanvasGroup.blocksRaycasts = false;
         _endGamePanelCanvasGroup.blocksRaycasts = false;
@@ -85,15 +96,21 @@ public class ContinueGamePanel : Window
 
     private void ExitMenu()
     {
-        Close();
+        _mainMusic.Stop();
         StopAllCoroutines();
-        _menuLoader.RunMenu();
+        _menuLoader.RunInterstitialAd();
     }
 
     private void OnContinueButtonClick()
     {
-        _timer.SetRemainingTime();
         _videoAd.Show();
+        _videoAd.OnRewardReceived += OnRewardReceived;
         _videoAd.OnCloseAd += Close;
+    }
+
+    private void OnRewardReceived()
+    {
+        _timer.SetRemainingTime();
+        _isRewardReceived = true;
     }
 }

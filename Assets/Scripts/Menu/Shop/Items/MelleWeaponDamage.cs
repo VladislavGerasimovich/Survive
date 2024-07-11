@@ -3,24 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using Agava.YandexGames;
 using PlayerPrefs = Agava.YandexGames.Utility.PlayerPrefs;
+using System;
 
 public class MelleWeaponDamage : Item
 {
+    [SerializeField] private PlayerDataManager _playerDataManager;
+
     private const string MELLE_WEAPON_DAMAGE = "MELLE_WEAPON_DAMAGE";
 
-    private void Start()
+    private void OnEnable()
     {
-        PlayerAccount.GetCloudSaveData();
-        _indexOfCost = PlayerPrefs.GetInt(MELLE_WEAPON_DAMAGE);
-        Debug.Log(PlayerPrefs.HasKey(MELLE_WEAPON_DAMAGE) + " есть ли ключ урона ближнего боя");
-        SetCost();
+        _button.onClick.AddListener(OnClick);
+        _playerDataManager.DataReceived += SetIndex;
+    }
+
+    private void OnDisable()
+    {
+        _button.onClick.RemoveListener(OnClick);
+        _playerDataManager.DataReceived -= SetIndex;
     }
 
     public override void SetStatus()
     {
         base.SetStatus();
 
-        PlayerPrefs.SetInt(MELLE_WEAPON_DAMAGE, _indexOfCost);
-        PlayerPrefs.Save();
+        _playerDataManager.Set(MELLE_WEAPON_DAMAGE, _indexOfCost);
+    }
+
+    private void SetIndex(PlayerData playerData)
+    {
+        _indexOfCost = playerData.MelleWeaponDamageIndex;
+        SetCost();
     }
 }

@@ -4,14 +4,30 @@ using UnityEngine;
 using Agava.WebUtility;
 using UnityEngine.UIElements;
 
+[RequireComponent(typeof(VideoAd))]
 public class TestFocusInGame : MonoBehaviour
 {
-    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource _mainMusic;
+    [SerializeField] private AudioSource _shotSound;
+    [SerializeField] private AudioSource _playerHurt;
+    [SerializeField] private List<Audio> _audio;
     [SerializeField] private GameTime _gameTime;
     [SerializeField] private ImprovementPanel _improvementPanel;
     [SerializeField] private GameMenuPanel _gameMenuPanel;
     [SerializeField] private EndGamePanel _endGamePanel;
     [SerializeField] private ContinueGamePanel _continueGamePanel;
+    [SerializeField] private GameOverPanel _gameOverPanel;
+    [SerializeField] private ZombiesPools _zombiesPools;
+    [SerializeField] private TrainingPanel _trainingPanel;
+    [SerializeField] private VideoAdForImprovement _videoAdForChoosingTwoCards;
+    [SerializeField] private VideoAdForImprovement _videoAdForShuffleCards;
+
+    private VideoAd _videoAd;
+
+    private void Awake()
+    {
+        _videoAd = GetComponent<VideoAd>();
+    }
 
     private void OnEnable()
     {
@@ -39,12 +55,50 @@ public class TestFocusInGame : MonoBehaviour
 
     private void MuteAudio(bool value)
     {
-        _audioSource.volume = value ? 0 : 1;
+        if (value == true)
+        {
+            _mainMusic.Pause();
+        }
+
+        if (_improvementPanel.IsOpen == false && _gameMenuPanel.IsOpen == false && _endGamePanel.IsOpen == false && _continueGamePanel.IsOpen == false && _gameOverPanel.IsOpen == false && _videoAd.IsOpen == false && _videoAdForChoosingTwoCards.IsOpen == false && _videoAdForShuffleCards.IsOpen == false && _trainingPanel.IsOpen == false && value == false)
+        {
+            foreach (Audio audio in _audio)
+            {
+                audio.PlayAfterPause();
+            }
+
+            _zombiesPools.PlaySound();
+            _mainMusic.Play();
+
+            if(_shotSound.time != 0)
+            {
+                _shotSound.Play();
+            }
+
+            return;
+        }
+        else
+        {
+            foreach (Audio audio in _audio)
+            {
+                audio.Stop();
+            }
+
+            _playerHurt.Stop();
+            _zombiesPools.PauseSound();
+            _shotSound.Pause();
+            _mainMusic.Pause();
+
+            if (value == false && _videoAd.IsOpen == false && _videoAdForChoosingTwoCards.IsOpen == false && _videoAdForShuffleCards.IsOpen == false)
+            {
+                _mainMusic.Play();
+            }
+        }
     }
 
     private void PauseGame(bool value)
     {
-        if (_improvementPanel.IsOpen == false && _gameMenuPanel.IsOpen == false && _endGamePanel.IsOpen == false && _continueGamePanel.IsOpen == false)
+        if (_improvementPanel.IsOpen == false && _gameMenuPanel.IsOpen == false && _endGamePanel.IsOpen == false && _continueGamePanel.IsOpen == false && _gameOverPanel.IsOpen == false && _videoAd.IsOpen == false && _videoAdForChoosingTwoCards.IsOpen == false && _videoAdForShuffleCards.IsOpen == false && _trainingPanel.IsOpen == false && value == false)
         {
             _gameTime.Run();
             return;

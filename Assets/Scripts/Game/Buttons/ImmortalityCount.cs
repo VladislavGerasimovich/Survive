@@ -8,6 +8,7 @@ using Agava.YandexGames;
 [RequireComponent(typeof(Image))]
 public class ImmortalityCount : MonoBehaviour
 {
+    [SerializeField] private PlayerDataManager _playerDataManager;
     [SerializeField] private TMP_Text _text;
     [SerializeField] private Sprite _normalSprite;
     [SerializeField] private Sprite _spriteForReward;
@@ -20,20 +21,16 @@ public class ImmortalityCount : MonoBehaviour
     private void Awake()
     {
         _image = GetComponent<Image>();
-        _count = PlayerPrefs.GetInt(IMMORTALITY);
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        _text.text = _count.ToString();
+        _playerDataManager.DataReceived += SetCount;
+    }
 
-        if (_count > 0)
-        {
-            _image.sprite = _normalSprite;
-            return;
-        }
-
-        _image.sprite = _spriteForReward;
+    private void OnDisable()
+    {
+        _playerDataManager.DataReceived -= SetCount;
     }
 
     public void ReduceCount()
@@ -41,8 +38,7 @@ public class ImmortalityCount : MonoBehaviour
         if(_count > 0)
         {
             _count--;
-            PlayerPrefs.SetInt(IMMORTALITY, _count);
-            PlayerPrefs.Save();
+            _playerDataManager.Set(IMMORTALITY, _count);
             _text.text = _count.ToString();
 
             if(_count <= 0)
@@ -57,5 +53,20 @@ public class ImmortalityCount : MonoBehaviour
     public bool IsCountGreaterThenZero()
     {
         return _count > 0;
+    }
+
+    private void SetCount(PlayerData playerData)
+    {
+        _count = playerData.ImmortalityCount;
+
+        _text.text = _count.ToString();
+
+        if (_count > 0)
+        {
+            _image.sprite = _normalSprite;
+            return;
+        }
+
+        _image.sprite = _spriteForReward;
     }
 }

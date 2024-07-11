@@ -29,6 +29,7 @@ public class ImprovementSystemPresenter: MonoBehaviour
     private PressButton _twoCardsButton;
     private PressButton _shuffleCardsButton;
     private PressButton _firstAidButton;
+    private PressButton _menuButton;
     private HealthSystem _healthSystem;
     private bool _isFirstFilling;
     private bool _isFilling;
@@ -43,6 +44,7 @@ public class ImprovementSystemPresenter: MonoBehaviour
         PressButton shuffleCardsButton,
         PressButton twoCardsButton,
         PressButton firstAidButton,
+        PressButton menuButton,
         WeaponLifeCircle melleWeapon,
         RangeWeaponLifeCyrcle rangeWeapon,
         ThrowingWeapon throwingWeapon,
@@ -65,6 +67,7 @@ public class ImprovementSystemPresenter: MonoBehaviour
         _shuffleCardsButton = shuffleCardsButton;
         _twoCardsButton = twoCardsButton;
         _firstAidButton = firstAidButton;
+        _menuButton = menuButton;
         _melleWeapon = melleWeapon;
         _rangeWeapon = rangeWeapon;
         _throwingWeapon = throwingWeapon;
@@ -91,8 +94,10 @@ public class ImprovementSystemPresenter: MonoBehaviour
         _twoCardsButton.Click += OnTwoCardsButtonClick;
         _shuffleCardsButton.Click += OnShuffleCardsButtonClick;
         _improvementPanel.IsPanelOpen += FillPanel;
-        _videoAdForIncreaseMaxCountOfSelectedCards.AddReward += IncreaseMaxCountOfSelectedCards;
-        _videoAdForShuffleCards.AddReward += ShuffleCards;
+        _videoAdForIncreaseMaxCountOfSelectedCards.RewardReceived += IncreaseMaxCountOfSelectedCards;
+        _videoAdForIncreaseMaxCountOfSelectedCards.OnCloseAd += SetPanelAfterIncreaseMaxCountOfSelectedCards;
+        _videoAdForShuffleCards.RewardReceived += ShuffleCards;
+        _videoAdForShuffleCards.OnCloseAd += SetPanelAfterShuffleCards;
 
         foreach (var improvement in _improvements)
         {
@@ -111,8 +116,10 @@ public class ImprovementSystemPresenter: MonoBehaviour
         _twoCardsButton.Click -= OnTwoCardsButtonClick;
         _shuffleCardsButton.Click -= OnShuffleCardsButtonClick;
         _improvementPanel.IsPanelOpen -= Fill;
-        _videoAdForIncreaseMaxCountOfSelectedCards.AddReward -= IncreaseMaxCountOfSelectedCards;
-        _videoAdForShuffleCards.AddReward -= ShuffleCards;
+        _videoAdForIncreaseMaxCountOfSelectedCards.RewardReceived -= IncreaseMaxCountOfSelectedCards;
+        _videoAdForIncreaseMaxCountOfSelectedCards.OnCloseAd -= SetPanelAfterIncreaseMaxCountOfSelectedCards;
+        _videoAdForShuffleCards.RewardReceived -= ShuffleCards;
+        _videoAdForShuffleCards.OnCloseAd -= SetPanelAfterShuffleCards;
 
         foreach (var improvement in _improvements)
         {
@@ -125,6 +132,7 @@ public class ImprovementSystemPresenter: MonoBehaviour
             improvementCard.Click -= OnClick;
         }
     }
+
 
     private void FillPanel()
     {
@@ -140,6 +148,14 @@ public class ImprovementSystemPresenter: MonoBehaviour
 
     private void OnShuffleCardsButtonClick()
     {
+        foreach (ImprovementCard card in _improvementCards)
+        {
+            card.DisableButton();
+        }
+
+        _twoCardsButton.InteractableOff();
+        _shuffleCardsButton.InteractableOff();
+        _menuButton.InteractableOff();
         _videoAdForShuffleCards.Show();
     }
 
@@ -153,16 +169,65 @@ public class ImprovementSystemPresenter: MonoBehaviour
         Fill();
     }
 
+    private void SetPanelAfterShuffleCards()
+    {
+        foreach (ImprovementCard card in _improvementCards)
+        {
+            card.EnableButton();
+        }
+
+        if (_twoCardsButton.Interactable == true)
+        {
+            _twoCardsButton.InteractableOn();
+        }
+
+        if (_shuffleCardsButton.Interactable == true)
+        {
+            _shuffleCardsButton.InteractableOn();
+        }
+
+        _menuButton.InteractableOn();
+    }
+
     private void OnTwoCardsButtonClick()
     {
+        foreach (ImprovementCard card in _improvementCards)
+        {
+            card.DisableButton();
+        }
+
+        _twoCardsButton.InteractableOff();
+        _shuffleCardsButton.InteractableOff();
+        _menuButton.InteractableOff();
         _videoAdForIncreaseMaxCountOfSelectedCards.Show();
     }
 
     private void IncreaseMaxCountOfSelectedCards()
     {
+        _maxSelectedCards = 2;
         _twoCardsButton.StatusInteractableOff();
         _twoCardsButton.InteractableOff();
-        _maxSelectedCards = 2;
+    }
+
+    private void SetPanelAfterIncreaseMaxCountOfSelectedCards()
+    {
+        foreach (ImprovementCard card in _improvementCards)
+        {
+            card.EnableButton();
+        }
+
+        if (_shuffleCardsButton.Interactable == true)
+        {
+            _shuffleCardsButton.InteractableOn();
+        }
+
+        if(_twoCardsButton.Interactable == true)
+        {
+            _twoCardsButton.InteractableOn();
+        }
+        UnityEngine.Debug.Log(_twoCardsButton.Interactable + " twocardsbuttonINTERACTABLE");
+
+        _menuButton.InteractableOn();
     }
 
     private void InteractableOnTwoCardsButton()
