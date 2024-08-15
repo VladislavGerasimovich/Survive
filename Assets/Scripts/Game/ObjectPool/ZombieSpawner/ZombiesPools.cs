@@ -83,4 +83,18 @@ public class ZombiesPools : MonoBehaviour
         _fastZombiePool.PlaySound();
         _bigZombiePool.PlaySound();
     }
+
+    public void DisableSound()
+    {
+        _simpleZombiePool.DisableSound();
+        _fastZombiePool.DisableSound();
+        _bigZombiePool.DisableSound();
+    }
+
+    public void EnableSound()
+    {
+        _simpleZombiePool.EnableSound();
+        _fastZombiePool.EnableSound();
+        _bigZombiePool.EnableSound();
+    }
 }

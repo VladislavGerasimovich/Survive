@@ -46,6 +46,7 @@ public class FirstAidKitCount : MonoBehaviour
             if (_count <= 0)
             {
                 _image.sprite = _spriteForReward;
+                _text.enabled = false;
             }
 
             return;
@@ -60,8 +61,14 @@ public class FirstAidKitCount : MonoBehaviour
     private void SetCount(PlayerData playerData)
     {
         _count = playerData.FirstAidCount;
+        Debug.Log(_count + " count of first aid kit");
 
         _text.text = _count.ToString();
+
+        if(_count <= 0)
+        {
+            _text.enabled = false;
+        }
 
         if (_count > 0)
         {

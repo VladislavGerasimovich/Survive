@@ -99,6 +99,24 @@ public class ZombiePool : MonoBehaviour
         return result != null;
     }
 
+    public void DisableSound()
+    {
+        foreach (GameObject zombie in _pool)
+        {
+            AudioSource audio = zombie.GetComponent<AudioSource>();
+            audio.enabled = false;
+        }
+    }
+
+    public void EnableSound()
+    {
+        foreach (GameObject zombie in _pool)
+        {
+            AudioSource audio = zombie.GetComponent<AudioSource>();
+            audio.enabled = true;
+        }
+    }
+
     public void PauseSound()
     {
         foreach (GameObject zombie in _pool)
@@ -124,10 +142,16 @@ public class ZombiePool : MonoBehaviour
         {
             AudioSource audio = zombie.GetComponent<AudioSource>();
             audio.volume = 1;
+        }
 
-            if (audio.time != 0)
+        foreach (GameObject zombie in _pool)
+        {
+            AudioSource audio = zombie.GetComponent<AudioSource>();
+
+            if (audio.time != 0 && audio.enabled == true)
             {
                 audio.Play();
+                return;
             }
         }
     }

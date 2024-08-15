@@ -41,6 +41,10 @@ public class Grenade : MonoBehaviour
     private void Explosion(Vector3 position)
     {
         _explosionArea.GetComponent<ExplosionArea>().Run(position);
-        _explosionSound.Play();
+
+        if(_explosionSound.enabled == true)
+        {
+            _explosionSound.Play();
+        }
     }
 }

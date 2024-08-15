@@ -8,7 +8,8 @@ public class HealthSystem : MonoBehaviour
     private int _value;
     private int _maxValue;
     private float _currentValue;
-    private bool _isImmortal;
+
+    public bool IsImmortal;
 
     public event Action Died;
     public event Action<float> OnValueChanged;
@@ -21,7 +22,7 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if(_isImmortal == false)
+        if(IsImmortal == false)
         {
             _value -= damage;
             _currentValue = (float)_value / _maxValue;
@@ -49,11 +50,11 @@ public class HealthSystem : MonoBehaviour
 
     public void MakeImmortal()
     {
-        _isImmortal = true;
+        IsImmortal = true;
     }
 
     public void MakeMortal()
     {
-        _isImmortal = false;
+        IsImmortal = false;
     }
 }

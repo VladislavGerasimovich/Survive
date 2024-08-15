@@ -19,8 +19,11 @@ public class PlayerHealthSystemPresenter : MonoBehaviour
     private PlayerMortality _playerMortality;
     private ImmortalityCount _immortalityCount;
     private FirstAidKitCount _firstAidKitCount;
+    private PopUpWindowForGame _immortalityPopUpWindow;
+    private PopUpWindowForGame _firstAidPopUpWindow;
+    private int _countOfClick;
 
-    public PlayerHealthSystemPresenter(FirstAidKitCount firstAidKitCount, ImmortalityCount immortalityCount, PlayerMortality playerMortality, PlayerTakeDamage playerTakeDamage,VideoAd videoAd, PressButton reliveButton, PressButton firstAidButton, PressButton immortalityButton, HealthSystem healthSystem, PlayerDied died, HealthBar healthBar, Vignette vignette)
+    public PlayerHealthSystemPresenter(FirstAidKitCount firstAidKitCount, ImmortalityCount immortalityCount, PlayerMortality playerMortality, PlayerTakeDamage playerTakeDamage,VideoAd videoAd, PressButton reliveButton, PressButton firstAidButton, PressButton immortalityButton, HealthSystem healthSystem, PlayerDied died, HealthBar healthBar, Vignette vignette, PopUpWindowForGame immortalityPopUpWindow, PopUpWindowForGame firstAidPopUpWindow)
     {
         _firstAidKitCount = firstAidKitCount;
         _immortalityCount = immortalityCount;
@@ -34,10 +37,16 @@ public class PlayerHealthSystemPresenter : MonoBehaviour
         _playerDied = died;
         _healthBar = healthBar;
         _vignette = vignette;
+        _immortalityPopUpWindow = immortalityPopUpWindow;
+        _firstAidPopUpWindow = firstAidPopUpWindow;
     }
 
     public void Enable()
     {
+        _immortalityPopUpWindow.YesButtonClicked += ShowAdForImmortality;
+        _immortalityPopUpWindow.NoButtonClicked += OnNoButtonClicked;
+        _firstAidPopUpWindow.YesButtonClicked += ShowAdForFirstAid;
+        _firstAidPopUpWindow.NoButtonClicked += OnNoButtonClickedFirstAidPopUpWindow;
         _reliveButton.Click += OnReliveButtonClick;
         _firstAidButton.Click += OnFirstAidButtonClick;
         _immortalityButton.Click += OnImmortalityButtonClick;
@@ -48,6 +57,10 @@ public class PlayerHealthSystemPresenter : MonoBehaviour
 
     public void Disable()
     {
+        _immortalityPopUpWindow.YesButtonClicked -= ShowAdForImmortality;
+        _immortalityPopUpWindow.NoButtonClicked -= OnNoButtonClicked;
+        _firstAidPopUpWindow.YesButtonClicked -= ShowAdForFirstAid;
+        _firstAidPopUpWindow.NoButtonClicked -= OnNoButtonClickedFirstAidPopUpWindow;
         _reliveButton.Click -= OnReliveButtonClick;
         _firstAidButton.Click -= OnFirstAidButtonClick;
         _immortalityButton.Click -= OnImmortalityButtonClick;
@@ -77,6 +90,11 @@ public class PlayerHealthSystemPresenter : MonoBehaviour
 
     private void OnTakeDamage(int damage)
     {
+        if(_healthSystem.IsImmortal == true)
+        {
+            return;
+        }
+
         _firstAidButton.StatusInteractableOn();
         _firstAidButton.InteractableOn();
         _healthSystem.TakeDamage(damage);
@@ -87,16 +105,26 @@ public class PlayerHealthSystemPresenter : MonoBehaviour
         _playerDied.Died();
     }
 
+    private void OnNoButtonClicked()
+    {
+        _immortalityButton.InteractableOn();
+    }
+
+    private void OnNoButtonClickedFirstAidPopUpWindow()
+    {
+        _firstAidButton.InteractableOn();
+    }
+
     private void OnFirstAidButtonClick()
     {
+        _countOfClick++;
+        _firstAidButton.InteractableOff();
         bool isGreaterThanZero = _firstAidKitCount.IsCountGreaterThenZero();
 
         if (isGreaterThanZero == false)
         {
-            Debug.Log("реклама");
-            _videoAd.Show();
-            _videoAd.OnRewardReceived += RestoreAllHealth;
-            _videoAd.OnCloseAd += UnsubscribeEvents;
+            _firstAidPopUpWindow.Open();
+
             return;
         }
         else
@@ -108,14 +136,13 @@ public class PlayerHealthSystemPresenter : MonoBehaviour
 
     private void OnImmortalityButtonClick()
     {
+        _immortalityButton.InteractableOff();
         bool isGreaterThanZero = _immortalityCount.IsCountGreaterThenZero();
 
         if(isGreaterThanZero == false)
         {
-            Debug.Log("реклама");
-            _videoAd.Show();
-            _videoAd.OnRewardReceived += MakeImmortal;
-            _videoAd.OnCloseAd += UnsubscribeEvents;
+            _immortalityPopUpWindow.Open();
+
             return;
         }
         else
@@ -123,6 +150,22 @@ public class PlayerHealthSystemPresenter : MonoBehaviour
             _immortalityCount.ReduceCount();
             MakeImmortal();
         }
+    }
+
+    private void ShowAdForImmortality()
+    {
+        Debug.Log("реклама«аЌеу€звимость");
+        _videoAd.Show();
+        _videoAd.OnRewardReceived += MakeImmortal;
+        _videoAd.OnCloseAd += CloseImmortalityPopUpWindow;
+    }
+
+    private void ShowAdForFirstAid()
+    {
+        Debug.Log("реклама«ајптечку");
+        _videoAd.Show();
+        _videoAd.OnRewardReceived += RestoreAllHealth;
+        _videoAd.OnCloseAd += CloseFirstAidPopUpWindow;
     }
 
     private void OnReliveButtonClick()
@@ -143,14 +186,23 @@ public class PlayerHealthSystemPresenter : MonoBehaviour
     private void MakeMortal()
     {
         _immortalityButton.InteractableOn();
-        _playerMortality.IsMortal -= MakeMortal;
         _healthSystem.MakeMortal();
+        _playerMortality.IsMortal -= MakeMortal;
     }
 
-    private void UnsubscribeEvents()
+    private void CloseImmortalityPopUpWindow()
     {
+        _immortalityPopUpWindow.Close();
         _videoAd.OnRewardReceived -= MakeImmortal;
         _videoAd.OnRewardReceived -= RestoreAllHealth;
-        _videoAd.OnCloseAd -= UnsubscribeEvents;
+        _videoAd.OnCloseAd -= CloseImmortalityPopUpWindow;
+    }
+
+    private void CloseFirstAidPopUpWindow()
+    {
+        _firstAidPopUpWindow.Close();
+        _videoAd.OnRewardReceived -= MakeImmortal;
+        _videoAd.OnRewardReceived -= RestoreAllHealth;
+        _videoAd.OnCloseAd -= CloseFirstAidPopUpWindow;
     }
 }

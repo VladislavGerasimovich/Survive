@@ -13,7 +13,7 @@ public class GameOverPanel : Window
     [SerializeField] private PressButton _menuButton;
     [SerializeField] private PressButton _exitMenuButton;
     [SerializeField] private PressButton _firstAidButton;
-    [SerializeField] private PressButton _immortality;
+    [SerializeField] private PressButton _immortalityButton;
     [SerializeField] private GameTime _gameTime;
     [SerializeField] private MenuLoader _menuLoader;
     [SerializeField] private TMP_Text _rewardText;
@@ -21,6 +21,8 @@ public class GameOverPanel : Window
     [SerializeField] private AudioSource _shotSound;
     [SerializeField] private ZombiesPools _zombiesPools;
     [SerializeField] private List<AudioSource> _melleWeaponAudioSources;
+    [SerializeField] private TimeOfAction _timeOfAction;
+    [SerializeField] private PlayerMortality _playerMortality;
 
     private const string MONEY = "MONEY";
 
@@ -37,12 +39,16 @@ public class GameOverPanel : Window
     public override void Open()
     {
         base.Open();
+        _timeOfAction.ProhibitUse();
+        _playerMortality.ProhibitUse();
         _continueGamePanelCanvasGroup.blocksRaycasts = false;
         _improvementPanelCanvasGroup.blocksRaycasts = false;
         _gameMenuPanelCanvasGroup.blocksRaycasts = false;
         _endGamePanelCanvasGroup.blocksRaycasts = false;
         _exitMenuButton.InteractableOn();
-        _immortality.InteractableOff();
+        _immortalityButton.Disable();
+        _immortalityButton.InteractableOff();
+        _firstAidButton.Disable();
         _firstAidButton.InteractableOff();
         _menuButton.InteractableOff();
         CanvasGroup.blocksRaycasts = true;

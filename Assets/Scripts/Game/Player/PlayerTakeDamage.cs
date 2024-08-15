@@ -19,6 +19,10 @@ public class PlayerTakeDamage : MonoBehaviour
     {
         Debug.Log("Take damage + audio punch");
         TakeDamage.Invoke(damage);
-        _audioSource.Play();
+
+        if(_audioSource.enabled == true)
+        {
+            _audioSource.Play();
+        }
     }
 }

@@ -11,7 +11,7 @@ public class EndGamePanel : Window
     [SerializeField] private CanvasGroup _gameMenuPanelCanvasGroup;
     [SerializeField] private CanvasGroup _continueGamePanelCanvasGroup;
     [SerializeField] private PressButton _firstAidButton;
-    [SerializeField] private PressButton _immortality;
+    [SerializeField] private PressButton _immortalityButton;
     [SerializeField] private PressButton _reliveButton;
     [SerializeField] private PressButton _menuButton;
     [SerializeField] private MenuLoader _menuLoader;
@@ -19,6 +19,8 @@ public class EndGamePanel : Window
     [SerializeField] private VideoAd _videoAd;
     [SerializeField] private TMP_Text _rewardText;
     [SerializeField] private Reward _reward;
+    [SerializeField] private TimeOfAction _timeOfAction;
+    [SerializeField] private PlayerMortality _playerMortality;
 
     private bool _isRewardReceived;
 
@@ -56,13 +58,17 @@ public class EndGamePanel : Window
                 _continueGamePanelCanvasGroup.blocksRaycasts = true;
             }
 
+            _timeOfAction.AllowUse();
+            _playerMortality.AllowUse();
             CanvasGroup.blocksRaycasts = false;
             _reliveButton.InteractableOff();
-            _immortality.InteractableOn();
+            _immortalityButton.Enable();
+            _immortalityButton.InteractableOn();
             _menuButton.InteractableOff();
             CanvasGroup.alpha = 0;
             _gameTime.Run();
             _isRewardReceived = false;
+            _firstAidButton.Enable();
 
             if (_firstAidButton.Interactable == true)
             {
@@ -80,12 +86,16 @@ public class EndGamePanel : Window
             _reliveButton.InteractableOn();
         }
 
+        _timeOfAction.ProhibitUse();
+        _playerMortality.ProhibitUse();
         _videoAd.OnCloseAd += Close;
         _continueGamePanelCanvasGroup.blocksRaycasts = false;
         _improvementPanelCanvasGroup.blocksRaycasts = false;
         _gameMenuPanelCanvasGroup.blocksRaycasts = false;
+        _firstAidButton.Disable();
         _firstAidButton.InteractableOff();
-        _immortality.InteractableOff();
+        _immortalityButton.Disable();
+        _immortalityButton.InteractableOff();
         _menuButton.InteractableOn();
         CanvasGroup.blocksRaycasts = true;
         CanvasGroup.alpha = 1;

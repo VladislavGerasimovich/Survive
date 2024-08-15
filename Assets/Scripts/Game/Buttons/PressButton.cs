@@ -32,12 +32,12 @@ public class PressButton : MonoBehaviour
 
     public void Disable()
     {
-        gameObject.SetActive(false);
+        transform.gameObject.SetActive(false);
     }
 
     public void Enable()
     {
-        gameObject.SetActive(true);
+        transform.gameObject.SetActive(true);
     }
 
     public void StatusInteractableOn()

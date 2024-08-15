@@ -21,6 +21,9 @@ public class TestFocusInGame : MonoBehaviour
     [SerializeField] private TrainingPanel _trainingPanel;
     [SerializeField] private VideoAdForImprovement _videoAdForChoosingTwoCards;
     [SerializeField] private VideoAdForImprovement _videoAdForShuffleCards;
+    [SerializeField] private PopUpWindowForGame _immortalityPopUpWindowForGame;
+    [SerializeField] private PopUpWindowForGame _firstAidPopUpWindowForGame;
+    [SerializeField] private AllGameMusic _allGameMusic;
 
     private VideoAd _videoAd;
 
@@ -57,28 +60,35 @@ public class TestFocusInGame : MonoBehaviour
     {
         if (value == true)
         {
+            AudioListener.volume = 0;
             _mainMusic.Pause();
         }
 
-        if (_improvementPanel.IsOpen == false && _gameMenuPanel.IsOpen == false && _endGamePanel.IsOpen == false && _continueGamePanel.IsOpen == false && _gameOverPanel.IsOpen == false && _videoAd.IsOpen == false && _videoAdForChoosingTwoCards.IsOpen == false && _videoAdForShuffleCards.IsOpen == false && _trainingPanel.IsOpen == false && value == false)
+        if (_improvementPanel.IsOpen == false && _gameMenuPanel.IsOpen == false && _endGamePanel.IsOpen == false && _continueGamePanel.IsOpen == false && _gameOverPanel.IsOpen == false && _videoAd.IsOpen == false && _videoAdForChoosingTwoCards.IsOpen == false && _videoAdForShuffleCards.IsOpen == false && _trainingPanel.IsOpen == false && value == false && _immortalityPopUpWindowForGame.IsOpen == false && _firstAidPopUpWindowForGame.IsOpen == false)
         {
-            foreach (Audio audio in _audio)
+            if(_allGameMusic.CanPlay == true)
             {
-                audio.PlayAfterPause();
-            }
+                foreach (Audio audio in _audio)
+                {
+                    audio.PlayAfterPause();
+                }
 
-            _zombiesPools.PlaySound();
-            _mainMusic.Play();
+                AudioListener.volume = 1;
+                _zombiesPools.PlaySound();
+                _mainMusic.Play();
 
-            if(_shotSound.time != 0)
-            {
-                _shotSound.Play();
+                if(_shotSound.time != 0)
+                {
+                    _shotSound.Play();
+                }
             }
 
             return;
         }
         else
         {
+            Debug.Log("Test focus in game ElSE");
+            Debug.Log(_allGameMusic.CanPlay + "allgame music can play");
             foreach (Audio audio in _audio)
             {
                 audio.Stop();
@@ -89,21 +99,31 @@ public class TestFocusInGame : MonoBehaviour
             _shotSound.Pause();
             _mainMusic.Pause();
 
+            Debug.Log("value is " + value);
+            Debug.Log("_videoAd.IsOpen is " + _videoAd.IsOpen);
+            Debug.Log("_videoAdForChoosingTwoCards.IsOpen is " + _videoAdForChoosingTwoCards.IsOpen);
+            Debug.Log("_videoAdForShuffleCards.IsOpen is " + _videoAdForChoosingTwoCards.IsOpen);
+
             if (value == false && _videoAd.IsOpen == false && _videoAdForChoosingTwoCards.IsOpen == false && _videoAdForShuffleCards.IsOpen == false)
             {
-                _mainMusic.Play();
+                if (_allGameMusic.CanPlay == true)
+                {
+                    AudioListener.volume = 1;
+                    _mainMusic.Play();
+                }
             }
         }
     }
 
     private void PauseGame(bool value)
     {
-        if (_improvementPanel.IsOpen == false && _gameMenuPanel.IsOpen == false && _endGamePanel.IsOpen == false && _continueGamePanel.IsOpen == false && _gameOverPanel.IsOpen == false && _videoAd.IsOpen == false && _videoAdForChoosingTwoCards.IsOpen == false && _videoAdForShuffleCards.IsOpen == false && _trainingPanel.IsOpen == false && value == false)
+        if (_improvementPanel.IsOpen == false && _gameMenuPanel.IsOpen == false && _endGamePanel.IsOpen == false && _continueGamePanel.IsOpen == false && _gameOverPanel.IsOpen == false && _videoAd.IsOpen == false && _videoAdForChoosingTwoCards.IsOpen == false && _videoAdForShuffleCards.IsOpen == false && _trainingPanel.IsOpen == false && value == false && _immortalityPopUpWindowForGame.IsOpen == false && _firstAidPopUpWindowForGame.IsOpen == false)
         {
             _gameTime.Run();
             return;
         }
 
+        Debug.Log(" Stop in TestFocusInGame");
         _gameTime.Stop();
     }
 }

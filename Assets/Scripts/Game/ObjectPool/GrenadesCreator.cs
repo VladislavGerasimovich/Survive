@@ -56,6 +56,7 @@ public class GrenadesCreator : ObjectPool
         foreach (GameObject item in _pool)
         {
             AudioSource audio = item.GetComponent<AudioSource>();
+            audio.volume = 0;
 
             if (audio.isPlaying)
             {
@@ -77,11 +78,31 @@ public class GrenadesCreator : ObjectPool
         foreach (GameObject item in _pool)
         {
             AudioSource audio = item.GetComponent<AudioSource>();
+            audio.volume = 1;
 
-            if (audio.time != 0)
+            if (audio.time != 0 && audio.enabled == true)
             {
                 audio.Play();
+                return;
             }
+        }
+    }
+
+    public void DisableSound()
+    {
+        foreach (GameObject item in _pool)
+        {
+            AudioSource audio = item.GetComponent<AudioSource>();
+            audio.enabled = false;
+        }
+    }
+
+    public void EnableSound()
+    {
+        foreach (GameObject item in _pool)
+        {
+            AudioSource audio = item.GetComponent<AudioSource>();
+            audio.enabled = true;
         }
     }
 }

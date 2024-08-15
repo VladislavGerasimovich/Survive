@@ -13,9 +13,11 @@ public class GameMenuPanel : Window
     [SerializeField] private PressButton _menuButton;
     [SerializeField] private PressButton _returnToGameButton;
     [SerializeField] private PressButton _firstAidButton;
-    [SerializeField] private PressButton _immortality;
+    [SerializeField] private PressButton _immortalityButton;
     [SerializeField] private GameTime _gameTime;
     [SerializeField] private MenuLoader _menuLoader;
+    [SerializeField] private TimeOfAction _timeOfAction;
+    [SerializeField] private PlayerMortality _playerMortality;
 
     private void OnEnable()
     {
@@ -50,15 +52,19 @@ public class GameMenuPanel : Window
             _continueGamePanelCanvasGroup.blocksRaycasts = true;
         }
 
+        _timeOfAction.AllowUse();
+        _playerMortality.AllowUse();
         _gameMenuButton.interactable = true;
-        _immortality.InteractableOn();
+        _immortalityButton.Enable();
+        _immortalityButton.InteractableOn();
         _returnToGameButton.InteractableOff();
         _menuButton.InteractableOff();
         CanvasGroup.blocksRaycasts = false;
         CanvasGroup.alpha = 0;
         _gameTime.Run();
+        _firstAidButton.Enable();
 
-        if(_firstAidButton.Interactable == true)
+        if (_firstAidButton.Interactable == true)
         {
             _firstAidButton.InteractableOn();
         }
@@ -67,12 +73,16 @@ public class GameMenuPanel : Window
     public override void Open()
     {
         base.Open();
+        _timeOfAction.ProhibitUse();
+        _playerMortality.ProhibitUse();
         _gameMenuButton.interactable = false;
         _improvementPanelCanvasGroup.blocksRaycasts = false;
         _endGamePanelCanvasGroup.blocksRaycasts = false;
         _continueGamePanelCanvasGroup.blocksRaycasts = false;
+        _firstAidButton.Disable();
         _firstAidButton.InteractableOff();
-        _immortality.InteractableOff();
+        _immortalityButton.Disable();
+        _immortalityButton.InteractableOff();
         _returnToGameButton.InteractableOn();
         _menuButton.InteractableOn();
         CanvasGroup.blocksRaycasts = true;

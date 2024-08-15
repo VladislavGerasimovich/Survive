@@ -44,6 +44,7 @@ public class ImmortalityCount : MonoBehaviour
             if(_count <= 0)
             {
                 _image.sprite = _spriteForReward;
+                _text.enabled = false;
             }
 
             return;
@@ -60,6 +61,11 @@ public class ImmortalityCount : MonoBehaviour
         _count = playerData.ImmortalityCount;
 
         _text.text = _count.ToString();
+
+        if (_count <= 0)
+        {
+            _text.enabled = false;
+        }
 
         if (_count > 0)
         {

@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Reward : MonoBehaviour
 {
     [SerializeField] private PlayerDataManager _playerDataManager;
+    [SerializeField] private TMP_Text _text;
 
     private const string REWARD = "CURRENTREWARD";
     private const string MONEY = "MONEY";
@@ -20,6 +22,7 @@ public class Reward : MonoBehaviour
     {
         _normalLevelReward = PlayerPrefs.GetInt(REWARD, 0);
         ExtraLevelReward = _normalLevelReward / 4;
+        _text.text = AllRewards.ToString();
         Debug.Log(_normalLevelReward + " normallevelreward");
         Debug.Log(ExtraLevelReward + " extralevelreward");
     }
@@ -49,6 +52,7 @@ public class Reward : MonoBehaviour
     private void AddNormalLevelReward()
     {
         AllRewards += _normalLevelReward;
+        _text.text = AllRewards.ToString();
         _playerData.Money += _normalLevelReward;
         _playerDataManager.Set(MONEY, _playerData.Money);
         Debug.Log(AllRewards + " normalRewards");
@@ -57,6 +61,7 @@ public class Reward : MonoBehaviour
     private void AddExtraLevelReward()
     {
         AllRewards += ExtraLevelReward;
+        _text.text = AllRewards.ToString();
         _playerData.Money += ExtraLevelReward;
         _playerDataManager.Set(MONEY, _playerData.Money);
         Debug.Log(AllRewards + " extraRewards");

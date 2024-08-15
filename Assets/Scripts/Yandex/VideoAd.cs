@@ -28,7 +28,7 @@ public class VideoAd : MonoBehaviour
 
     public void OnOpenCallback()
     {
-        Time.timeScale = 0;
+        _gameTime.Stop();
         IsOpen = true;
         _mainMusic.Pause();
         _shotSound.Stop();
@@ -45,9 +45,13 @@ public class VideoAd : MonoBehaviour
         IsOpen = false;
         OnCloseAd.Invoke();
         _gameTime.Run();
-        _mainMusic.Play();
 
-        if(_shotSound.time != 0)
+        if(_mainMusic.enabled == true)
+        {
+            _mainMusic.Play();
+        }
+
+        if(_shotSound.time != 0 && _shotSound.enabled == true)
         {
             _shotSound.Play();
         }

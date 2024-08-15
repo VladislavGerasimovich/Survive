@@ -19,6 +19,10 @@ public class PlayerHealthSystemSetup : MonoBehaviour
     [SerializeField] private PressButton _reliveButton;
     [SerializeField] private PressButton _immortalityButton;
     [SerializeField] private int _healthCount;
+    [SerializeField] private PopUpWindowForGame _immortalityPopUpWindow;
+    [SerializeField] private PopUpWindowForGame _firstAidPopUpWindow;
+    [SerializeField] private ChangeLanguage _immortalityText;
+    [SerializeField] private ChangeLanguage _firstAidText;
 
     public HealthSystem HealthSystem;
 
@@ -51,7 +55,7 @@ public class PlayerHealthSystemSetup : MonoBehaviour
 
         Debug.Log("allHealth: " + _healthCount);
         HealthSystem = new HealthSystem(_healthCount);
-        _presenter = new PlayerHealthSystemPresenter(_firstAidKitCount, _immortalityCount, _playerMortality, _playerTakeDamage, _videoAd, _reliveButton, _firstAidButton, _immortalityButton, HealthSystem, _playerDied, _healthBar, _vignette);
+        _presenter = new PlayerHealthSystemPresenter(_firstAidKitCount, _immortalityCount, _playerMortality, _playerTakeDamage, _videoAd, _reliveButton, _firstAidButton, _immortalityButton, HealthSystem, _playerDied, _healthBar, _vignette, _immortalityPopUpWindow, _firstAidPopUpWindow);
         _presenter.Enable();
     }
 }

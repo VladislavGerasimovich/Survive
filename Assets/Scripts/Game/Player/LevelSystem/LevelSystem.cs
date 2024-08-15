@@ -32,7 +32,7 @@ public class LevelSystem
         if (_currentExperience >= _maxExperience)
         {
             _remainingExperience = _currentExperience - _maxExperience;
-            _maxExperience += 10;
+            _maxExperience += 40;
             _level++;
             _currentExperience = _remainingExperience;
             _remainingExperience = 0;

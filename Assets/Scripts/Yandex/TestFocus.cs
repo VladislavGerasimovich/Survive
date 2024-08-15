@@ -16,7 +16,7 @@ public class TestFocus : MonoBehaviour
 
     private void Start()
     {
-        if(_audioSource != null)
+        if(_audioSource != null && _audioSource.enabled == true)
         {
             _audioSource.Play();
         }
@@ -42,10 +42,18 @@ public class TestFocus : MonoBehaviour
 
     private void MuteAudio(bool value)
     {
-        if (_audioSource != null)
+        if(value == true)
+        {
+            AudioListener.volume = 0;
+            return;
+        }
+
+        if (_audioSource != null && _audioSource.enabled == true)
         {
             _audioSource.volume = value ? 0 : 1;
         }
+
+        AudioListener.volume = 1;
     }
 
     private void PauseGame(bool value)

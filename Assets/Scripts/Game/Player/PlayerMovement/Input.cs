@@ -14,11 +14,21 @@ public class Input : MonoBehaviour
     public void EnableInput()
     {
         IsCan = true;
+
+        if (_joystick != null)
+        {
+            _joystick.Enable();
+        }
     }
 
     public void DisableInput()
     {
         IsCan = false;
+
+        if(_joystick != null)
+        {
+            _joystick.Disable();
+        }
     }
 
     public void SetMovementPosition(Vector2 movementAmount)

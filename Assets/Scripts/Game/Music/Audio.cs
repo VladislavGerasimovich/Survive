@@ -59,7 +59,11 @@ public class Audio : MonoBehaviour
             }
         }
 
-        _audioSource.Play();
+        if(_audioSource.enabled == true)
+        {
+            _audioSource.Play();
+        }
+
         _audioSource.volume = 1;
     }
 
@@ -70,9 +74,19 @@ public class Audio : MonoBehaviour
 
     public void PlayAfterPause()
     {
-        if(_audioSource.time > 0)
+        if(_audioSource.time > 0 && _audioSource.enabled == true)
         {
             _audioSource.Play();
         }
+    }
+
+    public void Disable()
+    {
+        _audioSource.enabled = false;
+    }
+
+    public void Enable()
+    {
+        _audioSource.enabled = true;
     }
 }

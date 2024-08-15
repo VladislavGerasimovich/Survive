@@ -33,7 +33,10 @@ public class DesktopWASDPlayerInput : Input
 
     private void MovePlayer()
     {
-        Vector2 direction = _inputAction.ReadValue<Vector2>();
-        SetMovementPosition(direction);
+        if(IsCan == true)
+        {
+            Vector2 direction = _inputAction.ReadValue<Vector2>();
+            SetMovementPosition(direction);
+        }
     }
 }

@@ -46,7 +46,12 @@ public class ZombieDied : Die
     {
         IsDied = true;
         _playerScore.SetScore(_score.Count);
-        _audioSource.Play();
+
+        if(_audioSource.enabled == true)
+        {
+            _audioSource.Play();
+        }
+
         StartCoroutine(DiedCoroutine());
     }
 
