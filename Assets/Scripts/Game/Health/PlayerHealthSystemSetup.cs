@@ -1,8 +1,4 @@
-using Agava.YandexGames;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(VideoAd))]
 [RequireComponent(typeof(PlayerDataManager))]
@@ -53,7 +49,6 @@ public class PlayerHealthSystemSetup : MonoBehaviour
         _healthCount += playerData.BodyArmorIndex;
         _healthCount += playerData.BootsIndex;
 
-        Debug.Log("allHealth: " + _healthCount);
         HealthSystem = new HealthSystem(_healthCount);
         _presenter = new PlayerHealthSystemPresenter(_firstAidKitCount, _immortalityCount, _playerMortality, _playerTakeDamage, _videoAd, _reliveButton, _firstAidButton, _immortalityButton, HealthSystem, _playerDied, _healthBar, _vignette, _immortalityPopUpWindow, _firstAidPopUpWindow);
         _presenter.Enable();

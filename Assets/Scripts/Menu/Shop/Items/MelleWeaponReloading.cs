@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using PlayerPrefs = Agava.YandexGames.Utility.PlayerPrefs;
 
 public class MelleWeaponReloading : Item
 {
@@ -11,13 +8,13 @@ public class MelleWeaponReloading : Item
 
     private void OnEnable()
     {
-        _button.onClick.AddListener(OnClick);
+        Button.onClick.AddListener(OnClick);
         _playerDataManager.DataReceived += SetIndex;
     }
 
     private void OnDisable()
     {
-        _button.onClick.RemoveListener(OnClick);
+        Button.onClick.RemoveListener(OnClick);
         _playerDataManager.DataReceived -= SetIndex;
     }
 
@@ -25,12 +22,12 @@ public class MelleWeaponReloading : Item
     {
         base.SetStatus();
 
-        _playerDataManager.Set(MELLE_WEAPON_RELOADING, _indexOfCost);
+        _playerDataManager.Set(MELLE_WEAPON_RELOADING, IndexOfCost);
     }
 
     private void SetIndex(PlayerData playerData)
     {
-        _indexOfCost = playerData.MelleWeaponReloadingIndex;
+        IndexOfCost = playerData.MelleWeaponReloadingIndex;
         SetCost();
     }
 }

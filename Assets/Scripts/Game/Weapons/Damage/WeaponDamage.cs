@@ -1,20 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponDamage : MonoBehaviour
 {
-    [SerializeField] protected int _damage;
+    [SerializeField] protected int Damage;
 
-    public int Damage { get; private set; }
+    public int Harm { get; private set; }
 
     private void Awake()
     {
-        Damage = _damage;
+        Harm = Damage;
     }
 
     public void SetDamage(int damage)
     {
-        Damage = damage;
+        Harm = damage;
     }
 }

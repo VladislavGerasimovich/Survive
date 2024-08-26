@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class ExperienceSystemPresenter
 {
     private LevelSystem _levelSystem;
@@ -18,12 +13,12 @@ public class ExperienceSystemPresenter
 
     public void Enable()
     {
-        _die.Rip += OnDied;
+        _die.OnDied += OnDied;
     }
 
     public void Disable()
     {
-        _die.Rip -= OnDied;
+        _die.OnDied -= OnDied;
     }
 
     private void OnDied()

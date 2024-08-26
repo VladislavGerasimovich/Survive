@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InterstitialAdTimer : MonoBehaviour
@@ -15,13 +14,11 @@ public class InterstitialAdTimer : MonoBehaviour
     private void Awake()
     {
         _numberOfAdImpressions = PlayerPrefs.GetInt("NumberOfAdImpressions", 0);
-        Debug.Log(_numberOfAdImpressions + " number of ad impressions");
     }
 
     private void Start()
     {
         _currentValue = PlayerPrefs.GetFloat("TimerValue", 0);
-        Debug.Log(_currentValue + "current Timer Value in Start");
 
         if(_currentValue >= MaxValue)
         {
@@ -50,7 +47,6 @@ public class InterstitialAdTimer : MonoBehaviour
         while(_currentValue < MaxValue)
         {
             _currentValue += Time.deltaTime;
-            //Debug.Log(_currentValue + " currentTimerValue");
 
             yield return null;
         }

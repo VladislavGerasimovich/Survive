@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -107,7 +104,6 @@ public class EndGamePanel : Window
     {
         _videoAd.Show();
         _videoAd.OnRewardReceived += SetStatus;
-        
         _reliveButton.StatusInteractableOff();
         _firstAidButton.StatusInteractableOff();
     }

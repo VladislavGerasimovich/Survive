@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -24,11 +22,6 @@ public class Grenade : MonoBehaviour
     private void OnDisable()
     {
         _collisionHandler.TouchedGround -= Explosion;
-    }
-
-    public void SetExplosionAreaCreator(ExplosionAreaCreator explosionAreaCreator)
-    {
-        //_explosionAreaCreator = explosionAreaCreator;
     }
 
     public void ShowGrenadePrefab(Vector3 position, Vector3 force)

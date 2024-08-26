@@ -1,9 +1,4 @@
-using Agava.YandexGames;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerHealthSystemPresenter : MonoBehaviour
 {
@@ -154,7 +149,6 @@ public class PlayerHealthSystemPresenter : MonoBehaviour
 
     private void ShowAdForImmortality()
     {
-        Debug.Log("реклама«аЌеу€звимость");
         _videoAd.Show();
         _videoAd.OnRewardReceived += MakeImmortal;
         _videoAd.OnCloseAd += CloseImmortalityPopUpWindow;
@@ -162,7 +156,6 @@ public class PlayerHealthSystemPresenter : MonoBehaviour
 
     private void ShowAdForFirstAid()
     {
-        Debug.Log("реклама«ајптечку");
         _videoAd.Show();
         _videoAd.OnRewardReceived += RestoreAllHealth;
         _videoAd.OnCloseAd += CloseFirstAidPopUpWindow;
@@ -196,6 +189,11 @@ public class PlayerHealthSystemPresenter : MonoBehaviour
         _videoAd.OnRewardReceived -= MakeImmortal;
         _videoAd.OnRewardReceived -= RestoreAllHealth;
         _videoAd.OnCloseAd -= CloseImmortalityPopUpWindow;
+
+        if(_videoAd.IsRewardReseived == false)
+        {
+            _immortalityButton.InteractableOn();
+        }
     }
 
     private void CloseFirstAidPopUpWindow()
@@ -204,5 +202,10 @@ public class PlayerHealthSystemPresenter : MonoBehaviour
         _videoAd.OnRewardReceived -= MakeImmortal;
         _videoAd.OnRewardReceived -= RestoreAllHealth;
         _videoAd.OnCloseAd -= CloseFirstAidPopUpWindow;
+
+        if (_videoAd.IsRewardReseived == false)
+        {
+            _firstAidButton.InteractableOn();
+        }
     }
 }

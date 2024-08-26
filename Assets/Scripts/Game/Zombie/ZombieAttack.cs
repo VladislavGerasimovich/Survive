@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ZombieAttack : MonoBehaviour
@@ -35,7 +34,7 @@ public class ZombieAttack : MonoBehaviour
     {
         while (enabled)
         {
-            playerTakeDamage.Take(_zombieDamage.Damage);
+            playerTakeDamage.Take(_zombieDamage.Harm);
 
             yield return _delay;
         }

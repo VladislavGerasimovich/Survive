@@ -1,9 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
 public class CharacterHealthSystemPresenter
 {
     private HealthSystem _healthSystem;
@@ -29,11 +23,6 @@ public class CharacterHealthSystemPresenter
     {
         _healthSystem.Died -= OnDied;
         _collisionHandler.Collided -= OnCollided;
-    }
-
-    private void RestoreAllHealth()
-    {
-        _healthSystem.Restore();
     }
 
     private void OnCollided(int damage)

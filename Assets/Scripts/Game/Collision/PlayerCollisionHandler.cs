@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCollisionHandler : CollisionHandler
@@ -11,7 +9,7 @@ public class PlayerCollisionHandler : CollisionHandler
     {
         if (collision.TryGetComponent(out ZombieDamagee zombieDamage))
         {
-            Collided?.Invoke(zombieDamage.Damage);
+            Collided?.Invoke(zombieDamage.Harm);
         }
     }
 }

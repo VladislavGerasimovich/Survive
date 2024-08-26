@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 public class GrenadeTrajectory : MonoBehaviour
 {
@@ -40,7 +37,6 @@ public class GrenadeTrajectory : MonoBehaviour
             yield return new WaitForSeconds(_durationOfReloading);
         }
     }
-    
 
     private void Shot()
     {

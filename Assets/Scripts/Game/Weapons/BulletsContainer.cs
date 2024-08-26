@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,7 +19,6 @@ public class BulletsContainer : MonoBehaviour
     {
         foreach (BulletDamage bullet in _bulletDamages)
         {
-            Debug.Log(value + " урон пули");
             bullet.SetDamage(value);
         }
     }

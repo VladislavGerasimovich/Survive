@@ -1,6 +1,5 @@
 using Agava.YandexGames;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -10,10 +9,10 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class Item : MonoBehaviour
 {
-    [SerializeField] protected TMP_Text _text;
-    [SerializeField] protected List<string> _cost;
-    [SerializeField] protected string _type;
-    [SerializeField] protected PopUpWindow _popUpWindow;
+    [SerializeField] protected TMP_Text Text;
+    [SerializeField] protected List<string> Cost;
+    [SerializeField] protected string Type;
+    [SerializeField] protected PopUpWindow PopUpWindow;
     [SerializeField] private string _englishText;
     [SerializeField] private string _turkishText;
     [SerializeField] private string _russianText;
@@ -22,19 +21,19 @@ public class Item : MonoBehaviour
     private const string Turkish = "tr";
     private const string Russian = "ru";
 
-    protected Image _background;
-    protected Button _button;
-    protected int _indexOfCost;
-    protected List<Color> _colors;
+    protected Image Background;
+    protected Button Button;
+    protected int IndexOfCost;
+    protected List<Color> Colors;
 
     public virtual event Action<string, string> Clicked;
 
     public string TranslatedText { get; private set; }
-    public string Type { get; protected set; }
+    public string Class { get; protected set; }
 
     private void Awake()
     {
-        _colors = new List<Color>
+        Colors = new List<Color>
         {
             new Color32(125, 120, 126, 255),
             new Color32(170, 238, 147, 255),
@@ -43,9 +42,9 @@ public class Item : MonoBehaviour
             new Color32(229, 214, 75, 255)
         };
 
-        _background = GetComponent<Image>();
-        _button = GetComponent<Button>();
-        Type = _type;
+        Background = GetComponent<Image>();
+        Button = GetComponent<Button>();
+        Class = Type;
         string languageCode = YandexGamesSdk.Environment.i18n.lang;
         ChangeLanguage(languageCode);
     }
@@ -57,12 +56,12 @@ public class Item : MonoBehaviour
 
     private void OnEnable()
     {
-        _button.onClick.AddListener(OnClick);
+        Button.onClick.AddListener(OnClick);
     }
 
     private void OnDisable()
     {
-        _button.onClick.RemoveListener(OnClick);
+        Button.onClick.RemoveListener(OnClick);
     }
 
     public void ChangeLanguage(string languageCode)
@@ -83,35 +82,35 @@ public class Item : MonoBehaviour
 
     public virtual void SetCost()
     {
-        _text.text = _cost[_indexOfCost];
-        _background.color = _colors[_indexOfCost];
+        Text.text = Cost[IndexOfCost];
+        Background.color = Colors[IndexOfCost];
 
-        if (_indexOfCost == _cost.Count - 1)
+        if (IndexOfCost == Cost.Count - 1)
         {
-            _button.interactable = false;
+            Button.interactable = false;
         }
     }
 
     public virtual void SetStatus()
     {
-        if(_indexOfCost < _cost.Count)
+        if(IndexOfCost < Cost.Count)
         {
-            _indexOfCost++;
+            IndexOfCost++;
 
-            if (_indexOfCost != _cost.Count)
+            if (IndexOfCost != Cost.Count)
             {
                 SetCost();
             }
 
-            if (_indexOfCost == _cost.Count - 1)
+            if (IndexOfCost == Cost.Count - 1)
             {
-                _button.interactable = false;
+                Button.interactable = false;
             }
         }
     }
 
     public virtual void OnClick()
     {
-        Clicked?.Invoke(_cost[_indexOfCost], _type);
+        Clicked?.Invoke(Cost[IndexOfCost], Type);
     }
 }

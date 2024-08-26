@@ -1,7 +1,4 @@
-using Agava.YandexGames;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -18,7 +15,7 @@ public class InterstitialAd : MonoBehaviour
         _mainMusic = GetComponent<AudioSource>();
     }
 
-    public void Show() => Agava.YandexGames.InterstitialAd.Show(OnOpenCallback, OnCloseCallback, OnErrorCallback, onOfflineCallback);
+    public void Show() => Agava.YandexGames.InterstitialAd.Show(OnOpenCallback, OnCloseCallback, OnErrorCallback, OnOfflineCallback);
 
     private void OnOpenCallback()
     {
@@ -46,7 +43,7 @@ public class InterstitialAd : MonoBehaviour
         OnErrorAd?.Invoke();
     }
 
-    private void onOfflineCallback()
+    private void OnOfflineCallback()
     {
         Time.timeScale = 0;
     }

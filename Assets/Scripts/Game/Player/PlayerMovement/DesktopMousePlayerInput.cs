@@ -1,10 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.EnhancedTouch;
-using UnityEngine.InputSystem.HID;
-using UnityEngine.UI;
 
 public class DesktopMousePlayerInput : Input
 {

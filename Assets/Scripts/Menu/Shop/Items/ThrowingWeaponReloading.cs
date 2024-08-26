@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using PlayerPrefs = Agava.YandexGames.Utility.PlayerPrefs;
 
 public class ThrowingWeaponReloading : Item
 {
@@ -11,13 +8,13 @@ public class ThrowingWeaponReloading : Item
 
     private void OnEnable()
     {
-        _button.onClick.AddListener(OnClick);
+        Button.onClick.AddListener(OnClick);
         _playerDataManager.DataReceived += SetIndex;
     }
 
     private void OnDisable()
     {
-        _button.onClick.RemoveListener(OnClick);
+        Button.onClick.RemoveListener(OnClick);
         _playerDataManager.DataReceived -= SetIndex;
     }
 
@@ -25,12 +22,12 @@ public class ThrowingWeaponReloading : Item
     {
         base.SetStatus();
 
-        _playerDataManager.Set(THROWING_WEAPON_RELOADING, _indexOfCost);
+        _playerDataManager.Set(THROWING_WEAPON_RELOADING, IndexOfCost);
     }
 
     private void SetIndex(PlayerData playerData)
     {
-        _indexOfCost = playerData.ThrowingWeaponReloadingIndex;
+        IndexOfCost = playerData.ThrowingWeaponReloadingIndex;
         SetCost();
     }
 }

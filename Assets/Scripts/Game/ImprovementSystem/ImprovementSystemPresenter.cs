@@ -1,12 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using static Cinemachine.DocumentationSortingAttribute;
 using UnityEngine;
-using UnityEngine.UI;
 using System.Linq;
-using Agava.YandexGames;
 
 public class ImprovementSystemPresenter: MonoBehaviour
 {
@@ -133,7 +127,6 @@ public class ImprovementSystemPresenter: MonoBehaviour
         }
     }
 
-
     private void FillPanel()
     {
         if (_isFilling == false)
@@ -225,7 +218,6 @@ public class ImprovementSystemPresenter: MonoBehaviour
         {
             _twoCardsButton.InteractableOn();
         }
-        UnityEngine.Debug.Log(_twoCardsButton.Interactable + " twocardsbuttonINTERACTABLE");
 
         _menuButton.InteractableOn();
     }

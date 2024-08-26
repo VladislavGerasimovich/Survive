@@ -1,21 +1,20 @@
 using Agava.YandexGames;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class YandexLeaderboard : MonoBehaviour
 {
+    [SerializeField] private LeaderboardView _leaderboardView;
+    [SerializeField] private string _englishText;
+    [SerializeField] private string _turkishText;
+    [SerializeField] private string _russianText;
+
     private const string LeaderboardName = "Leaderboard";
     private const string English = "en";
     private const string Turkish = "tr";
     private const string Russian = "ru";
 
     private readonly List<LeaderboardPlayer> _leaderboardPlayers = new();
-
-    [SerializeField] private LeaderboardView _leaderboardView;
-    [SerializeField] private string _englishText;
-    [SerializeField] private string _turkishText;
-    [SerializeField] private string _russianText;
 
     private string AnonymousName;
 

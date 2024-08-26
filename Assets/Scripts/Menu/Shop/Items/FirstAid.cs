@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FirstAid : ConsumableItem
@@ -10,13 +8,13 @@ public class FirstAid : ConsumableItem
 
     private void OnEnable()
     {
-        _button.onClick.AddListener(OnClick);
+        Button.onClick.AddListener(OnClick);
         _playerDataManager.DataReceived += SetIndex;
     }
 
     private void OnDisable()
     {
-        _button.onClick.RemoveListener(OnClick);
+        Button.onClick.RemoveListener(OnClick);
         _playerDataManager.DataReceived -= SetIndex;
     }
 
@@ -24,16 +22,16 @@ public class FirstAid : ConsumableItem
     {
         base.SetStatus();
 
-        _playerDataManager.Set(FIRST_AID, _currentCount);
+        _playerDataManager.Set(FIRST_AID, CurrentCount);
     }
 
     private void SetIndex(PlayerData playerData)
     {
-        _currentCount = playerData.FirstAidCount;
+        CurrentCount = playerData.FirstAidCount;
 
-        if (_currentCount >= _maxCount)
+        if (CurrentCount >= MaxCount)
         {
-            _button.interactable = false;
+            Button.interactable = false;
         }
 
         SetTextOfCount();

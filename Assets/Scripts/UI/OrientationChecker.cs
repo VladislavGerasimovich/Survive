@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteAlways]
@@ -11,7 +9,7 @@ public class OrientationChecker : MonoBehaviour
         HandleOrientation();
     }
 
-    void Update()
+    private void Update()
     {
         HandleOrientation();
     }
@@ -23,8 +21,7 @@ public class OrientationChecker : MonoBehaviour
         {
             OrientationController.FireOrientationChanged(this, false);
         }
-        else
-        if (!OrientationController.isVertical &&
+        else if (!OrientationController.isVertical &&
             Screen.width < Screen.height)
         {
             OrientationController.FireOrientationChanged(this, true);

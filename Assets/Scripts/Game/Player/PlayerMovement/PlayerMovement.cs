@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MobilePlayerInput))]
@@ -12,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _rotationSpeed;
 
     private Animator _animator;
-    private AnimatorData _animatorData;
     private CharacterController _characterController;
     private Input _playerInput;
     private MobilePlayerInput _mobilePlayerInput;
@@ -21,11 +18,9 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _animatorData = new AnimatorData();
         _characterController = GetComponent<CharacterController>();
         _mobilePlayerInput = GetComponent<MobilePlayerInput>();
         _desktopPlayerInput = GetComponent<DesktopWASDPlayerInput>();
-        
         _playerInput = _desktopPlayerInput;
         _desktopPlayerInput.enabled = true;
 

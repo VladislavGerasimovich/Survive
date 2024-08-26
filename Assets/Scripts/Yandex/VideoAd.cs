@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,6 +13,7 @@ public class VideoAd : MonoBehaviour
     public event UnityAction OnRewardReceived;
     public event UnityAction OnCloseAd;
 
+    public bool IsRewardReseived { get; private set; }
     public bool IsOpen { get; private set; }
 
     private void Awake()
@@ -28,30 +26,49 @@ public class VideoAd : MonoBehaviour
 
     public void OnOpenCallback()
     {
-        _gameTime.Stop();
+        IsRewardReseived = false;
+        AudioListener.volume = 0;
+
+        if (_gameTime != null)
+        {
+            _gameTime.Stop();
+        }
+
         IsOpen = true;
         _mainMusic.Pause();
-        _shotSound.Stop();
+
+        if(_shotSound != null)
+        {
+            _shotSound.Stop();
+        }
+
         OnOpenAd.Invoke();
     }
 
     public void OnRewardCallback()
     {
         OnRewardReceived.Invoke();
+        IsRewardReseived = true;
     }
 
     public void OnCloseCallback()
     {
         IsOpen = false;
         OnCloseAd.Invoke();
-        _gameTime.Run();
+
+        if (_gameTime != null)
+        {
+            _gameTime.Run();
+        }
+
+        AudioListener.volume = 1;
 
         if(_mainMusic.enabled == true)
         {
             _mainMusic.Play();
         }
 
-        if(_shotSound.time != 0 && _shotSound.enabled == true)
+        if(_shotSound.time != 0 && _shotSound.enabled == true && _shotSound != null)
         {
             _shotSound.Play();
         }

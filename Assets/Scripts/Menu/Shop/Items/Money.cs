@@ -1,7 +1,5 @@
 using Agava.YandexGames;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,36 +13,36 @@ public class Money : Item
 
     private void Awake()
     {
-        _background = GetComponent<Image>();
-        _button = GetComponent<Button>();
-        Type = _type;
+        Background = GetComponent<Image>();
+        Button = GetComponent<Button>();
+        Class = Type;
         string languageCode = YandexGamesSdk.Environment.i18n.lang;
         ChangeLanguage(languageCode);
     }
 
     private void OnEnable()
     {
-        _button.onClick.AddListener(OnClick);
+        Button.onClick.AddListener(OnClick);
     }
 
-    private void Start() { }
+    private void Start(){}
 
     private void OnDisable()
     {
-        _button.onClick.RemoveListener(OnClick);
+        Button.onClick.RemoveListener(OnClick);
     }
 
     public override void OnClick()
     {
-        _popUpWindow.YesButtonClicked += Buy;
-        _popUpWindow.NoButtonClicked += Cancel;
-        _popUpWindow.Open(TranslatedText);
+        PopUpWindow.YesButtonClicked += Buy;
+        PopUpWindow.NoButtonClicked += Cancel;
+        PopUpWindow.Open(TranslatedText);
     }
 
     public void Buy()
     {
-        _popUpWindow.YesButtonClicked -= Buy;
-        _popUpWindow.NoButtonClicked -= Cancel;
+        PopUpWindow.YesButtonClicked -= Buy;
+        PopUpWindow.NoButtonClicked -= Cancel;
         _videoAd.Show();
         _videoAd.OnRewardReceived += PrepareReward;
         _videoAd.OnCloseAd += AddReward;
@@ -52,9 +50,9 @@ public class Money : Item
 
     private void Cancel()
     {
-        _popUpWindow.YesButtonClicked -= Buy;
-        _popUpWindow.NoButtonClicked -= Cancel;
-        _popUpWindow.Close();
+        PopUpWindow.YesButtonClicked -= Buy;
+        PopUpWindow.NoButtonClicked -= Cancel;
+        PopUpWindow.Close();
     }
 
     private void AddReward()
@@ -65,7 +63,7 @@ public class Money : Item
         if(_isRewardReceived == true)
         {
             _isRewardReceived = false;
-            Clicked?.Invoke(_cost[0], _type);
+            Clicked?.Invoke(Cost[0], Type);
         }
     }
 

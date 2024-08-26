@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +10,7 @@ public class GrenadesCreator : ObjectPool
 
     private void Awake()
     {
-        _pool = new List<GameObject>();
+        Pool = new List<GameObject>();
         Initialize(_grenade);
     }
 
@@ -43,17 +42,17 @@ public class GrenadesCreator : ObjectPool
 
     protected override void Initialize(GameObject prefab)
     {
-        for (int i = 0; i < _capacity; i++)
+        for (int i = 0; i < Capacity; i++)
         {
-            GameObject item = Instantiate(prefab, _container.transform);
+            GameObject item = Instantiate(prefab, Container.transform);
             item.SetActive(false);
-            _pool.Add(item);
+            Pool.Add(item);
         }
     }
 
     public void PauseSound()
     {
-        foreach (GameObject item in _pool)
+        foreach (GameObject item in Pool)
         {
             AudioSource audio = item.GetComponent<AudioSource>();
             audio.volume = 0;
@@ -75,7 +74,7 @@ public class GrenadesCreator : ObjectPool
             }
         }
 
-        foreach (GameObject item in _pool)
+        foreach (GameObject item in Pool)
         {
             AudioSource audio = item.GetComponent<AudioSource>();
             audio.volume = 1;
@@ -90,7 +89,7 @@ public class GrenadesCreator : ObjectPool
 
     public void DisableSound()
     {
-        foreach (GameObject item in _pool)
+        foreach (GameObject item in Pool)
         {
             AudioSource audio = item.GetComponent<AudioSource>();
             audio.enabled = false;
@@ -99,7 +98,7 @@ public class GrenadesCreator : ObjectPool
 
     public void EnableSound()
     {
-        foreach (GameObject item in _pool)
+        foreach (GameObject item in Pool)
         {
             AudioSource audio = item.GetComponent<AudioSource>();
             audio.enabled = true;

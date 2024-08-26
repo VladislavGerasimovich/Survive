@@ -1,10 +1,5 @@
-using Agava.YandexGames;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 
 [RequireComponent(typeof(InterstitialAd))]
 [RequireComponent(typeof(InterstitialAdTimer))]
@@ -25,8 +20,6 @@ public class MenuLoader : MonoBehaviour
 
     public void RunInterstitialAd()
     {
-        Debug.Log(_interstitialAdTimer.IsReached + " interstitialAdIsReached");
-
         if(_interstitialAdTimer.IsReached == false)
         {
             RunMenu();

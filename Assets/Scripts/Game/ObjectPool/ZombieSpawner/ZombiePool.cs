@@ -1,9 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ZombiePool : MonoBehaviour
 {
@@ -16,15 +13,15 @@ public class ZombiePool : MonoBehaviour
     [SerializeField] private InterstitialAd _interstitialAd;
     [SerializeField] private GameTime _gameTime;
 
-    protected List<GameObject> _pool;
-    protected List<CharacterHealthSystemPresenter> _healthSystemPresenters;
-    protected List<ExperienceSystemPresenter> _experienceSystemPresenters;
+    protected List<GameObject> Pool;
+    protected List<CharacterHealthSystemPresenter> HealthSystemPresenters;
+    protected List<ExperienceSystemPresenter> ExperienceSystemPresenters;
 
     private void Awake()
     {
-        _pool = new List<GameObject>();
-        _healthSystemPresenters = new List<CharacterHealthSystemPresenter>();
-        _experienceSystemPresenters = new List<ExperienceSystemPresenter>();
+        Pool = new List<GameObject>();
+        HealthSystemPresenters = new List<CharacterHealthSystemPresenter>();
+        ExperienceSystemPresenters = new List<ExperienceSystemPresenter>();
     }
 
     private void OnEnable()
@@ -52,12 +49,12 @@ public class ZombiePool : MonoBehaviour
         _interstitialAd.OnOpenAd -= StopSound;
         _videoAd.OnCloseAd -= PlaySound;
 
-        foreach (var presenter in _healthSystemPresenters)
+        foreach (var presenter in HealthSystemPresenters)
         {
             presenter.Disable();
         }
 
-        foreach (ExperienceSystemPresenter presenter in _experienceSystemPresenters)
+        foreach (ExperienceSystemPresenter presenter in ExperienceSystemPresenters)
         {
             presenter.Disable();
         }
@@ -71,21 +68,21 @@ public class ZombiePool : MonoBehaviour
 
             HealthSystem healthSystemModel = new HealthSystem(_healthValue);
             CharacterHealthSystemPresenter healthSystemPresenter = new CharacterHealthSystemPresenter(healthSystemModel, zombie.transform.Find("Collider").GetComponent<ZombieCollisionHandler>(), zombie.GetComponent<ZombieDied>(), zombie.GetComponent<EnemyBlink>());
-            _healthSystemPresenters.Add(healthSystemPresenter);
+            HealthSystemPresenters.Add(healthSystemPresenter);
 
             ExperienceSystemPresenter experienceSystemPresenter = new ExperienceSystemPresenter(levelSystemModel, zombie.GetComponent<ZombieDied>(), zombie.GetComponent<Experience>());
-            _experienceSystemPresenters.Add(experienceSystemPresenter);
+            ExperienceSystemPresenters.Add(experienceSystemPresenter);
 
             zombie.SetActive(false);
-            _pool.Add(zombie);
+            Pool.Add(zombie);
         }
 
-        foreach (CharacterHealthSystemPresenter presenter in _healthSystemPresenters)
+        foreach (CharacterHealthSystemPresenter presenter in HealthSystemPresenters)
         {
             presenter.Enable();
         }
 
-        foreach (ExperienceSystemPresenter presenter in _experienceSystemPresenters)
+        foreach (ExperienceSystemPresenter presenter in ExperienceSystemPresenters)
         {
             presenter.Enable();
         }
@@ -93,7 +90,7 @@ public class ZombiePool : MonoBehaviour
 
     public bool TryGetObject(out GameObject result)
     {
-        result = _pool.FirstOrDefault(p => p.activeSelf == false);
+        result = Pool.FirstOrDefault(p => p.activeSelf == false);
         result.GetComponent<ZombieDied>().ReviveZombie();
 
         return result != null;
@@ -101,7 +98,7 @@ public class ZombiePool : MonoBehaviour
 
     public void DisableSound()
     {
-        foreach (GameObject zombie in _pool)
+        foreach (GameObject zombie in Pool)
         {
             AudioSource audio = zombie.GetComponent<AudioSource>();
             audio.enabled = false;
@@ -110,7 +107,7 @@ public class ZombiePool : MonoBehaviour
 
     public void EnableSound()
     {
-        foreach (GameObject zombie in _pool)
+        foreach (GameObject zombie in Pool)
         {
             AudioSource audio = zombie.GetComponent<AudioSource>();
             audio.enabled = true;
@@ -119,7 +116,7 @@ public class ZombiePool : MonoBehaviour
 
     public void PauseSound()
     {
-        foreach (GameObject zombie in _pool)
+        foreach (GameObject zombie in Pool)
         {
             AudioSource audio = zombie.GetComponent<AudioSource>();
             audio.Pause();
@@ -133,18 +130,17 @@ public class ZombiePool : MonoBehaviour
         {
             if(window.IsOpen == true)
             {
-                Debug.Log("одно из окон открыто");
                 return;
             }
         }
 
-        foreach (GameObject zombie in _pool)
+        foreach (GameObject zombie in Pool)
         {
             AudioSource audio = zombie.GetComponent<AudioSource>();
             audio.volume = 1;
         }
 
-        foreach (GameObject zombie in _pool)
+        foreach (GameObject zombie in Pool)
         {
             AudioSource audio = zombie.GetComponent<AudioSource>();
 
@@ -158,7 +154,7 @@ public class ZombiePool : MonoBehaviour
 
     public void StopSound()
     {
-        foreach (GameObject zombie in _pool)
+        foreach (GameObject zombie in Pool)
         {
             AudioSource audio = zombie.GetComponent<AudioSource>();
 

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BodyArmor : Item
@@ -10,13 +8,13 @@ public class BodyArmor : Item
 
     private void OnEnable()
     {
-        _button.onClick.AddListener(OnClick);
+        Button.onClick.AddListener(OnClick);
         _playerDataManager.DataReceived += SetIndex;
     }
 
     private void OnDisable()
     {
-        _button.onClick.RemoveListener(OnClick);
+        Button.onClick.RemoveListener(OnClick);
         _playerDataManager.DataReceived -= SetIndex;
     }
 
@@ -24,12 +22,12 @@ public class BodyArmor : Item
     {
         base.SetStatus();
 
-        _playerDataManager.Set(BODY_ARMOR, _indexOfCost);
+        _playerDataManager.Set(BODY_ARMOR, IndexOfCost);
     }
 
     private void SetIndex(PlayerData playerData)
     {
-        _indexOfCost = playerData.BodyArmorIndex;
+        IndexOfCost = playerData.BodyArmorIndex;
         SetCost();
     }
 }

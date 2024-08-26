@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Die : MonoBehaviour
 {
-    protected AnimatorData _animatorData;
-    protected Animator _animator;
+    protected AnimatorData AnimatorData;
+    protected Animator Animator;
 
     public virtual void Died()
     {

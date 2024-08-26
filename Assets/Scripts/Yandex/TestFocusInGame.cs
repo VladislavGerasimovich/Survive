@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Agava.WebUtility;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(VideoAd))]
 public class TestFocusInGame : MonoBehaviour
@@ -64,7 +62,7 @@ public class TestFocusInGame : MonoBehaviour
             _mainMusic.Pause();
         }
 
-        if (_improvementPanel.IsOpen == false && _gameMenuPanel.IsOpen == false && _endGamePanel.IsOpen == false && _continueGamePanel.IsOpen == false && _gameOverPanel.IsOpen == false && _videoAd.IsOpen == false && _videoAdForChoosingTwoCards.IsOpen == false && _videoAdForShuffleCards.IsOpen == false && _trainingPanel.IsOpen == false && value == false && _immortalityPopUpWindowForGame.IsOpen == false && _firstAidPopUpWindowForGame.IsOpen == false)
+        if (_improvementPanel.IsOpen == false && _gameMenuPanel.IsOpen == false && _endGamePanel.IsOpen == false && _continueGamePanel.IsOpen == false && _gameOverPanel.IsOpen == false && _trainingPanel.IsOpen == false && value == false && _immortalityPopUpWindowForGame.IsOpen == false && _firstAidPopUpWindowForGame.IsOpen == false)
         {
             if(_allGameMusic.CanPlay == true)
             {
@@ -87,8 +85,6 @@ public class TestFocusInGame : MonoBehaviour
         }
         else
         {
-            Debug.Log("Test focus in game ElSE");
-            Debug.Log(_allGameMusic.CanPlay + "allgame music can play");
             foreach (Audio audio in _audio)
             {
                 audio.Stop();
@@ -96,13 +92,8 @@ public class TestFocusInGame : MonoBehaviour
 
             _playerHurt.Stop();
             _zombiesPools.PauseSound();
-            _shotSound.Pause();
+            _shotSound.Stop();
             _mainMusic.Pause();
-
-            Debug.Log("value is " + value);
-            Debug.Log("_videoAd.IsOpen is " + _videoAd.IsOpen);
-            Debug.Log("_videoAdForChoosingTwoCards.IsOpen is " + _videoAdForChoosingTwoCards.IsOpen);
-            Debug.Log("_videoAdForShuffleCards.IsOpen is " + _videoAdForChoosingTwoCards.IsOpen);
 
             if (value == false && _videoAd.IsOpen == false && _videoAdForChoosingTwoCards.IsOpen == false && _videoAdForShuffleCards.IsOpen == false)
             {
@@ -123,7 +114,6 @@ public class TestFocusInGame : MonoBehaviour
             return;
         }
 
-        Debug.Log(" Stop in TestFocusInGame");
         _gameTime.Stop();
     }
 }

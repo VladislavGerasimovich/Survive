@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,12 +14,10 @@ public class FirstAidKitCount : MonoBehaviour
     private const string FIRST_AID = "FIRST_AID";
 
     private int _count;
-    private PressButton _pressButton;
     private Image _image;
 
     private void Awake()
     {
-        _pressButton = GetComponent<PressButton>();
         _image = GetComponent<Image>();
     }
 
@@ -61,7 +57,6 @@ public class FirstAidKitCount : MonoBehaviour
     private void SetCount(PlayerData playerData)
     {
         _count = playerData.FirstAidCount;
-        Debug.Log(_count + " count of first aid kit");
 
         _text.text = _count.ToString();
 

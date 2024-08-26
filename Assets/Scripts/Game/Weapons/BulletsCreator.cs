@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ public class BulletsCreator : BulletsPool
 
     private void Awake()
     {
-        _pool = new List<GameObject>();
+        Pool = new List<GameObject>();
         Initialize(_prefab);
     }
 }

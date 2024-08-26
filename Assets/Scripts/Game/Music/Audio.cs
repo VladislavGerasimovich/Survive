@@ -79,14 +79,4 @@ public class Audio : MonoBehaviour
             _audioSource.Play();
         }
     }
-
-    public void Disable()
-    {
-        _audioSource.enabled = false;
-    }
-
-    public void Enable()
-    {
-        _audioSource.enabled = true;
-    }
 }

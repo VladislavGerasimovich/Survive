@@ -1,9 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ShopPresenter: MonoBehaviour
 {
@@ -50,7 +47,6 @@ public class ShopPresenter: MonoBehaviour
 
     private void InitializeShop(PlayerData playerData)
     {
-        Debug.Log("initializeShoppppp");
         _shop.Initialize(playerData.Money);
         _moneyText.text = _shop.Money.ToString();
     }
@@ -59,15 +55,12 @@ public class ShopPresenter: MonoBehaviour
     {
         if(type != _moneyType)
         {
-            Debug.Log("нажат предмет%%%%%%%%%%%");
             if (_shop.TrySpentMoney(int.Parse(money)))
             {
-                Debug.Log("tryspentmoney!!!!!!!!!!!!");
                 foreach (Item item in _items)
                 {
-                    if (item.Type == type)
+                    if (item.Class == type)
                     {
-                        Debug.Log("typee#######");
                         _itemCost = int.Parse(money);
                         _itemType = type;
                         _popUpWindow.Open(item.TranslatedText);
@@ -82,7 +75,6 @@ public class ShopPresenter: MonoBehaviour
         else
         {
             _shop.AddMoney(int.Parse(money));
-            Debug.Log("прибавить деньги ::: " + money);
             _playerDataManager.Set(_moneyType, _shop.Money);
             _moneyText.text = _shop.Money.ToString();
         }
@@ -96,7 +88,7 @@ public class ShopPresenter: MonoBehaviour
 
         foreach (Item item in _items)
         {
-            if (item.Type == _itemType)
+            if (item.Class == _itemType)
             {
                 item.SetStatus();
             }

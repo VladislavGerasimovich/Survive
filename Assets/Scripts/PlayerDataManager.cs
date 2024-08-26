@@ -1,7 +1,5 @@
 using Agava.YandexGames;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerData
@@ -97,7 +95,6 @@ public class PlayerDataManager : MonoBehaviour
 
     private void Get(string playerDataJson)
     {
-        Debug.Log("successCallback");
         _playerData = JsonUtility.FromJson<PlayerData>(playerDataJson);
         DataReceived?.Invoke(_playerData);
     }

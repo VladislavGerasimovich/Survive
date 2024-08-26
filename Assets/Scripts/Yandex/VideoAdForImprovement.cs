@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,7 +6,7 @@ public class VideoAdForImprovement : MonoBehaviour
 {
     [SerializeField] private GameTime _gameTime;
 
-    private AudioSource _audioSource;
+    private AudioSource _mainMusic;
 
     public event UnityAction RewardReceived;
     public event UnityAction OnCloseAd;
@@ -17,7 +15,7 @@ public class VideoAdForImprovement : MonoBehaviour
 
     private void Awake()
     {
-        _audioSource = GetComponent<AudioSource>();
+        _mainMusic = GetComponent<AudioSource>();
     }
 
     public virtual void Show() =>
@@ -28,7 +26,8 @@ public class VideoAdForImprovement : MonoBehaviour
         IsOpen = true;
         Time.timeScale = 0;
         _gameTime.Stop();
-        _audioSource.Pause();
+        AudioListener.volume = 0;
+        _mainMusic.Pause();
     }
 
     private void OnRewardCallback()
@@ -41,6 +40,11 @@ public class VideoAdForImprovement : MonoBehaviour
         IsOpen = false;
         OnCloseAd?.Invoke();
         _gameTime.Stop();
-        _audioSource.Play();
+        AudioListener.volume = 1;
+
+        if (_mainMusic.enabled == true)
+        {
+            _mainMusic.Play();
+        }
     }
 }

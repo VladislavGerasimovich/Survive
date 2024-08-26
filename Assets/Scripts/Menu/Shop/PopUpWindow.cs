@@ -1,20 +1,17 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class PopUpWindow : MonoBehaviour
 {
-    [SerializeField] protected TMP_Text _text;
-    [SerializeField] protected Button _yesButton;
-    [SerializeField] protected Button _noButton;
-    [SerializeField] protected GameTime _gameTime;
+    [SerializeField] protected TMP_Text Text;
+    [SerializeField] protected Button YesButton;
+    [SerializeField] protected Button NoButton;
+    [SerializeField] protected GameTime GameTime;
 
-    protected CanvasGroup _canvasGroup;
+    protected CanvasGroup CanvasGroup;
 
     public bool IsOpen { get; private set; }
 
@@ -23,38 +20,38 @@ public class PopUpWindow : MonoBehaviour
 
     private void Awake()
     {
-        _canvasGroup = GetComponent<CanvasGroup>();
+        CanvasGroup = GetComponent<CanvasGroup>();
     }
 
     public virtual void Open(string message = null)
     {
-        _yesButton.interactable = true;
+        YesButton.interactable = true;
         IsOpen = true;
-        _gameTime.Stop();
-        _canvasGroup.alpha = 1;
-        _canvasGroup.blocksRaycasts = true;
-        _yesButton.onClick.AddListener(OnYesButtonClick);
-        _noButton.onClick.AddListener(OnNoButtonClick);
+        GameTime.Stop();
+        CanvasGroup.alpha = 1;
+        CanvasGroup.blocksRaycasts = true;
+        YesButton.onClick.AddListener(OnYesButtonClick);
+        NoButton.onClick.AddListener(OnNoButtonClick);
 
         if(message != null)
         {
-            _text.text = message;
+            Text.text = message;
         }
     }
 
     public virtual void OnYesButtonClick()
     {
-        _yesButton.interactable = false;
-        _yesButton.onClick.RemoveListener(OnYesButtonClick);
-        _noButton.onClick.RemoveListener(OnNoButtonClick);
+        YesButton.interactable = false;
+        YesButton.onClick.RemoveListener(OnYesButtonClick);
+        NoButton.onClick.RemoveListener(OnNoButtonClick);
         YesButtonClicked.Invoke();
         Close();
     }
 
     public virtual void OnNoButtonClick()
     {
-        _yesButton.onClick.RemoveListener(OnYesButtonClick);
-        _noButton.onClick.RemoveListener(OnNoButtonClick);
+        YesButton.onClick.RemoveListener(OnYesButtonClick);
+        NoButton.onClick.RemoveListener(OnNoButtonClick);
         NoButtonClicked.Invoke();
         Close();
     }
@@ -62,8 +59,8 @@ public class PopUpWindow : MonoBehaviour
     public virtual void Close()
     {
         IsOpen = false;
-        _canvasGroup.alpha = 0;
-        _canvasGroup.blocksRaycasts = false;
-        _gameTime.Run();
+        CanvasGroup.alpha = 0;
+        CanvasGroup.blocksRaycasts = false;
+        GameTime.Run();
     }
 }

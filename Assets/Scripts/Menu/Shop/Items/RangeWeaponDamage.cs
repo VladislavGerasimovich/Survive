@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using PlayerPrefs = Agava.YandexGames.Utility.PlayerPrefs;
 
 public class RangeWeaponDamage : Item
 {
@@ -11,13 +8,13 @@ public class RangeWeaponDamage : Item
 
     private void OnEnable()
     {
-        _button.onClick.AddListener(OnClick);
+        Button.onClick.AddListener(OnClick);
         _playerDataManager.DataReceived += SetIndex;
     }
 
     private void OnDisable()
     {
-        _button.onClick.RemoveListener(OnClick);
+        Button.onClick.RemoveListener(OnClick);
         _playerDataManager.DataReceived -= SetIndex;
     }
 
@@ -25,12 +22,12 @@ public class RangeWeaponDamage : Item
     {
         base.SetStatus();
 
-        _playerDataManager.Set(RANGE_WEAPON_DAMAGE, _indexOfCost);
+        _playerDataManager.Set(RANGE_WEAPON_DAMAGE, IndexOfCost);
     }
 
     private void SetIndex(PlayerData playerData)
     {
-        _indexOfCost = playerData.RangeWeaponDamageIndex;
+        IndexOfCost = playerData.RangeWeaponDamageIndex;
         SetCost();
     }
 }

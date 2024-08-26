@@ -17,28 +17,28 @@ public class PopUpWindowForGame : PopUpWindow
 
     private void Awake()
     {
-        _canvasGroup = GetComponent<CanvasGroup>();
+        CanvasGroup = GetComponent<CanvasGroup>();
     }
 
     private void OnEnable()
     {
-        _yesButton.onClick.AddListener(OnYesButtonClick);
-        _noButton.onClick.AddListener(OnNoButtonClick);
+        YesButton.onClick.AddListener(OnYesButtonClick);
+        NoButton.onClick.AddListener(OnNoButtonClick);
     }
 
     private void OnDisable()
     {
-        _yesButton.onClick.RemoveListener(OnYesButtonClick);
-        _noButton.onClick.RemoveListener(OnNoButtonClick);
+        YesButton.onClick.RemoveListener(OnYesButtonClick);
+        NoButton.onClick.RemoveListener(OnNoButtonClick);
     }
 
     public override void Open(string message = null)
     {
-        _yesButton.interactable = true;
+        YesButton.interactable = true;
         IsOpen = true;
-        _gameTime.Stop();
-        _canvasGroup.alpha = 1;
-        _canvasGroup.blocksRaycasts = true;
+        GameTime.Stop();
+        CanvasGroup.alpha = 1;
+        CanvasGroup.blocksRaycasts = true;
         _zombiesPools.PauseSound();
         _shotSound.Stop();
         _shotSound.volume = 0;
@@ -53,16 +53,16 @@ public class PopUpWindowForGame : PopUpWindow
 
         if (message != null)
         {
-            _text.text = message;
+            Text.text = message;
         }
     }
 
     public override void Close()
     {
         IsOpen = false;
-        _canvasGroup.alpha = 0;
-        _canvasGroup.blocksRaycasts = false;
-        _gameTime.Run();
+        CanvasGroup.alpha = 0;
+        CanvasGroup.blocksRaycasts = false;
+        GameTime.Run();
         _playerHurt.volume = 1;
         _shotSound.volume = 1;
         _zombiesPools.PlaySound();
@@ -76,7 +76,7 @@ public class PopUpWindowForGame : PopUpWindow
 
     public override void OnYesButtonClick()
     {
-        _yesButton.interactable = false;
+        YesButton.interactable = false;
         YesButtonClicked.Invoke();
     }
 

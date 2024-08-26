@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ExpendableItem : MonoBehaviour
-{
-    
-}
+public class ExpendableItem : MonoBehaviour{}

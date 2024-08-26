@@ -1,14 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using UnityEngine;
-using Agava.YandexGames;
-using PlayerPrefs = Agava.YandexGames.Utility.PlayerPrefs;
 
 public class Shop
 {
-    private const string MONEY = "MONEY";
     public event Action ItemBuyed;
 
     public int Money { get; private set; }

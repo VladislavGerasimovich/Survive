@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -17,7 +15,6 @@ public class PlayerTakeDamage : MonoBehaviour
 
     public void Take(int damage)
     {
-        Debug.Log("Take damage + audio punch");
         TakeDamage.Invoke(damage);
 
         if(_audioSource.enabled == true)

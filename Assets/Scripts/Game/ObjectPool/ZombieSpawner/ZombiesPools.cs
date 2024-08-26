@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -10,7 +8,7 @@ public class ZombiesPools : MonoBehaviour
 {
     [SerializeField] private ExperienceBar _experienceBar;
     [SerializeField] private TMP_Text _text;
-    [SerializeField] private ImprovementPanel ImprovementPanel;
+    [SerializeField] private ImprovementPanel _improvementPanel;
     [SerializeField] private GameTime _gameTime;
 
     private SimpleZombiePool _simpleZombiePool;
@@ -25,7 +23,7 @@ public class ZombiesPools : MonoBehaviour
         _simpleZombiePool = GetComponent<SimpleZombiePool>();
         _fastZombiePool = GetComponent<FastZombiePool>();
         _bigZombiePool = GetComponent<BigZombiePool>();
-        _userInterfacePresenter = new UserInterfacePresenter(_levelSystem, _experienceBar, _text, ImprovementPanel, _gameTime);
+        _userInterfacePresenter = new UserInterfacePresenter(_levelSystem, _experienceBar, _text, _improvementPanel, _gameTime);
     }
 
     private void OnEnable()

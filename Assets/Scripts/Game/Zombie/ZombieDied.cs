@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -25,9 +23,9 @@ public class ZombieDied : Die
     private EnemyBlink _enemyBlink;
     private ZombieAttack _zombieAttack;
 
-    public event Action Rip;
-
     public bool IsDied { get; private set; }
+
+    public event Action OnDied;
 
     private void Awake()
     {
@@ -35,7 +33,7 @@ public class ZombieDied : Die
         _playerScore = GameObject.FindWithTag("PlayerScore").GetComponent<PlayerScore>();
         _capsuleCollider = GetComponent<CapsuleCollider>();
         _movement = GetComponent<ZombieMovement>();
-        _animator = GetComponent<Animator>();
+        Animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
         _score = GetComponent<Score>();
         _enemyBlink = GetComponent<EnemyBlink>();
@@ -62,14 +60,14 @@ public class ZombieDied : Die
 
     private IEnumerator DiedCoroutine()
     {
-        Rip?.Invoke();
+        OnDied?.Invoke();
         _enemyBlink.DisableBlink();
         _triggerCollider.enabled = false;
         _capsuleCollider.enabled = false;
         _movement.enabled = false;
         _rigidbody.constraints = RigidbodyConstraints.None;
         _rigidbody.isKinematic = true;
-        _animator.SetBool("Died", true);
+        Animator.SetBool("Died", true);
         _zombieAttack.StopAttackCoroutine();
 
         yield return new WaitForSeconds(4);
@@ -93,7 +91,7 @@ public class ZombieDied : Die
         _enemyBlink.EnableBlink();
         _rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
         gameObject.SetActive(false);
-        _animator.SetBool("Died", false);
+        Animator.SetBool("Died", false);
         _rigidbody.isKinematic = false;
         _triggerCollider.enabled = true;
         _capsuleCollider.enabled = true;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Immortality : ConsumableItem
@@ -10,13 +8,13 @@ public class Immortality : ConsumableItem
 
     private void OnEnable()
     {
-        _button.onClick.AddListener(OnClick);
+        Button.onClick.AddListener(OnClick);
         _playerDataManager.DataReceived += SetIndex;
     }
 
     private void OnDisable()
     {
-        _button.onClick.RemoveListener(OnClick);
+        Button.onClick.RemoveListener(OnClick);
         _playerDataManager.DataReceived -= SetIndex;
     }
 
@@ -24,16 +22,16 @@ public class Immortality : ConsumableItem
     {
         base.SetStatus();
 
-        _playerDataManager.Set(IMMORTALITY, _currentCount);
+        _playerDataManager.Set(IMMORTALITY, CurrentCount);
     }
 
     private void SetIndex(PlayerData playerData)
     {
-        _currentCount = playerData.ImmortalityCount;
+        CurrentCount = playerData.ImmortalityCount;
 
-        if (_currentCount >= _maxCount)
+        if (CurrentCount >= MaxCount)
         {
-            _button.interactable = false;
+            Button.interactable = false;
         }
 
         SetTextOfCount();

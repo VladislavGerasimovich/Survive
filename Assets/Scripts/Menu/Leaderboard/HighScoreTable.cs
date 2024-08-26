@@ -7,13 +7,10 @@ public class HighScoreTable : MonoBehaviour
     [SerializeField] private Transform _entryContainer;
     [SerializeField] private Transform _entryTemplate;
 
-    //private List<HighScoreEntry> _highScoreEntryList;
     private List<Transform> _highScoreEntryTransformList;
 
     private void Awake()
     {
-        //AddHighScoreEntry(676767676, "Vlad");
-
         string jsonString = PlayerPrefs.GetString("highScoreTable");
         HighScores highScores = JsonUtility.FromJson<HighScores>(jsonString);
 
@@ -52,20 +49,6 @@ public class HighScoreTable : MonoBehaviour
         entryTransform.GetComponent<PlayerInfo>().SetName(name.ToString());
 
         transformList.Add(entryTransform);
-    }
-
-    private void AddHighScoreEntry(int score, string name)
-    {
-        HighScoreEntry highScoreEntry = new HighScoreEntry { Score = score, Name = name };
-
-        string jsonString = PlayerPrefs.GetString("highScoreTable");
-        HighScores highScores = JsonUtility.FromJson<HighScores>(jsonString);
-
-        highScores.HighScoreEntryList.Add(highScoreEntry);
-
-        string json = JsonUtility.ToJson(highScores);
-        PlayerPrefs.SetString("highScoreTable", json);
-        PlayerPrefs.Save();
     }
 
     private class HighScores

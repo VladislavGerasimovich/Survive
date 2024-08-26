@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -23,8 +21,6 @@ public class Reward : MonoBehaviour
         _normalLevelReward = PlayerPrefs.GetInt(REWARD, 0);
         ExtraLevelReward = _normalLevelReward / 4;
         _text.text = AllRewards.ToString();
-        Debug.Log(_normalLevelReward + " normallevelreward");
-        Debug.Log(ExtraLevelReward + " extralevelreward");
     }
 
     private void OnEnable()
@@ -55,7 +51,6 @@ public class Reward : MonoBehaviour
         _text.text = AllRewards.ToString();
         _playerData.Money += _normalLevelReward;
         _playerDataManager.Set(MONEY, _playerData.Money);
-        Debug.Log(AllRewards + " normalRewards");
     }
 
     private void AddExtraLevelReward()
@@ -64,7 +59,6 @@ public class Reward : MonoBehaviour
         _text.text = AllRewards.ToString();
         _playerData.Money += ExtraLevelReward;
         _playerDataManager.Set(MONEY, _playerData.Money);
-        Debug.Log(AllRewards + " extraRewards");
     }
 
     private void SetPlayerData(PlayerData playerData)

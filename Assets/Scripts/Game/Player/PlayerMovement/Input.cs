@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 
@@ -8,7 +6,6 @@ public class Input : MonoBehaviour
     [SerializeField] public Joystick _joystick;
 
     public bool IsCan { get; private set; }
-
     public Vector2 MovementAmount { get; private set; }
 
     public void EnableInput()
@@ -36,35 +33,17 @@ public class Input : MonoBehaviour
         MovementAmount = movementAmount;
     }
 
-    public virtual void OnFingerMove(Finger finger)
-    {
+    public virtual void OnFingerMove(Finger finger){}
 
-    }
+    public virtual void OnFingerMove(){}
 
-    public virtual void OnFingerMove()
-    {
+    public virtual void OnFingerUp(Finger finger){}
 
-    }
+    public virtual void OnFingerUp(){}
 
-    public virtual void OnFingerUp(Finger finger)
-    {
+    public virtual void OnFingerDown(Finger finger){}
 
-    }
-
-    public virtual void OnFingerUp()
-    {
-
-    }
-
-    public virtual void OnFingerDown(Finger finger)
-    {
-
-    }
-
-    public virtual void OnFingerDown(Vector2 position)
-    {
-
-    }
+    public virtual void OnFingerDown(Vector2 position){}
 
     public Vector2 ClampStartPosition(Vector2 startPosition)
     {
