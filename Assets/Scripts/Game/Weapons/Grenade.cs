@@ -1,43 +1,46 @@
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
-public class Grenade : MonoBehaviour
+namespace Game.Weapons
 {
-    [SerializeField] private ExplosionArea _explosionArea;
-    [SerializeField] private GameObject _grenadePrefab; 
-    [SerializeField] private GrenadeCollisionHandler _collisionHandler;
-
-    private AudioSource _explosionSound;
-
-    private void Awake()
+    [RequireComponent(typeof(AudioSource))]
+    public class Grenade : MonoBehaviour
     {
-        _explosionSound = GetComponent<AudioSource>();
-    }
+        [SerializeField] private ExplosionArea _explosionArea;
+        [SerializeField] private GameObject _grenadePrefab;
+        [SerializeField] private GrenadeCollisionHandler _collisionHandler;
 
-    private void OnEnable()
-    {
-        _collisionHandler.TouchedGround += Explosion;
-    }
+        private AudioSource _explosionSound;
 
-    private void OnDisable()
-    {
-        _collisionHandler.TouchedGround -= Explosion;
-    }
-
-    public void ShowGrenadePrefab(Vector3 position, Vector3 force)
-    {
-        _grenadePrefab.SetActive(true);
-        _grenadePrefab.transform.position = position;
-        _grenadePrefab.GetComponent<Rigidbody>().velocity = force;
-    }
-
-    private void Explosion(Vector3 position)
-    {
-        _explosionArea.GetComponent<ExplosionArea>().Run(position);
-
-        if(_explosionSound.enabled == true)
+        private void Awake()
         {
-            _explosionSound.Play();
+            _explosionSound = GetComponent<AudioSource>();
+        }
+
+        private void OnEnable()
+        {
+            _collisionHandler.TouchedGround += Explosion;
+        }
+
+        private void OnDisable()
+        {
+            _collisionHandler.TouchedGround -= Explosion;
+        }
+
+        public void ShowGrenadePrefab(Vector3 position, Vector3 force)
+        {
+            _grenadePrefab.SetActive(true);
+            _grenadePrefab.transform.position = position;
+            _grenadePrefab.GetComponent<Rigidbody>().velocity = force;
+        }
+
+        private void Explosion(Vector3 position)
+        {
+            _explosionArea.GetComponent<ExplosionArea>().Run(position);
+
+            if (_explosionSound.enabled == true)
+            {
+                _explosionSound.Play();
+            }
         }
     }
 }

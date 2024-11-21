@@ -1,44 +1,50 @@
 using System;
 using UnityEngine;
+using Game.Player;
+using Game.Weapons.Damage;
+using Game.Zombie;
 
-public class ZombieCollisionHandler : CollisionHandler
+namespace Game.Collision
 {
-    [SerializeField] private ZombieAttack _zombieAttack;
-
-    public override event Action<int> Collided;
-
-    public override void OnTriggerEnter(Collider collision)
+    public class ZombieCollisionHandler : CollisionHandler
     {
-        if(collision.TryGetComponent(out WeaponDamage weaponDamage))
+        [SerializeField] private ZombieAttack _zombieAttack;
+
+        public override event Action<int> Collided;
+
+        public override void OnTriggerEnter(Collider collision)
         {
-            Collided?.Invoke(weaponDamage.Harm);
+            if (collision.TryGetComponent(out WeaponDamage weaponDamage))
+            {
+                Collided?.Invoke(weaponDamage.Harm);
+            }
+
+            if (collision.TryGetComponent(out BulletDamage bulletDamage))
+            {
+                Collided?.Invoke(bulletDamage.Harm);
+                bulletDamage.Collision();
+            }
+
+            if (collision.TryGetComponent(out PlayerTakeDamage playerTakeDamage))
+            {
+                _zombieAttack.StartAttackCoroutine(playerTakeDamage);
+            }
         }
 
-        if (collision.TryGetComponent(out BulletDamage bulletDamage))
+        private void OnTriggerStay(Collider collision)
         {
-            Collided?.Invoke(bulletDamage.Harm);
-            bulletDamage.Collision();
+            if (collision.TryGetComponent(out PlayerTakeDamage playerTakeDamage))
+            {
+                _zombieAttack.StartAttackCoroutine(playerTakeDamage);
+            }
         }
 
-        if (collision.TryGetComponent(out PlayerTakeDamage playerTakeDamage))
+        public void OnTriggerExit(Collider other)
         {
-            _zombieAttack.StartAttackCoroutine(playerTakeDamage);
-        }
-    }
-
-    private void OnTriggerStay(Collider collision)
-    {
-        if (collision.TryGetComponent(out PlayerTakeDamage playerTakeDamage))
-        {
-            _zombieAttack.StartAttackCoroutine(playerTakeDamage);
-        }
-    }
-    
-    public void OnTriggerExit(Collider other)
-    {
-        if(other.TryGetComponent(out PlayerTakeDamage playerTakeDamage))
-        {
-            _zombieAttack.StopAttackCoroutine();
+            if (other.TryGetComponent(out PlayerTakeDamage playerTakeDamage))
+            {
+                _zombieAttack.StopAttackCoroutine();
+            }
         }
     }
 }

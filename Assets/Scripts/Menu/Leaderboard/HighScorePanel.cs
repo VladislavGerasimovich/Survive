@@ -1,3 +1,7 @@
 using UnityEngine;
 
-public class HighScorePanel : MonoBehaviour{}
+namespace Menu.Leaderboard
+{
+    public class HighScorePanel : MonoBehaviour
+    { }
+}

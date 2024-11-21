@@ -1,39 +1,42 @@
 using UnityEngine;
 
-[RequireComponent(typeof(RectTransform))]
-public class Joystick : MonoBehaviour
+namespace Game.Player.Movement
 {
-    [SerializeField] private RectTransform _handler;
-
-    private RectTransform _rectTransform;
-    
-    public Vector2 Size {  get; private set; }
-    public Vector2 Position { get; private set; }
-
-    private void Awake()
+    [RequireComponent(typeof(RectTransform))]
+    public class Joystick : MonoBehaviour
     {
-        _rectTransform = GetComponent<RectTransform>();
-        Size = _rectTransform.rect.size;
-    }
+        [SerializeField] private RectTransform _handler;
 
-    public void SetPosition(Vector2 position)
-    {
-        _rectTransform.anchoredPosition = position - _rectTransform.rect.size / 2;
-        Position = position;
-    }
+        private RectTransform _rectTransform;
 
-    public void SetHandlerPosition(Vector2 position)
-    {
-        _handler.anchoredPosition = position;
-    }
+        public Vector2 Size { get; private set; }
+        public Vector2 Position { get; private set; }
 
-    public void Enable()
-    {
-        gameObject.SetActive(true);
-    }
+        private void Awake()
+        {
+            _rectTransform = GetComponent<RectTransform>();
+            Size = _rectTransform.rect.size;
+        }
 
-    public void Disable()
-    {
-        gameObject.SetActive(false);
+        public void SetPosition(Vector2 position)
+        {
+            _rectTransform.anchoredPosition = position - _rectTransform.rect.size / 2;
+            Position = position;
+        }
+
+        public void SetHandlerPosition(Vector2 position)
+        {
+            _handler.anchoredPosition = position;
+        }
+
+        public void Enable()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void Disable()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

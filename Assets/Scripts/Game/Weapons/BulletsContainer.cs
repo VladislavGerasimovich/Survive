@@ -1,33 +1,37 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Game.Weapons.Damage;
 
-public class BulletsContainer : MonoBehaviour
+namespace Game.Weapons
 {
-    private List<BulletDamage> _bulletDamages;
-
-    private void Awake()
+    public class BulletsContainer : MonoBehaviour
     {
-        _bulletDamages = new List<BulletDamage>();
-    }
+        private List<BulletDamage> _bulletDamages;
 
-    private void Start()
-    {
-        FindPoolObjects();
-    }
-
-    public virtual void SetPoolObjectDamage(int value)
-    {
-        foreach (BulletDamage bullet in _bulletDamages)
+        private void Awake()
         {
-            bullet.SetDamage(value);
+            _bulletDamages = new List<BulletDamage>();
         }
-    }
 
-    public virtual void FindPoolObjects()
-    {
-        foreach (Transform child in transform)
+        private void Start()
         {
-            _bulletDamages.Add(child.GetComponent<BulletDamage>());
+            FindPoolObjects();
+        }
+
+        public virtual void SetPoolObjectDamage(int value)
+        {
+            foreach (BulletDamage bullet in _bulletDamages)
+            {
+                bullet.Change(value);
+            }
+        }
+
+        public virtual void FindPoolObjects()
+        {
+            foreach (Transform child in transform)
+            {
+                _bulletDamages.Add(child.GetComponent<BulletDamage>());
+            }
         }
     }
 }

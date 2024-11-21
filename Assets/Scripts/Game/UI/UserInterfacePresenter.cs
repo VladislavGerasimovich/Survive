@@ -1,43 +1,48 @@
 using TMPro;
+using Game.Player.Levels;
+using Game.UI.Screens;
 
-public class UserInterfacePresenter
+namespace Game.UI
 {
-    private ExperienceBar _experienceBar;
-    private TMP_Text _text;
-    private ImprovementPanel _improvementPanel;
-    private GameTime _gameTime;
-    private LevelSystem _levelSystem;
-
-    public UserInterfacePresenter(LevelSystem levelSystem, ExperienceBar experienceBar, TMP_Text text, ImprovementPanel improvementPanel, GameTime gameTime)
+    public class UserInterfacePresenter
     {
-        _levelSystem = levelSystem;
-        _experienceBar = experienceBar;
-        _text = text;
-        _improvementPanel = improvementPanel;
-        _gameTime = gameTime;
-    }
+        private ExperienceBar _experienceBar;
+        private TMP_Text _text;
+        private ImprovementPanel _improvementPanel;
+        private GameTime _gameTime;
+        private Level _levelSystem;
 
-    public void Enable()
-    {
-        _levelSystem.CurrentValueExperienceChange += OnValueExperienceChanged;
-        _levelSystem.LevelValueChange += OnLevelValueChange;
-    }
+        public UserInterfacePresenter(Level levelSystem, ExperienceBar experienceBar, TMP_Text text, ImprovementPanel improvementPanel, GameTime gameTime)
+        {
+            _levelSystem = levelSystem;
+            _experienceBar = experienceBar;
+            _text = text;
+            _improvementPanel = improvementPanel;
+            _gameTime = gameTime;
+        }
 
-    public void Disable()
-    {
-        _levelSystem.CurrentValueExperienceChange -= OnValueExperienceChanged;
-        _levelSystem.LevelValueChange -= OnLevelValueChange;
-    }
+        public void Enable()
+        {
+            _levelSystem.CurrentValueExperienceChange += OnValueExperienceChanged;
+            _levelSystem.LevelValueChange += OnLevelValueChange;
+        }
 
-    private void OnLevelValueChange(int level)
-    {
-        _text.text = level.ToString();
-        _gameTime.Stop();
-        _improvementPanel.Open();
-    }
+        public void Disable()
+        {
+            _levelSystem.CurrentValueExperienceChange -= OnValueExperienceChanged;
+            _levelSystem.LevelValueChange -= OnLevelValueChange;
+        }
 
-    private void OnValueExperienceChanged(float value)
-    {
-        _experienceBar.OnValueChanged(value);
+        private void OnLevelValueChange(int level)
+        {
+            _text.text = level.ToString();
+            _gameTime.Stop();
+            _improvementPanel.Open();
+        }
+
+        private void OnValueExperienceChanged(float value)
+        {
+            _experienceBar.OnValueChanged(value);
+        }
     }
 }

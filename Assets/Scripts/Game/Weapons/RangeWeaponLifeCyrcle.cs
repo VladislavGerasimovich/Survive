@@ -1,31 +1,34 @@
 using UnityEngine;
 
-public class RangeWeaponLifeCyrcle : WeaponLifeCircle
+namespace Game.Weapons
 {
-    [SerializeField] private Attack[] _attacks;
-
-    protected override void ShowAllWeapon()
+    public class RangeWeaponLifeCyrcle : WeaponLifeCircle
     {
-        base.ShowAllWeapon();
+        [SerializeField] private Attack[] _attacks;
 
-        if (_attacks.Length > 0)
+        protected override void ShowAllWeapon()
         {
-            for (int i = 0; i < _attacks.Length; i++)
+            base.ShowAllWeapon();
+
+            if (_attacks.Length > 0)
             {
-                _attacks[i].Enable();
+                for (int i = 0; i < _attacks.Length; i++)
+                {
+                    _attacks[i].Enable();
+                }
             }
         }
-    }
 
-    protected override void HideAllWeapon()
-    {
-        base.HideAllWeapon();
-
-        if (_attacks.Length > 0)
+        protected override void HideAllWeapon()
         {
-            for (int i = 0; i < _attacks.Length; i++)
+            base.HideAllWeapon();
+
+            if (_attacks.Length > 0)
             {
-                _attacks[i].Disable();
+                for (int i = 0; i < _attacks.Length; i++)
+                {
+                    _attacks[i].Disable();
+                }
             }
         }
     }

@@ -1,33 +1,24 @@
 using UnityEngine;
+using Storage;
 
-public class Helmet : Item
+namespace Menu.Shop.Items
 {
-    [SerializeField] private PlayerDataManager _playerDataManager;
-
-    private const string HELMET = "HELMET";
-
-    private void OnEnable()
+    public class Helmet : Item
     {
-        Button.onClick.AddListener(OnClick);
-        _playerDataManager.DataReceived += SetIndex;
-    }
+        private const string HELMET = "HELMET";
 
-    private void OnDisable()
-    {
-        Button.onClick.RemoveListener(OnClick);
-        _playerDataManager.DataReceived -= SetIndex;
-    }
+        public override void SetStatus()
+        {
+            base.SetStatus();
 
-    public override void SetStatus()
-    {
-        base.SetStatus();
+            _playerDataManager.Set(HELMET, IndexOfCost);
+        }
 
-        _playerDataManager.Set(HELMET, IndexOfCost);
-    }
+        protected override void SetIndex(PlayerData playerData)
+        {
+            IndexOfCost = playerData.HelmetIndex;
 
-    private void SetIndex(PlayerData playerData)
-    {
-        IndexOfCost = playerData.HelmetIndex;
-        SetCost();
+            base.SetIndex(playerData);
+        }
     }
 }

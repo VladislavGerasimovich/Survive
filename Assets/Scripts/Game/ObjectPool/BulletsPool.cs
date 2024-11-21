@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class BulletsPool : ObjectPool
+namespace Game.ObjectPools
 {
-    protected override void Initialize(GameObject prefab)
+    public class BulletsPool : ObjectPool
     {
-        base.Initialize(prefab);
+        protected override void Initialize(GameObject prefab)
+        {
+            base.Initialize(prefab);
+        }
     }
 }

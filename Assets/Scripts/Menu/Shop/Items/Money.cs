@@ -1,74 +1,78 @@
-using Agava.YandexGames;
 using System;
+using Agava.YandexGames;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Money : Item
+namespace Menu.Shop.Items
 {
-    [SerializeField] private VideoAd _videoAd;
-
-    private bool _isRewardReceived;
-
-    public override event Action<string, string> Clicked;
-
-    private void Awake()
+    public class Money : Item
     {
-        Background = GetComponent<Image>();
-        Button = GetComponent<Button>();
-        Class = Type;
-        string languageCode = YandexGamesSdk.Environment.i18n.lang;
-        ChangeLanguage(languageCode);
-    }
+        [SerializeField] private YandexElements.VideoAd _videoAd;
 
-    private void OnEnable()
-    {
-        Button.onClick.AddListener(OnClick);
-    }
+        private bool _isRewardReceived;
 
-    private void Start(){}
+        public override event Action<string, string> Clicked;
 
-    private void OnDisable()
-    {
-        Button.onClick.RemoveListener(OnClick);
-    }
-
-    public override void OnClick()
-    {
-        PopUpWindow.YesButtonClicked += Buy;
-        PopUpWindow.NoButtonClicked += Cancel;
-        PopUpWindow.Open(TranslatedText);
-    }
-
-    public void Buy()
-    {
-        PopUpWindow.YesButtonClicked -= Buy;
-        PopUpWindow.NoButtonClicked -= Cancel;
-        _videoAd.Show();
-        _videoAd.OnRewardReceived += PrepareReward;
-        _videoAd.OnCloseAd += AddReward;
-    }
-
-    private void Cancel()
-    {
-        PopUpWindow.YesButtonClicked -= Buy;
-        PopUpWindow.NoButtonClicked -= Cancel;
-        PopUpWindow.Close();
-    }
-
-    private void AddReward()
-    {
-        _videoAd.OnRewardReceived -= PrepareReward;
-        _videoAd.OnCloseAd -= AddReward;
-
-        if(_isRewardReceived == true)
+        private void Awake()
         {
-            _isRewardReceived = false;
-            Clicked?.Invoke(Cost[0], Type);
+            Background = GetComponent<Image>();
+            Button = GetComponent<Button>();
+            Class = Type;
+            string languageCode = YandexGamesSdk.Environment.i18n.lang;
+            ChangeLanguage(languageCode);
         }
-    }
 
-    private void PrepareReward()
-    {
-        _isRewardReceived = true;
+        private void OnEnable()
+        {
+            Button.onClick.AddListener(OnClick);
+        }
+
+        private void Start()
+        { }
+
+        private void OnDisable()
+        {
+            Button.onClick.RemoveListener(OnClick);
+        }
+
+        public override void OnClick()
+        {
+            PopUpWindow.YesButtonClicked += Buy;
+            PopUpWindow.NoButtonClicked += Cancel;
+            PopUpWindow.Open(TranslatedText);
+        }
+
+        public void Buy()
+        {
+            PopUpWindow.YesButtonClicked -= Buy;
+            PopUpWindow.NoButtonClicked -= Cancel;
+            _videoAd.Show();
+            _videoAd.OnRewardReceived += PrepareReward;
+            _videoAd.OnCloseAd += AddReward;
+        }
+
+        private void Cancel()
+        {
+            PopUpWindow.YesButtonClicked -= Buy;
+            PopUpWindow.NoButtonClicked -= Cancel;
+            PopUpWindow.Close();
+        }
+
+        private void AddReward()
+        {
+            _videoAd.OnRewardReceived -= PrepareReward;
+            _videoAd.OnCloseAd -= AddReward;
+
+            if (_isRewardReceived == true)
+            {
+                _isRewardReceived = false;
+                Clicked?.Invoke(Cost[0], Type);
+            }
+        }
+
+        private void PrepareReward()
+        {
+            _isRewardReceived = true;
+        }
     }
 }

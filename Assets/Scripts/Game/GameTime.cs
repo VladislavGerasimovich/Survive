@@ -1,43 +1,55 @@
 using UnityEngine;
+using Game.Player.Movement;
+using Game.UI.Screens;
+using Menu.Shop;
 
-public class GameTime : MonoBehaviour
+namespace Game
 {
-    [SerializeField] private MobilePlayerInput _mobilePlayerInput;
-    [SerializeField] private DesktopWASDPlayerInput _desktopPlayerInput;
-    [SerializeField] private ImprovementPanel _improvementPanel;
-    [SerializeField] private GameMenuPanel _gameMenuPanel;
-    [SerializeField] private EndGamePanel _endGamePanel;
-    [SerializeField] private ContinueGamePanel _continueGamePanel;
-    [SerializeField] private GameOverPanel _gameOverPanel;
-    [SerializeField] private PopUpWindowForGame _immortalityPopUpWindow;
-    [SerializeField] private PopUpWindowForGame _firstAidPopUpWindow;
-
-    private Input _playerInput;
-
-    private void Awake()
+    public class GameTime : MonoBehaviour
     {
-        _playerInput = _desktopPlayerInput;
+        [SerializeField] private MobilePlayerInput _mobilePlayerInput;
+        [SerializeField] private DesktopWASDPlayerInput _desktopPlayerInput;
+        [SerializeField] private ImprovementPanel _improvementPanel;
+        [SerializeField] private GameMenuPanel _gameMenuPanel;
+        [SerializeField] private EndGamePanel _endGamePanel;
+        [SerializeField] private ContinueGamePanel _continueGamePanel;
+        [SerializeField] private GameOverPanel _gameOverPanel;
+        [SerializeField] private PopUpWindowForGame _immortalityPopUpWindow;
+        [SerializeField] private PopUpWindowForGame _firstAidPopUpWindow;
 
-        if (Application.isMobilePlatform == true)
+        private Player.Movement.PlayerInput _playerInput;
+
+        private void Awake()
         {
-            _playerInput = _mobilePlayerInput;
+            _playerInput = _desktopPlayerInput;
+
+            if (Application.isMobilePlatform == true)
+            {
+                _playerInput = _mobilePlayerInput;
+            }
+
+            Run();
         }
 
-        Run();
-    }
-
-    public void Stop()
-    {
-        Time.timeScale = 0;
-        _playerInput.DisableInput();
-    }
-
-    public void Run()
-    {
-        if (_improvementPanel.IsOpen == false && _gameMenuPanel.IsOpen == false && _endGamePanel.IsOpen == false && _continueGamePanel.IsOpen == false && _gameOverPanel.IsOpen == false && _immortalityPopUpWindow.IsOpen == false && _firstAidPopUpWindow.IsOpen == false)
+        public void Stop()
         {
-            Time.timeScale = 1;
-            _playerInput.EnableInput();
+            Time.timeScale = 0;
+            _playerInput.DisableInput();
+        }
+
+        public void Run()
+        {
+            if (_improvementPanel.IsOpen == false
+                && _gameMenuPanel.IsOpen == false
+                && _endGamePanel.IsOpen == false
+                && _continueGamePanel.IsOpen == false
+                && _gameOverPanel.IsOpen == false
+                && _immortalityPopUpWindow.IsOpen == false
+                && _firstAidPopUpWindow.IsOpen == false)
+            {
+                Time.timeScale = 1;
+                _playerInput.EnableInput();
+            }
         }
     }
 }

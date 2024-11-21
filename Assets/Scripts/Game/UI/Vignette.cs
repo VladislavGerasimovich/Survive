@@ -3,35 +3,38 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Vignette : MonoBehaviour
+namespace Game.UI
 {
-    [SerializeField] private Image _image;
-
-    private Coroutine _showVignetteCoroutine;
-
-    private void Awake()
+    public class Vignette : MonoBehaviour
     {
-        _image.DOFade(0, 0);
-    }
+        [SerializeField] private Image _image;
 
-    public void StartShowVignetteCoroutine()
-    {
-        if (_showVignetteCoroutine == null)
+        private Coroutine _showVignetteCoroutine;
+
+        private void Awake()
         {
-            _showVignetteCoroutine = StartCoroutine(Show());
+            _image.DOFade(0, 0);
         }
-    }
 
-    private IEnumerator Show()
-    {
-        _image.DOFade(0.5f, 0.3f).SetLink(gameObject);
+        public void StartShowVignetteCoroutine()
+        {
+            if (_showVignetteCoroutine == null)
+            {
+                _showVignetteCoroutine = StartCoroutine(Show());
+            }
+        }
 
-        yield return new WaitForSeconds(0.3f);
+        private IEnumerator Show()
+        {
+            _image.DOFade(0.5f, 0.3f).SetLink(gameObject);
 
-        _image.DOFade(0, 0.3f).SetLink(gameObject);
+            yield return new WaitForSeconds(0.3f);
 
-        yield return new WaitForSeconds(0.3f);
+            _image.DOFade(0, 0.3f).SetLink(gameObject);
 
-        _showVignetteCoroutine = null;
+            yield return new WaitForSeconds(0.3f);
+
+            _showVignetteCoroutine = null;
+        }
     }
 }

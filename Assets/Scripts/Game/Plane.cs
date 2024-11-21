@@ -1,3 +1,7 @@
 using UnityEngine;
 
-public class Plane : MonoBehaviour{}
+namespace Game
+{
+    public class Plane : MonoBehaviour
+    { }
+}

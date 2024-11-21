@@ -1,8 +1,11 @@
 using UnityEngine;
 
-public class Score : MonoBehaviour
+namespace Game.Zombie
 {
-    [SerializeField] private int _count;
+    public class Score : MonoBehaviour
+    {
+        [SerializeField] private int _count;
 
-    public int Count => _count;
+        public int Count => _count;
+    }
 }

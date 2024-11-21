@@ -1,50 +1,53 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
-public class InterstitialAd : MonoBehaviour
+namespace YandexElements
 {
-    private AudioSource _mainMusic;
-
-    public event Action OnCloseAd;
-    public event Action OnOpenAd;
-    public event Action OnErrorAd;
-
-    private void Awake()
+    [RequireComponent(typeof(AudioSource))]
+    public class InterstitialAd : MonoBehaviour
     {
-        _mainMusic = GetComponent<AudioSource>();
-    }
+        private AudioSource _mainMusic;
 
-    public void Show() => Agava.YandexGames.InterstitialAd.Show(OnOpenCallback, OnCloseCallback, OnErrorCallback, OnOfflineCallback);
+        public event Action OnCloseAd;
+        public event Action OnOpenAd;
+        public event Action OnErrorAd;
 
-    private void OnOpenCallback()
-    {
-        Time.timeScale = 0;
-        _mainMusic.Stop();
-        _mainMusic.volume = 0;
-        OnOpenAd.Invoke();
-    }
-
-    private void OnCloseCallback(bool isWorking)
-    {
-        if (isWorking)
+        private void Awake()
         {
-            Time.timeScale = 0;
-            OnCloseAd?.Invoke();
-            return;
+            _mainMusic = GetComponent<AudioSource>();
         }
 
-        OnCloseAd?.Invoke();
-    }
+        public void Show() => Agava.YandexGames.InterstitialAd.Show(OnOpenCallback, OnCloseCallback, OnErrorCallback, OnOfflineCallback);
 
-    private void OnErrorCallback(string errorMessage)
-    {
-        Time.timeScale = 0;
-        OnErrorAd?.Invoke();
-    }
+        private void OnOpenCallback()
+        {
+            Time.timeScale = 0;
+            _mainMusic.Stop();
+            _mainMusic.volume = 0;
+            OnOpenAd.Invoke();
+        }
 
-    private void OnOfflineCallback()
-    {
-        Time.timeScale = 0;
+        private void OnCloseCallback(bool isWorking)
+        {
+            if (isWorking)
+            {
+                Time.timeScale = 0;
+                OnCloseAd?.Invoke();
+                return;
+            }
+
+            OnCloseAd?.Invoke();
+        }
+
+        private void OnErrorCallback(string errorMessage)
+        {
+            Time.timeScale = 0;
+            OnErrorAd?.Invoke();
+        }
+
+        private void OnOfflineCallback()
+        {
+            Time.timeScale = 0;
+        }
     }
 }

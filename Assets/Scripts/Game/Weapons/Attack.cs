@@ -1,54 +1,59 @@
 using System.Collections;
 using UnityEngine;
+using CommonVariables;
 
-public class Attack : MonoBehaviour
+namespace Game.Weapons
 {
-    [SerializeField] private Transform _shootPoint;
-    [SerializeField] private ParticleSystem _smoke;
-    [SerializeField] private AudioSource _audioSource;
-
-    private BulletsCreator _bulletsCreator;
-    private WaitForSeconds _delay;
-    private Coroutine _shootCoroutine;
-
-    private void Awake()
+    [RequireComponent(typeof(Variables))]
+    public class Attack : MonoBehaviour
     {
-        _bulletsCreator = GameObject.Find("Setups").GetComponent<BulletsCreator>();
-        _delay = new WaitForSeconds(0.75f);
-    }
+        [SerializeField] private Transform _shootPoint;
+        [SerializeField] private ParticleSystem _smoke;
+        [SerializeField] private AudioSource _audioSource;
 
-    public void Enable()
-    {
-        enabled = true;
-        _shootCoroutine = StartCoroutine(Shoot());
-    }
+        private Variables _variables;
+        private BulletsCreator _bulletsCreator;
+        private Coroutine _shootCoroutine;
 
-    public void Disable()
-    {
-        StopCoroutineShoot();
-        enabled = false;
-    }
-
-    public void StopCoroutineShoot()
-    {
-        StopCoroutine(_shootCoroutine);
-    }
-
-    private IEnumerator Shoot()
-    {
-        while (enabled)
+        private void Awake()
         {
-            _bulletsCreator.TryGetObject(out GameObject bullet);
-            bullet.GetComponent<Bullet>().SetActive();
-            bullet.GetComponent<Bullet>().Shoot(_shootPoint.position, _shootPoint.transform.forward);
-            _smoke.Play();
+            _bulletsCreator = GameObject.Find("Setups").GetComponent<BulletsCreator>();
+            _variables = GetComponent<Variables>();
+        }
 
-            if(_audioSource.enabled == true)
+        public void Enable()
+        {
+            enabled = true;
+            _shootCoroutine = StartCoroutine(Shoot());
+        }
+
+        public void Disable()
+        {
+            StopCoroutineShoot();
+            enabled = false;
+        }
+
+        public void StopCoroutineShoot()
+        {
+            StopCoroutine(_shootCoroutine);
+        }
+
+        private IEnumerator Shoot()
+        {
+            while (enabled)
             {
-                _audioSource.Play();
-            }
+                _bulletsCreator.TryGetObject(out GameObject bullet);
+                bullet.GetComponent<Bullet>().SetActive();
+                bullet.GetComponent<Bullet>().Shoot(_shootPoint.position, _shootPoint.transform.forward);
+                _smoke.Play();
 
-            yield return _delay;
+                if (_audioSource.enabled == true)
+                {
+                    _audioSource.Play();
+                }
+
+                yield return _variables.Delay;
+            }
         }
     }
 }

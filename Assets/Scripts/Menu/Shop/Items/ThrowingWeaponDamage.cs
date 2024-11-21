@@ -1,33 +1,24 @@
 using UnityEngine;
+using Storage;
 
-public class ThrowingWeaponDamage : Item
+namespace Menu.Shop.Items
 {
-    [SerializeField] private PlayerDataManager _playerDataManager;
-
-    private const string THROWING_WEAPON_DAMAGE = "THROWING_WEAPON_DAMAGE";
-
-    private void OnEnable()
+    public class ThrowingWeaponDamage : Item
     {
-        Button.onClick.AddListener(OnClick);
-        _playerDataManager.DataReceived += SetIndex;
-    }
+        private const string THROWING_WEAPON_DAMAGE = "THROWING_WEAPON_DAMAGE";
 
-    private void OnDisable()
-    {
-        Button.onClick.RemoveListener(OnClick);
-        _playerDataManager.DataReceived -= SetIndex;
-    }
+        public override void SetStatus()
+        {
+            base.SetStatus();
 
-    public override void SetStatus()
-    {
-        base.SetStatus();
+            _playerDataManager.Set(THROWING_WEAPON_DAMAGE, IndexOfCost);
+        }
 
-        _playerDataManager.Set(THROWING_WEAPON_DAMAGE, IndexOfCost);
-    }
+        protected override void SetIndex(PlayerData playerData)
+        {
+            IndexOfCost = playerData.ThrowingWeaponDamageIndex;
 
-    private void SetIndex(PlayerData playerData)
-    {
-        IndexOfCost = playerData.ThrowingWeaponDamageIndex;
-        SetCost();
+            base.SetIndex(playerData);
+        }
     }
 }

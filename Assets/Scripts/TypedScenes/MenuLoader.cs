@@ -1,47 +1,53 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Game;
+using Game.Player;
+using YandexElements;
 
-[RequireComponent(typeof(InterstitialAd))]
-[RequireComponent(typeof(InterstitialAdTimer))]
-public class MenuLoader : MonoBehaviour
+namespace TypedScenes
 {
-    [SerializeField] private int _menuSceneId;
-    [SerializeField] private PlayerScore _playerScore;
-    [SerializeField] private GameTime _gameTime;
-
-    private InterstitialAd _interstitialAd;
-    private InterstitialAdTimer _interstitialAdTimer;
-
-    private void Awake()
+    [RequireComponent(typeof(InterstitialAd))]
+    [RequireComponent(typeof(InterstitialAdTimer))]
+    public class MenuLoader : MonoBehaviour
     {
-        _interstitialAd = GetComponent<InterstitialAd>();
-        _interstitialAdTimer = GetComponent<InterstitialAdTimer>();
-    }
+        [SerializeField] private int _menuSceneId;
+        [SerializeField] private PlayerScore _playerScore;
+        [SerializeField] private GameTime _gameTime;
 
-    public void RunInterstitialAd()
-    {
-        if(_interstitialAdTimer.IsReached == false)
+        private InterstitialAd _interstitialAd;
+        private InterstitialAdTimer _interstitialAdTimer;
+
+        private void Awake()
         {
-            RunMenu();
-
-            return;
+            _interstitialAd = GetComponent<InterstitialAd>();
+            _interstitialAdTimer = GetComponent<InterstitialAdTimer>();
         }
 
-        _interstitialAd.Show();
-        _interstitialAd.OnCloseAd += RunMenu;
-    }
-
-    private void RunMenu()
-    {
-        _interstitialAd.OnCloseAd -= RunMenu;
-        StopAllCoroutines();
-
-        if (_playerScore != null)
+        public void RunInterstitialAd()
         {
-            PlayerPrefs.SetInt("PlayerScore", _playerScore.Score);
-            PlayerPrefs.Save();
+            if (_interstitialAdTimer.IsReached == false)
+            {
+                RunMenu();
+
+                return;
+            }
+
+            _interstitialAd.Show();
+            _interstitialAd.OnCloseAd += RunMenu;
         }
 
-        SceneManager.LoadScene(_menuSceneId);
+        private void RunMenu()
+        {
+            _interstitialAd.OnCloseAd -= RunMenu;
+            StopAllCoroutines();
+
+            if (_playerScore != null)
+            {
+                PlayerPrefs.SetInt("PlayerScore", _playerScore.Score);
+                PlayerPrefs.Save();
+            }
+
+            SceneManager.LoadScene(_menuSceneId);
+        }
     }
 }

@@ -1,30 +1,33 @@
 using UnityEngine;
 
-[ExecuteAlways]
-[DefaultExecutionOrder(-10)]
-public class OrientationChecker : MonoBehaviour
+namespace UI
 {
-    private void Awake()
+    [ExecuteAlways]
+    [DefaultExecutionOrder(-10)]
+    public class OrientationChecker : MonoBehaviour
     {
-        HandleOrientation();
-    }
-
-    private void Update()
-    {
-        HandleOrientation();
-    }
-
-    private void HandleOrientation()
-    {
-        if (OrientationController.isVertical &&
-            Screen.width > Screen.height)
+        private void Awake()
         {
-            OrientationController.FireOrientationChanged(this, false);
+            HandleOrientation();
         }
-        else if (!OrientationController.isVertical &&
-            Screen.width < Screen.height)
+
+        private void Update()
         {
-            OrientationController.FireOrientationChanged(this, true);
+            HandleOrientation();
+        }
+
+        private void HandleOrientation()
+        {
+            if (OrientationController.IsVertical &&
+                Screen.width > Screen.height)
+            {
+                OrientationController.FireOrientationChanged(this, false);
+            }
+            else if (!OrientationController.IsVertical &&
+                Screen.width < Screen.height)
+            {
+                OrientationController.FireOrientationChanged(this, true);
+            }
         }
     }
 }

@@ -1,62 +1,66 @@
-using UnityEngine;
 using Agava.YandexGames;
+using UnityEngine;
+using Game;
 
-public class TrainingPanel : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private CanvasGroup _trainingPanelDesktop;
-    [SerializeField] private CanvasGroup _trainingPanelMobile;
-    [SerializeField] private GameTime _gameTime;
-
-    private const string LeaderboardName = "Leaderboard";
-
-    private CanvasGroup _currentPanel;
-
-    public bool IsOpen { get; private set; }
-
-    private void Awake()
+    public class TrainingPanel : MonoBehaviour
     {
-        if (Application.isMobilePlatform == true)
+        private const string LeaderboardName = "Leaderboard";
+
+        [SerializeField] private CanvasGroup _trainingPanelDesktop;
+        [SerializeField] private CanvasGroup _trainingPanelMobile;
+        [SerializeField] private GameTime _gameTime;
+
+        private CanvasGroup _currentPanel;
+
+        public bool IsOpen { get; private set; }
+
+        private void Awake()
         {
-            _currentPanel = _trainingPanelMobile;
-            return;
+            if (Application.isMobilePlatform == true)
+            {
+                _currentPanel = _trainingPanelMobile;
+                return;
+            }
+
+            _currentPanel = _trainingPanelDesktop;
         }
 
-        _currentPanel = _trainingPanelDesktop;
-    }
-
-    private void Start()
-    {
-        if (PlayerAccount.IsAuthorized == false) 
+        private void Start()
         {
-            Open();
-            return;
-        }
-
-        Leaderboard.GetPlayerEntry(LeaderboardName, (result) =>
-        {
-            if (result == null || result.score == 0)
+            if (PlayerAccount.IsAuthorized == false)
             {
                 Open();
+                return;
             }
-        });
-    }
 
-    private void Update()
-    {
-        if (UnityEngine.Input.anyKeyDown)
-        {
-            IsOpen = false;
-            _currentPanel.alpha = 0;
-            _currentPanel.blocksRaycasts = false;
-            _gameTime.Run();
+            Leaderboard.GetPlayerEntry(LeaderboardName, (result) =>
+            {
+                if (result == null || result.score == 0)
+                {
+                    Open();
+                }
+            });
         }
-    }
 
-    private void Open()
-    {
-        IsOpen = true;
-        _gameTime.Stop();
-        _currentPanel.alpha = 1;
-        _currentPanel.blocksRaycasts = true;
+        private void Update()
+        {
+            if (UnityEngine.Input.anyKeyDown)
+            {
+                IsOpen = false;
+                _currentPanel.alpha = 0;
+                _currentPanel.blocksRaycasts = false;
+                _gameTime.Run();
+            }
+        }
+
+        private void Open()
+        {
+            IsOpen = true;
+            _gameTime.Stop();
+            _currentPanel.alpha = 1;
+            _currentPanel.blocksRaycasts = true;
+        }
     }
 }

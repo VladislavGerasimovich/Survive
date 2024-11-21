@@ -1,28 +1,32 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Game.Weapons.Damage;
 
-public class ExplosionAreaContainer : BulletsContainer
+namespace Game.Weapons
 {
-    private List<WeaponDamage> _weaponDamage;
-
-    private void Awake()
+    public class ExplosionAreaContainer : BulletsContainer
     {
-        _weaponDamage = new List<WeaponDamage>();
-    }
+        private List<WeaponDamage> _weaponDamage;
 
-    public override void SetPoolObjectDamage(int value)
-    {
-        foreach (WeaponDamage grenade in _weaponDamage)
+        private void Awake()
         {
-            grenade.SetDamage(value);
+            _weaponDamage = new List<WeaponDamage>();
         }
-    }
 
-    public override void FindPoolObjects()
-    {
-        foreach (Transform child in transform)
+        public override void SetPoolObjectDamage(int value)
         {
-            _weaponDamage.Add(child.GetChild(0).GetComponent<WeaponDamage>());
+            foreach (WeaponDamage grenade in _weaponDamage)
+            {
+                grenade.Change(value);
+            }
+        }
+
+        public override void FindPoolObjects()
+        {
+            foreach (Transform child in transform)
+            {
+                _weaponDamage.Add(child.GetChild(0).GetComponent<WeaponDamage>());
+            }
         }
     }
 }

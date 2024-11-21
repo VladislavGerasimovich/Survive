@@ -1,10 +1,13 @@
-public class ExperienceSystemPresenter
+using Game.Player.Levels;
+using Game.Zombie;
+
+public class ExperiencePresenter
 {
-    private LevelSystem _levelSystem;
+    private Level _levelSystem;
     private ZombieDied _die;
     private Experience _experience;
 
-    public ExperienceSystemPresenter(LevelSystem levelSystem, ZombieDied die, Experience experience)
+    public ExperiencePresenter(Level levelSystem, ZombieDied die, Experience experience)
     {
         _levelSystem = levelSystem;
         _die = die;

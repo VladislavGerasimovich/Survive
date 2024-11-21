@@ -1,33 +1,24 @@
 using UnityEngine;
+using Storage;
 
-public class BodyArmor : Item
+namespace Menu.Shop.Items
 {
-    [SerializeField] private PlayerDataManager _playerDataManager;
-
-    private const string BODY_ARMOR = "BODY_ARMOR";
-
-    private void OnEnable()
+    public class BodyArmor : Item
     {
-        Button.onClick.AddListener(OnClick);
-        _playerDataManager.DataReceived += SetIndex;
-    }
+        private const string BODY_ARMOR = "BODY_ARMOR";
 
-    private void OnDisable()
-    {
-        Button.onClick.RemoveListener(OnClick);
-        _playerDataManager.DataReceived -= SetIndex;
-    }
+        public override void SetStatus()
+        {
+            base.SetStatus();
 
-    public override void SetStatus()
-    {
-        base.SetStatus();
+            _playerDataManager.Set(BODY_ARMOR, IndexOfCost);
+        }
 
-        _playerDataManager.Set(BODY_ARMOR, IndexOfCost);
-    }
+        protected override void SetIndex(PlayerData playerData)
+        {
+            IndexOfCost = playerData.BodyArmorIndex;
 
-    private void SetIndex(PlayerData playerData)
-    {
-        IndexOfCost = playerData.BodyArmorIndex;
-        SetCost();
+            base.SetIndex(playerData);
+        }
     }
 }

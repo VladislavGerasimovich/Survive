@@ -1,107 +1,112 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Game.UI.Screens;
+using YandexElements;
 
-public class GrenadesCreator : ObjectPool
+namespace Game.ObjectPools
 {
-    [SerializeField] private GameObject _grenade;
-    [SerializeField] private List<Window> _windows;
-    [SerializeField] private VideoAd _videoAd;
-    [SerializeField] private InterstitialAd _interstitialAd;
-
-    private void Awake()
+    public class GrenadesCreator : ObjectPool
     {
-        Pool = new List<GameObject>();
-        Initialize(_grenade);
-    }
+        [SerializeField] private GameObject _grenade;
+        [SerializeField] private List<Window> _windows;
+        [SerializeField] private VideoAd _videoAd;
+        [SerializeField] private InterstitialAd _interstitialAd;
 
-    private void OnEnable()
-    {
-        foreach (var window in _windows)
+        private void Awake()
         {
-            window.IsPanelOpen += PauseSound;
-            window.IsPanelClose += PlaySound;
+            Pool = new List<GameObject>();
+            Initialize(_grenade);
         }
 
-        _videoAd.OnOpenAd += PauseSound;
-        _interstitialAd.OnOpenAd += PauseSound;
-        _videoAd.OnCloseAd += PlaySound;
-    }
-
-    private void OnDisable()
-    {
-        foreach (var window in _windows)
+        private void OnEnable()
         {
-            window.IsPanelOpen -= PauseSound;
-            window.IsPanelClose -= PlaySound;
-        }
-
-        _videoAd.OnOpenAd -= PauseSound;
-        _interstitialAd.OnOpenAd -= PauseSound;
-        _videoAd.OnCloseAd -= PlaySound;
-    }
-
-    protected override void Initialize(GameObject prefab)
-    {
-        for (int i = 0; i < Capacity; i++)
-        {
-            GameObject item = Instantiate(prefab, Container.transform);
-            item.SetActive(false);
-            Pool.Add(item);
-        }
-    }
-
-    public void PauseSound()
-    {
-        foreach (GameObject item in Pool)
-        {
-            AudioSource audio = item.GetComponent<AudioSource>();
-            audio.volume = 0;
-
-            if (audio.isPlaying)
+            foreach (var window in _windows)
             {
-                audio.Pause();
+                window.IsPanelOpen += PauseSound;
+                window.IsPanelClose += PlaySound;
             }
-        }
-    }
 
-    public void PlaySound()
-    {
-        foreach (var window in _windows)
+            _videoAd.OnOpenAd += PauseSound;
+            _interstitialAd.OnOpenAd += PauseSound;
+            _videoAd.OnCloseAd += PlaySound;
+        }
+
+        private void OnDisable()
         {
-            if (window.IsOpen == true)
+            foreach (var window in _windows)
             {
-                return;
+                window.IsPanelOpen -= PauseSound;
+                window.IsPanelClose -= PlaySound;
+            }
+
+            _videoAd.OnOpenAd -= PauseSound;
+            _interstitialAd.OnOpenAd -= PauseSound;
+            _videoAd.OnCloseAd -= PlaySound;
+        }
+
+        protected override void Initialize(GameObject prefab)
+        {
+            for (int i = 0; i < Capacity; i++)
+            {
+                GameObject item = Instantiate(prefab, Container.transform);
+                item.SetActive(false);
+                Pool.Add(item);
             }
         }
 
-        foreach (GameObject item in Pool)
+        public void PauseSound()
         {
-            AudioSource audio = item.GetComponent<AudioSource>();
-            audio.volume = 1;
-
-            if (audio.time != 0 && audio.enabled == true)
+            foreach (GameObject item in Pool)
             {
-                audio.Play();
-                return;
+                AudioSource audio = item.GetComponent<AudioSource>();
+                audio.volume = 0;
+
+                if (audio.isPlaying)
+                {
+                    audio.Pause();
+                }
             }
         }
-    }
 
-    public void DisableSound()
-    {
-        foreach (GameObject item in Pool)
+        public void PlaySound()
         {
-            AudioSource audio = item.GetComponent<AudioSource>();
-            audio.enabled = false;
+            foreach (var window in _windows)
+            {
+                if (window.IsOpen == true)
+                {
+                    return;
+                }
+            }
+
+            foreach (GameObject item in Pool)
+            {
+                AudioSource audio = item.GetComponent<AudioSource>();
+                audio.volume = 1;
+
+                if (audio.time != 0 && audio.enabled == true)
+                {
+                    audio.Play();
+                    return;
+                }
+            }
         }
-    }
 
-    public void EnableSound()
-    {
-        foreach (GameObject item in Pool)
+        public void DisableSound()
         {
-            AudioSource audio = item.GetComponent<AudioSource>();
-            audio.enabled = true;
+            foreach (GameObject item in Pool)
+            {
+                AudioSource audio = item.GetComponent<AudioSource>();
+                audio.enabled = false;
+            }
+        }
+
+        public void EnableSound()
+        {
+            foreach (GameObject item in Pool)
+            {
+                AudioSource audio = item.GetComponent<AudioSource>();
+                audio.enabled = true;
+            }
         }
     }
 }

@@ -1,17 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ExperienceBar : MonoBehaviour
+namespace Game.UI
 {
-    [SerializeField] protected Slider SmoothSlider;
-
-    private void Awake()
+    public class ExperienceBar : MonoBehaviour
     {
-        SmoothSlider.value = 0;
-    }
+        [SerializeField] protected Slider SmoothSlider;
 
-    public void OnValueChanged(float value)
-    {
-        SmoothSlider.value = value;
+        private void Awake()
+        {
+            OnValueChanged(0);
+        }
+
+        public void OnValueChanged(float value)
+        {
+            SmoothSlider.value = value;
+        }
     }
 }

@@ -1,20 +1,25 @@
 using UnityEngine;
+using Game.Music;
+using Game.Zombie;
 
-[RequireComponent(typeof(Audio))]
-public class MelleWeaponCollisionHandler : MonoBehaviour
+namespace Game.Weapons
 {
-    private Audio _audio;
-
-    private void Awake()
+    [RequireComponent(typeof(Audio))]
+    public class MelleWeaponCollisionHandler : MonoBehaviour
     {
-        _audio = GetComponent<Audio>();
-    }
+        private Audio _audio;
 
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.TryGetComponent(out ZombieDied zombieDied))
+        private void Awake()
         {
-            _audio.Play();
+            _audio = GetComponent<Audio>();
+        }
+
+        private void OnTriggerEnter(Collider collision)
+        {
+            if (collision.TryGetComponent(out ZombieDied zombieDied))
+            {
+                _audio.Play();
+            }
         }
     }
 }

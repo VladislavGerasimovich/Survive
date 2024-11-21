@@ -2,30 +2,33 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 
-[CustomEditor(typeof(OrientationController))]
-[CanEditMultipleObjects]
-public class OrientationControllerEditor : Editor
+namespace UI
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(OrientationController))]
+    [CanEditMultipleObjects]
+    public class OrientationControllerEditor : Editor
     {
-        serializedObject.Update();
+        public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
 
-        GUILayout.Label("Current orientation: " +
-            (OrientationController.isVertical ? "Vertical" : "Horizontal"));
+            GUILayout.Label("Current orientation: " +
+                (OrientationController.IsVertical ? "Vertical" : "Horizontal"));
 
-        base.DrawDefaultInspector();
+            DrawDefaultInspector();
 
-        var controllers = targets;
+            var controllers = targets;
 
-        if (GUILayout.Button("Save values"))
-            foreach(var controller in controllers)
-                ((OrientationController)controller).SaveCurrentState();
+            if (GUILayout.Button("Save values"))
+                foreach (var controller in controllers)
+                    ((OrientationController)controller).SaveCurrentState();
 
-        if (GUILayout.Button("Put values"))
-            foreach (var controller in controllers)
-                ((OrientationController)controller).PutCurrentState();
+            if (GUILayout.Button("Put values"))
+                foreach (var controller in controllers)
+                    ((OrientationController)controller).PutCurrentState();
 
-        serializedObject.ApplyModifiedProperties();
+            serializedObject.ApplyModifiedProperties();
+        }
     }
-}
 #endif
+}

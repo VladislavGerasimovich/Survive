@@ -1,25 +1,28 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+namespace Game.Weapons
 {
-    [SerializeField] private float _startScaleValue;
-    [SerializeField] private float _endScaleValue;
-    [SerializeField] private int _duration;
-
-    public virtual void Show()
+    public class Weapon : MonoBehaviour
     {
-        if(transform != null)
+        [SerializeField] private float _startScaleValue;
+        [SerializeField] private float _endScaleValue;
+        [SerializeField] private int _duration;
+
+        public virtual void Show()
         {
-            transform.DOScale(_startScaleValue, _duration).SetLink(gameObject);
+            if (transform != null)
+            {
+                transform.DOScale(_startScaleValue, _duration).SetLink(gameObject);
+            }
         }
-    }
 
-    public virtual void Hide()
-    {
-        if (transform != null)
+        public virtual void Hide()
         {
-            transform.DOScale(_endScaleValue, _duration).SetLink(gameObject);
+            if (transform != null)
+            {
+                transform.DOScale(_endScaleValue, _duration).SetLink(gameObject);
+            }
         }
     }
 }

@@ -1,15 +1,19 @@
 using System;
 using UnityEngine;
+using Game.Zombie;
 
-public class PlayerCollisionHandler : CollisionHandler
+namespace Game.Collision
 {
-    public override event Action<int> Collided;
-
-    public override void OnTriggerEnter(Collider collision)
+    public class PlayerCollisionHandler : CollisionHandler
     {
-        if (collision.TryGetComponent(out ZombieDamagee zombieDamage))
+        public override event Action<int> Collided;
+
+        public override void OnTriggerEnter(Collider collision)
         {
-            Collided?.Invoke(zombieDamage.Harm);
+            if (collision.TryGetComponent(out ZombieDamage zombieDamage))
+            {
+                Collided?.Invoke(zombieDamage.Harm);
+            }
         }
     }
 }

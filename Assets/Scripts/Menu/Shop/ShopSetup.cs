@@ -1,29 +1,34 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Storage;
+using Menu.Shop.Items;
 
-public class ShopSetup : MonoBehaviour
+namespace Menu.Shop
 {
-    [SerializeField] private List<Item> _items;
-    [SerializeField] private TMP_Text _moneyText;
-    [SerializeField] private PlayerDataManager _playerDataManager;
-    [SerializeField] private PopUpWindow _popUpWindow;
-
-    private ShopPresenter _shopPresenter;
-
-    private void Awake()
+    public class ShopSetup : MonoBehaviour
     {
-        Shop shop = new Shop();
-        _shopPresenter = new ShopPresenter(shop, _items, _moneyText, _playerDataManager, _popUpWindow);
-    }
+        [SerializeField] private List<Item> _items;
+        [SerializeField] private TMP_Text _moneyText;
+        [SerializeField] private PlayerDataManager _playerDataManager;
+        [SerializeField] private PopUpWindow _popUpWindow;
 
-    private void OnEnable()
-    {
-        _shopPresenter.Enable();
-    }
+        private ShopPresenter _shopPresenter;
 
-    private void OnDisable()
-    {
-        _shopPresenter.Disable();
+        private void Awake()
+        {
+            Wallet shop = new Wallet();
+            _shopPresenter = new ShopPresenter(shop, _items, _moneyText, _playerDataManager, _popUpWindow);
+        }
+
+        private void OnEnable()
+        {
+            _shopPresenter.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _shopPresenter.Disable();
+        }
     }
 }

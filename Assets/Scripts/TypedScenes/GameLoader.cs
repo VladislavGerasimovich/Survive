@@ -1,35 +1,38 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class GameLoader : MonoBehaviour
+namespace TypedScenes
 {
-    [SerializeField] private Slider _slider;
-    [SerializeField] private int _gameSceneId;
-
-    private float _divider;
-
-    private void Awake()
+    public class GameLoader : MonoBehaviour
     {
-        _divider = 0.9f;
-    }
+        [SerializeField] private Slider _slider;
+        [SerializeField] private int _gameSceneId;
 
-    private void Start()
-    {
-        StartCoroutine(RunGame());
-    }
+        private float _divider;
 
-    private IEnumerator RunGame()
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(_gameSceneId);
-
-        while(operation.isDone == false)
+        private void Awake()
         {
-            float progress = operation.progress / _divider;
-            _slider.value = progress;
+            _divider = 0.9f;
+        }
 
-            yield return null;
+        private void Start()
+        {
+            StartCoroutine(RunGame());
+        }
+
+        private IEnumerator RunGame()
+        {
+            AsyncOperation operation = SceneManager.LoadSceneAsync(_gameSceneId);
+
+            while (operation.isDone == false)
+            {
+                float progress = operation.progress / _divider;
+                _slider.value = progress;
+
+                yield return null;
+            }
         }
     }
 }

@@ -1,1 +1,5 @@
-public class FastZombiePool : ZombiePool{}
+namespace Game.ObjectPools.ZombiePools
+{
+    public class FastZombiePool : ZombiePool
+    { }
+}

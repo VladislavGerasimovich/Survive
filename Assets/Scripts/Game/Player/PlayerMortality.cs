@@ -1,56 +1,62 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UI;
+using CommonVariables;
 
-[RequireComponent(typeof(PlayerBlink))]
-public class PlayerMortality : MonoBehaviour
+namespace Game.Player
 {
-    [SerializeField] private TimeOfAction _timeOfAction;
-    [SerializeField] private float _duration;
-
-    private PlayerBlink _playerBlink;
-    private bool _canUse;
-
-    public event Action IsMortal;
-
-    private void Awake()
+    [RequireComponent(typeof(Variables))]
+    [RequireComponent(typeof(PlayerBlink))]
+    public class PlayerMortality : MonoBehaviour
     {
-        _canUse = true;
-        _playerBlink = GetComponent<PlayerBlink>();
-    }
+        [SerializeField] private TimeOfAction _timeOfAction;
+        [SerializeField] private float _duration;
 
-    public void AllowUse()
-    {
-        _canUse = true;
-    }
+        private PlayerBlink _playerBlink;
+        private Variables _variables;
 
-    public void ProhibitUse()
-    {
-        _canUse = false;
-    }
+        public event Action IsMortal;
 
-    public void RunImmortalityCoroutine()
-    {
-        StartCoroutine(Immortality());
-    }
-
-    private IEnumerator Immortality()
-    {
-        _playerBlink.StartBlinkCoroutine();
-        _timeOfAction.StartRunCoroutine(_duration);
-        float duration = _duration;
-
-        while (duration >= 0)
+        private void Awake()
         {
-            if (_canUse == true)
-            {
-                duration -= Time.fixedDeltaTime;
-            }
-
-            yield return null;
+            _variables = GetComponent<Variables>();
+            _playerBlink = GetComponent<PlayerBlink>();
         }
 
-        _playerBlink.StopBlinkCoroutine();
-        IsMortal.Invoke();
+        public void AllowUse()
+        {
+            _variables.ChangeCanUse(true);
+        }
+
+        public void ProhibitUse()
+        {
+            _variables.ChangeCanUse(false);
+        }
+
+        public void RunImmortalityCoroutine()
+        {
+            StartCoroutine(Immortality());
+        }
+
+        private IEnumerator Immortality()
+        {
+            _playerBlink.StartBlinkCoroutine();
+            _timeOfAction.StartRunCoroutine(_duration);
+            float duration = _duration;
+
+            while (duration >= 0)
+            {
+                if (_variables.CanUse == true)
+                {
+                    duration -= Time.fixedDeltaTime;
+                }
+
+                yield return null;
+            }
+
+            _playerBlink.StopBlinkCoroutine();
+            IsMortal.Invoke();
+        }
     }
 }

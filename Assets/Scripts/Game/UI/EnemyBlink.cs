@@ -1,52 +1,57 @@
 using System.Collections;
 using UnityEngine;
+using CommonVariables;
 
-public class EnemyBlink : MonoBehaviour
+namespace Game.UI
 {
-    [SerializeField] private Material _newMaterial;
-    [SerializeField] private SkinnedMeshRenderer _skinnedMeshRenderer;
-
-    private WaitForSeconds _delay;
-    private Material _currentMaterial;
-    private Coroutine _blinkCoroutine;
-
-    private void Awake()
+    [RequireComponent(typeof(Variables))]
+    public class EnemyBlink : MonoBehaviour
     {
-        _delay = new WaitForSeconds(0.15f);
-        _currentMaterial = _skinnedMeshRenderer.material;
-    }
+        [SerializeField] private Material _newMaterial;
+        [SerializeField] private SkinnedMeshRenderer _skinnedMeshRenderer;
 
-    private void OnDisable()
-    {
-        _skinnedMeshRenderer.material = _currentMaterial;
-    }
+        private Variables _variables;
+        private Material _currentMaterial;
+        private Coroutine _blinkCoroutine;
 
-    public void StartBlinkCoroutine()
-    {
-        if(_blinkCoroutine == null && gameObject.activeSelf == true)
+        private void Awake()
         {
-            _blinkCoroutine = StartCoroutine(Blink());
+            _variables = GetComponent<Variables>();
+            _currentMaterial = _skinnedMeshRenderer.material;
         }
-    }
 
-    public void DisableBlink()
-    {
-        enabled = false;
-        _blinkCoroutine = null;
-    }
+        private void OnDisable()
+        {
+            _skinnedMeshRenderer.material = _currentMaterial;
+        }
 
-    public void EnableBlink()
-    {
-        enabled = true;
-    }
+        public void StartBlinkCoroutine()
+        {
+            if (_blinkCoroutine == null && gameObject.activeSelf == true)
+            {
+                _blinkCoroutine = StartCoroutine(Blink());
+            }
+        }
 
-    private IEnumerator Blink()
-    {
-        _skinnedMeshRenderer.material = _newMaterial;
+        public void DisableBlink()
+        {
+            enabled = false;
+            _blinkCoroutine = null;
+        }
 
-        yield return _delay;
+        public void EnableBlink()
+        {
+            enabled = true;
+        }
 
-        _skinnedMeshRenderer.material = _currentMaterial;
-        _blinkCoroutine = null;
+        private IEnumerator Blink()
+        {
+            _skinnedMeshRenderer.material = _newMaterial;
+
+            yield return _variables.Delay;
+
+            _skinnedMeshRenderer.material = _currentMaterial;
+            _blinkCoroutine = null;
+        }
     }
 }

@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class BulletDamage : WeaponDamage
+namespace Game.Weapons.Damage
 {
-    [SerializeField] private Bullet _bullet;
-
-    public void Collision()
+    public class BulletDamage : WeaponDamage
     {
-        _bullet.Died();
+        [SerializeField] private Bullet _bullet;
+
+        public void Collision()
+        {
+            _bullet.Died();
+        }
     }
 }

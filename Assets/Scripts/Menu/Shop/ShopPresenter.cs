@@ -1,111 +1,116 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Storage;
+using Menu.Shop.Items;
 
-public class ShopPresenter: MonoBehaviour
+namespace Menu.Shop
 {
-    private Shop _shop;
-    private List<Item> _items;
-    private TMP_Text _moneyText;
-    private string _moneyType;
-    private PlayerDataManager _playerDataManager;
-    private PopUpWindow _popUpWindow;
-    private int _itemCost;
-    private string _itemType;
-
-    public ShopPresenter(Shop shop, List<Item> items, TMP_Text moneyText, PlayerDataManager playerDataManager, PopUpWindow popUpWindow)
+    public class ShopPresenter : MonoBehaviour
     {
-        _shop = shop;
-        _items = items;
-        _moneyText = moneyText;
-        _moneyType = "MONEY";
-        _playerDataManager = playerDataManager;
-        _popUpWindow = popUpWindow;
-    }
+        private Wallet _shop;
+        private List<Item> _items;
+        private TMP_Text _moneyText;
+        private string _moneyType;
+        private PlayerDataManager _playerDataManager;
+        private PopUpWindow _popUpWindow;
+        private int _itemCost;
+        private string _itemType;
 
-    public void Enable()
-    {
-        foreach (Item item in _items)
+        public ShopPresenter(Wallet shop, List<Item> items, TMP_Text moneyText, PlayerDataManager playerDataManager, PopUpWindow popUpWindow)
         {
-            item.Clicked += OnItemClicked;
+            _shop = shop;
+            _items = items;
+            _moneyText = moneyText;
+            _moneyType = "MONEY";
+            _playerDataManager = playerDataManager;
+            _popUpWindow = popUpWindow;
         }
 
-        _playerDataManager.DataReceived += InitializeShop;
-    }
-
-    public void Disable()
-    {
-        foreach (Item item in _items)
+        public void Enable()
         {
-            item.Clicked -= OnItemClicked;
-        }
-
-        _playerDataManager.DataReceived -= InitializeShop;
-        _popUpWindow.YesButtonClicked -= BuyItem;
-        _popUpWindow.NoButtonClicked -= Cancel;
-    }
-
-    private void InitializeShop(PlayerData playerData)
-    {
-        _shop.Initialize(playerData.Money);
-        _moneyText.text = _shop.Money.ToString();
-    }
-
-    private void OnItemClicked(string money, string type)
-    {
-        if(type != _moneyType)
-        {
-            if (_shop.TrySpentMoney(int.Parse(money)))
+            foreach (Item item in _items)
             {
-                foreach (Item item in _items)
+                item.Clicked += OnItemClicked;
+            }
+
+            _playerDataManager.DataReceived += InitializeShop;
+        }
+
+        public void Disable()
+        {
+            foreach (Item item in _items)
+            {
+                item.Clicked -= OnItemClicked;
+            }
+
+            _playerDataManager.DataReceived -= InitializeShop;
+            _popUpWindow.YesButtonClicked -= BuyItem;
+            _popUpWindow.NoButtonClicked -= Cancel;
+        }
+
+        private void InitializeShop(PlayerData playerData)
+        {
+            _shop.Initialize(playerData.Money);
+            _moneyText.text = _shop.Money.ToString();
+        }
+
+        private void OnItemClicked(string money, string type)
+        {
+            if (type != _moneyType)
+            {
+                if (_shop.TrySpentMoney(int.Parse(money)))
                 {
-                    if (item.Class == type)
+                    foreach (Item item in _items)
                     {
-                        _itemCost = int.Parse(money);
-                        _itemType = type;
-                        _popUpWindow.Open(item.TranslatedText);
-                        _popUpWindow.YesButtonClicked += BuyItem;
-                        _popUpWindow.NoButtonClicked += Cancel;
+                        if (item.Class == type)
+                        {
+                            _itemCost = int.Parse(money);
+                            _itemType = type;
+                            _popUpWindow.Open(item.TranslatedText);
+                            _popUpWindow.YesButtonClicked += BuyItem;
+                            _popUpWindow.NoButtonClicked += Cancel;
+                        }
                     }
+                }
+
+                return;
+            }
+            else
+            {
+                _shop.AddMoney(int.Parse(money));
+                _playerDataManager.Set(_moneyType, _shop.Money);
+                _moneyText.text = _shop.Money.ToString();
+            }
+        }
+
+        private void BuyItem()
+        {
+            _shop.SpentMoney(_itemCost);
+            _playerDataManager.Set(_moneyType, _shop.Money);
+            _moneyText.text = _shop.Money.ToString();
+
+            foreach (Item item in _items)
+            {
+                if (item.Class == _itemType)
+                {
+                    item.SetStatus();
                 }
             }
 
-            return;
+            _itemCost = 0;
+            _itemType = string.Empty;
+            _popUpWindow.YesButtonClicked -= BuyItem;
+            _popUpWindow.NoButtonClicked -= Cancel;
         }
-        else
+
+        private void Cancel()
         {
-            _shop.AddMoney(int.Parse(money));
-            _playerDataManager.Set(_moneyType, _shop.Money);
-            _moneyText.text = _shop.Money.ToString();
+            _popUpWindow.Close();
+            _itemCost = 0;
+            _itemType = string.Empty;
+            _popUpWindow.YesButtonClicked -= BuyItem;
+            _popUpWindow.NoButtonClicked -= Cancel;
         }
-    }
-
-    private void BuyItem()
-    {
-        _shop.SpentMoney(_itemCost);
-        _playerDataManager.Set(_moneyType, _shop.Money);
-        _moneyText.text = _shop.Money.ToString();
-
-        foreach (Item item in _items)
-        {
-            if (item.Class == _itemType)
-            {
-                item.SetStatus();
-            }
-        }
-
-        _itemCost = 0;
-        _itemType = "";
-        _popUpWindow.YesButtonClicked -= BuyItem;
-        _popUpWindow.NoButtonClicked -= Cancel;
-    }
-
-    private void Cancel()
-    {
-        _popUpWindow.Close();
-        _itemCost = 0;
-        _itemType = "";
-        _popUpWindow.YesButtonClicked -= BuyItem;
-        _popUpWindow.NoButtonClicked -= Cancel;
     }
 }

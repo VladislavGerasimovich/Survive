@@ -1,15 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrowingWeapon : MonoBehaviour
+namespace Game.Weapons
 {
-    [SerializeField] private List<GrenadeTrajectory> _grenadesTrajectory;
-
-    public void Run()
+    public class ThrowingWeapon : MonoBehaviour
     {
-        foreach (GrenadeTrajectory grenadeTrajectory in _grenadesTrajectory)
+        [SerializeField] private List<GrenadeTrajectory> _grenadesTrajectory;
+
+        public void Run()
         {
-            grenadeTrajectory.Throw();
+            foreach (GrenadeTrajectory grenadeTrajectory in _grenadesTrajectory)
+            {
+                grenadeTrajectory.Throw();
+            }
         }
     }
 }

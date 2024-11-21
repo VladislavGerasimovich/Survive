@@ -1,33 +1,24 @@
 using UnityEngine;
+using Storage;
 
-public class RangeWeaponDamage : Item
+namespace Menu.Shop.Items
 {
-    [SerializeField] private PlayerDataManager _playerDataManager;
-
-    private const string RANGE_WEAPON_DAMAGE = "RANGE_WEAPON_DAMAGE";
-
-    private void OnEnable()
+    public class RangeWeaponDamage : Item
     {
-        Button.onClick.AddListener(OnClick);
-        _playerDataManager.DataReceived += SetIndex;
-    }
+        private const string RANGE_WEAPON_DAMAGE = "RANGE_WEAPON_DAMAGE";
 
-    private void OnDisable()
-    {
-        Button.onClick.RemoveListener(OnClick);
-        _playerDataManager.DataReceived -= SetIndex;
-    }
+        public override void SetStatus()
+        {
+            base.SetStatus();
 
-    public override void SetStatus()
-    {
-        base.SetStatus();
+            _playerDataManager.Set(RANGE_WEAPON_DAMAGE, IndexOfCost);
+        }
 
-        _playerDataManager.Set(RANGE_WEAPON_DAMAGE, IndexOfCost);
-    }
+        protected override void SetIndex(PlayerData playerData)
+        {
+            IndexOfCost = playerData.RangeWeaponDamageIndex;
 
-    private void SetIndex(PlayerData playerData)
-    {
-        IndexOfCost = playerData.RangeWeaponDamageIndex;
-        SetCost();
+            base.SetIndex(playerData);
+        }
     }
 }

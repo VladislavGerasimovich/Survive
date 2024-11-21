@@ -5,7 +5,7 @@ using UnityEngine;
 using Unity.VisualScripting;
 
 [CreateAssetMenu(fileName = "Improvements", menuName = "improvement/create new improvement")]
-public class Improvements : ScriptableObject
+public class ImprovementInfo : ScriptableObject
 {
     [SerializeField] private int _level;
     [SerializeField] private string _type;

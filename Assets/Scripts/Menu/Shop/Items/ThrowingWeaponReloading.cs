@@ -1,33 +1,24 @@
 using UnityEngine;
+using Storage;
 
-public class ThrowingWeaponReloading : Item
+namespace Menu.Shop.Items
 {
-    [SerializeField] private PlayerDataManager _playerDataManager;
-
-    private const string THROWING_WEAPON_RELOADING = "THROWING_WEAPON_RELOADING";
-
-    private void OnEnable()
+    public class ThrowingWeaponReloading : Item
     {
-        Button.onClick.AddListener(OnClick);
-        _playerDataManager.DataReceived += SetIndex;
-    }
+        private const string THROWING_WEAPON_RELOADING = "THROWING_WEAPON_RELOADING";
 
-    private void OnDisable()
-    {
-        Button.onClick.RemoveListener(OnClick);
-        _playerDataManager.DataReceived -= SetIndex;
-    }
+        public override void SetStatus()
+        {
+            base.SetStatus();
 
-    public override void SetStatus()
-    {
-        base.SetStatus();
+            _playerDataManager.Set(THROWING_WEAPON_RELOADING, IndexOfCost);
+        }
 
-        _playerDataManager.Set(THROWING_WEAPON_RELOADING, IndexOfCost);
-    }
+        protected override void SetIndex(PlayerData playerData)
+        {
+            IndexOfCost = playerData.ThrowingWeaponReloadingIndex;
 
-    private void SetIndex(PlayerData playerData)
-    {
-        IndexOfCost = playerData.ThrowingWeaponReloadingIndex;
-        SetCost();
+            base.SetIndex(playerData);
+        }
     }
 }

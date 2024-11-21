@@ -1,239 +1,246 @@
-using Agava.YandexGames;
 using System.Collections.Generic;
+using Agava.YandexGames;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Storage;
+using Game.Buttons;
+using Menu.DifficultyLevels;
+using YandexElements;
 
-[RequireComponent(typeof(PlayerDataManager))]
-[RequireComponent(typeof(YandexLeaderboard))]
-[RequireComponent(typeof(InterstitialAd))]
-[RequireComponent(typeof(InterstitialAdTimer))]
-public class LoadSceneLoader : MonoBehaviour
+namespace TypedScenes
 {
-    [SerializeField] private Button _play;
-    [SerializeField] private Button _highScore;
-    [SerializeField] private Button _closeHighScore;
-    [SerializeField] private Button _shop;
-    [SerializeField] private Button _closeShop;
-    [SerializeField] private CanvasGroup MenuCanvasGroup;
-    [SerializeField] private CanvasGroup TitleCanvasGroup;
-    [SerializeField] private CanvasGroup HighScorePanelCanvasGroup;
-    [SerializeField] private CanvasGroup DifficultyLevelsPanelCanvasGroup;
-    [SerializeField] private CanvasGroup ShopCanvasGroup;
-    [SerializeField] private CanvasGroup _popupCanvasGroup;
-    [SerializeField] private PressButton _popupYesButton;
-    [SerializeField] private PressButton _popupNoButton;
-    [SerializeField] private List<DifficultyCard> _difficultyCards;
-    [SerializeField] private int _loadSceneId;
-    [SerializeField] private int _menuSceneId;
-
-    private PlayerDataManager _playerDataManager;
-    private YandexLeaderboard _yandexLeaderboard;
-    private InterstitialAd _interstitialAd;
-    private InterstitialAdTimer _interstitialAdTimer;
-    private bool _isFillLeaderboard;
-    private bool _isFillShop;
-    private int _numberOfAdImpressions;
-
-    private void OnEnable()
+    [RequireComponent(typeof(PlayerDataManager))]
+    [RequireComponent(typeof(YandexLeaderboard))]
+    [RequireComponent(typeof(YandexElements.InterstitialAd))]
+    [RequireComponent(typeof(InterstitialAdTimer))]
+    public class LoadSceneLoader : MonoBehaviour
     {
-        _shop.onClick.AddListener(OnShopButtonClick);
-        _closeShop.onClick.AddListener(OnCloseShopButtonClick);
-        _play.onClick.AddListener(OnPlayButtonClick);
-        _highScore.onClick.AddListener(OpenLiderboard);
-        _closeHighScore.onClick.AddListener(CloseHighScorePanel);
-        _yandexLeaderboard = GetComponent<YandexLeaderboard>();
-        int playerScore = PlayerPrefs.GetInt("PlayerScore");
-        _yandexLeaderboard.SetPlayerScore(playerScore);
-    }
+        [SerializeField] private Button _play;
+        [SerializeField] private Button _highScore;
+        [SerializeField] private Button _closeHighScore;
+        [SerializeField] private Button _shop;
+        [SerializeField] private Button _closeShop;
+        [SerializeField] private CanvasGroup MenuCanvasGroup;
+        [SerializeField] private CanvasGroup TitleCanvasGroup;
+        [SerializeField] private CanvasGroup HighScorePanelCanvasGroup;
+        [SerializeField] private CanvasGroup DifficultyLevelsPanelCanvasGroup;
+        [SerializeField] private CanvasGroup ShopCanvasGroup;
+        [SerializeField] private CanvasGroup _popupCanvasGroup;
+        [SerializeField] private PressButton _popupYesButton;
+        [SerializeField] private PressButton _popupNoButton;
+        [SerializeField] private List<DifficultyCard> _difficultyCards;
+        [SerializeField] private int _loadSceneId;
+        [SerializeField] private int _menuSceneId;
 
-    private void Awake()
-    {
-        _interstitialAd = GetComponent<InterstitialAd>();
-        _interstitialAdTimer = GetComponent<InterstitialAdTimer>();
-        _playerDataManager = GetComponent<PlayerDataManager>();
-        _numberOfAdImpressions = PlayerPrefs.GetInt("NumberOfAdImpressions", 0);
-        Time.timeScale = 1;
-    }
+        private PlayerDataManager _playerDataManager;
+        private YandexLeaderboard _yandexLeaderboard;
+        private YandexElements.InterstitialAd _interstitialAd;
+        private InterstitialAdTimer _interstitialAdTimer;
+        private bool _isFillLeaderboard;
+        private bool _isFillShop;
+        private int _numberOfAdImpressions;
 
-    private void OnDisable()
-    {
-        _shop.onClick.RemoveListener(OnShopButtonClick);
-        _closeShop.onClick.RemoveListener(OnCloseShopButtonClick);
-        _play.onClick.RemoveListener(OnPlayButtonClick);
-        _highScore.onClick.RemoveListener(OpenLiderboard);
-        _closeHighScore.onClick.RemoveListener(CloseHighScorePanel);
-    }
-
-    private void OnShopButtonClick()
-    {
-        if (PlayerAccount.IsAuthorized == true)
+        private void OnEnable()
         {
-            if (_isFillShop == false)
+            _shop.onClick.AddListener(OnShopButtonClick);
+            _closeShop.onClick.AddListener(OnCloseShopButtonClick);
+            _play.onClick.AddListener(OnPlayButtonClick);
+            _highScore.onClick.AddListener(OpenLiderboard);
+            _closeHighScore.onClick.AddListener(CloseHighScorePanel);
+            _yandexLeaderboard = GetComponent<YandexLeaderboard>();
+            int playerScore = PlayerPrefs.GetInt("PlayerScore");
+            _yandexLeaderboard.SetPlayerScore(playerScore);
+        }
+
+        private void Awake()
+        {
+            _interstitialAd = GetComponent<YandexElements.InterstitialAd>();
+            _interstitialAdTimer = GetComponent<InterstitialAdTimer>();
+            _playerDataManager = GetComponent<PlayerDataManager>();
+            _numberOfAdImpressions = PlayerPrefs.GetInt("NumberOfAdImpressions", 0);
+            Time.timeScale = 1;
+        }
+
+        private void OnDisable()
+        {
+            _shop.onClick.RemoveListener(OnShopButtonClick);
+            _closeShop.onClick.RemoveListener(OnCloseShopButtonClick);
+            _play.onClick.RemoveListener(OnPlayButtonClick);
+            _highScore.onClick.RemoveListener(OpenLiderboard);
+            _closeHighScore.onClick.RemoveListener(CloseHighScorePanel);
+        }
+
+        private void OnShopButtonClick()
+        {
+            if (PlayerAccount.IsAuthorized == true)
             {
-                _playerDataManager.GetCloudSaveData();
-                _isFillShop = true;
+                if (_isFillShop == false)
+                {
+                    _playerDataManager.GetCloudSaveData();
+                    _isFillShop = true;
+                }
+
+                DifficultyLevelsPanelCanvasGroup.alpha = 0;
+                DifficultyLevelsPanelCanvasGroup.blocksRaycasts = false;
+                MenuCanvasGroup.alpha = 0;
+                MenuCanvasGroup.blocksRaycasts = false;
+                TitleCanvasGroup.alpha = 0;
+                TitleCanvasGroup.blocksRaycasts = false;
+                HighScorePanelCanvasGroup.alpha = 0;
+                HighScorePanelCanvasGroup.blocksRaycasts = false;
+                ShopCanvasGroup.alpha = 1;
+                ShopCanvasGroup.blocksRaycasts = true;
             }
 
-            DifficultyLevelsPanelCanvasGroup.alpha = 0;
-            DifficultyLevelsPanelCanvasGroup.blocksRaycasts = false;
+            if (PlayerAccount.IsAuthorized == false)
+            {
+                _popupYesButton.Click += Authorize;
+                _popupNoButton.Click += Cancel;
+                _popupCanvasGroup.alpha = 1;
+                _popupCanvasGroup.blocksRaycasts = true;
+                MenuCanvasGroup.alpha = 0;
+                MenuCanvasGroup.blocksRaycasts = false;
+                TitleCanvasGroup.alpha = 0;
+                TitleCanvasGroup.blocksRaycasts = false;
+                return;
+            }
+        }
+
+        private void OnCloseShopButtonClick()
+        {
+            ShopCanvasGroup.alpha = 0;
+            ShopCanvasGroup.blocksRaycasts = false;
+            MenuCanvasGroup.alpha = 1;
+            MenuCanvasGroup.blocksRaycasts = true;
+            TitleCanvasGroup.alpha = 1;
+            TitleCanvasGroup.blocksRaycasts = true;
+        }
+
+        private void OnPlayButtonClick()
+        {
+            DifficultyLevelsPanelCanvasGroup.alpha = 1;
+            DifficultyLevelsPanelCanvasGroup.blocksRaycasts = true;
             MenuCanvasGroup.alpha = 0;
             MenuCanvasGroup.blocksRaycasts = false;
             TitleCanvasGroup.alpha = 0;
             TitleCanvasGroup.blocksRaycasts = false;
             HighScorePanelCanvasGroup.alpha = 0;
             HighScorePanelCanvasGroup.blocksRaycasts = false;
-            ShopCanvasGroup.alpha = 1;
-            ShopCanvasGroup.blocksRaycasts = true;
+
+            foreach (DifficultyCard difficultyCard in _difficultyCards)
+            {
+                difficultyCard.Click += OnDifficultyCardClick;
+            }
         }
 
-        if (PlayerAccount.IsAuthorized == false)
+        private void OnDifficultyCardClick()
         {
-            _popupYesButton.Click += Authorize;
-            _popupNoButton.Click += Cancel;
-            _popupCanvasGroup.alpha = 1;
-            _popupCanvasGroup.blocksRaycasts = true;
-            MenuCanvasGroup.alpha = 0;
-            MenuCanvasGroup.blocksRaycasts = false;
-            TitleCanvasGroup.alpha = 0;
-            TitleCanvasGroup.blocksRaycasts = false;
-            return;
-        }
-    }
+            Debug.Log(_interstitialAdTimer.IsReached + " interstitialAdIsReached");
 
-    private void OnCloseShopButtonClick()
-    {
-        ShopCanvasGroup.alpha = 0;
-        ShopCanvasGroup.blocksRaycasts = false;
-        MenuCanvasGroup.alpha = 1;
-        MenuCanvasGroup.blocksRaycasts = true;
-        TitleCanvasGroup.alpha = 1;
-        TitleCanvasGroup.blocksRaycasts = true;
-    }
+            if (_interstitialAdTimer.IsReached == false && _numberOfAdImpressions > 0)
+            {
+                LoadScene();
 
-    private void OnPlayButtonClick()
-    {
-        DifficultyLevelsPanelCanvasGroup.alpha = 1;
-        DifficultyLevelsPanelCanvasGroup.blocksRaycasts = true;
-        MenuCanvasGroup.alpha = 0;
-        MenuCanvasGroup.blocksRaycasts = false;
-        TitleCanvasGroup.alpha = 0;
-        TitleCanvasGroup.blocksRaycasts = false;
-        HighScorePanelCanvasGroup.alpha = 0;
-        HighScorePanelCanvasGroup.blocksRaycasts = false;
+                foreach (DifficultyCard difficultyCard in _difficultyCards)
+                {
+                    difficultyCard.Click -= OnDifficultyCardClick;
+                }
 
-        foreach (DifficultyCard difficultyCard in _difficultyCards)
-        {
-            difficultyCard.Click += OnDifficultyCardClick;
-        }
-    }
+                return;
+            }
 
-    private void OnDifficultyCardClick()
-    {
-        Debug.Log(_interstitialAdTimer.IsReached + " interstitialAdIsReached");
-
-        if (_interstitialAdTimer.IsReached == false && _numberOfAdImpressions > 0)
-        {
-            LoadScene();
+            _numberOfAdImpressions++;
+            PlayerPrefs.SetInt("NumberOfAdImpressions", _numberOfAdImpressions);
+            PlayerPrefs.Save();
+            _interstitialAd.Show();
+            _interstitialAd.OnCloseAd += LoadScene;
 
             foreach (DifficultyCard difficultyCard in _difficultyCards)
             {
                 difficultyCard.Click -= OnDifficultyCardClick;
             }
-
-            return;
         }
 
-        _numberOfAdImpressions++;
-        PlayerPrefs.SetInt("NumberOfAdImpressions", _numberOfAdImpressions);
-        PlayerPrefs.Save();
-        _interstitialAd.Show();
-        _interstitialAd.OnCloseAd += LoadScene;
-
-        foreach (DifficultyCard difficultyCard in _difficultyCards)
+        private void LoadScene()
         {
-            difficultyCard.Click -= OnDifficultyCardClick;
+            _interstitialAd.OnCloseAd -= LoadScene;
+            SceneManager.LoadScene(_loadSceneId);
         }
-    }
 
-    private void LoadScene()
-    {
-        _interstitialAd.OnCloseAd -= LoadScene;
-        SceneManager.LoadScene(_loadSceneId);
-    }
-
-    private void OpenLiderboard()
-    {
-        if (PlayerAccount.IsAuthorized == true)
+        private void OpenLiderboard()
         {
-            if(_isFillLeaderboard == false)
+            if (PlayerAccount.IsAuthorized == true)
             {
-                _yandexLeaderboard.Fill();
-                _isFillLeaderboard = true;
+                if (_isFillLeaderboard == false)
+                {
+                    _yandexLeaderboard.Fill();
+                    _isFillLeaderboard = true;
+                }
+
+                PlayerAccount.RequestPersonalProfileDataPermission();
+                OpenHighScorePanel();
             }
 
-            PlayerAccount.RequestPersonalProfileDataPermission();
-            OpenHighScorePanel();
+            if (PlayerAccount.IsAuthorized == false)
+            {
+                _popupYesButton.Click += Authorize;
+                _popupNoButton.Click += Cancel;
+                _popupCanvasGroup.alpha = 1;
+                _popupCanvasGroup.blocksRaycasts = true;
+                MenuCanvasGroup.alpha = 0;
+                MenuCanvasGroup.blocksRaycasts = false;
+                TitleCanvasGroup.alpha = 0;
+                TitleCanvasGroup.blocksRaycasts = false;
+                return;
+            }
         }
 
-        if (PlayerAccount.IsAuthorized == false)
+        private void Authorize()
         {
-            _popupYesButton.Click += Authorize;
-            _popupNoButton.Click += Cancel;
-            _popupCanvasGroup.alpha = 1;
-            _popupCanvasGroup.blocksRaycasts = true;
+            PlayerAccount.Authorize();
+            _popupCanvasGroup.alpha = 0;
+            _popupCanvasGroup.blocksRaycasts = false;
+            MenuCanvasGroup.alpha = 1;
+            MenuCanvasGroup.blocksRaycasts = true;
+            TitleCanvasGroup.alpha = 1;
+            TitleCanvasGroup.blocksRaycasts = true;
+            _popupYesButton.Click -= Authorize;
+            _popupNoButton.Click -= Cancel;
+        }
+
+        private void Cancel()
+        {
+            _popupCanvasGroup.alpha = 0;
+            _popupCanvasGroup.blocksRaycasts = false;
+            MenuCanvasGroup.alpha = 1;
+            MenuCanvasGroup.blocksRaycasts = true;
+            TitleCanvasGroup.alpha = 1;
+            TitleCanvasGroup.blocksRaycasts = true;
+            _popupYesButton.Click -= Authorize;
+            _popupNoButton.Click -= Cancel;
+        }
+
+        private void OpenHighScorePanel()
+        {
+            DifficultyLevelsPanelCanvasGroup.alpha = 0;
+            DifficultyLevelsPanelCanvasGroup.blocksRaycasts = false;
             MenuCanvasGroup.alpha = 0;
             MenuCanvasGroup.blocksRaycasts = false;
             TitleCanvasGroup.alpha = 0;
             TitleCanvasGroup.blocksRaycasts = false;
-            return;
+            HighScorePanelCanvasGroup.alpha = 1;
+            HighScorePanelCanvasGroup.blocksRaycasts = true;
         }
-    }
 
-    private void Authorize()
-    {
-        PlayerAccount.Authorize();
-        _popupCanvasGroup.alpha = 0;
-        _popupCanvasGroup.blocksRaycasts = false;
-        MenuCanvasGroup.alpha = 1;
-        MenuCanvasGroup.blocksRaycasts = true;
-        TitleCanvasGroup.alpha = 1;
-        TitleCanvasGroup.blocksRaycasts = true;
-        _popupYesButton.Click -= Authorize;
-        _popupNoButton.Click -= Cancel;
-    }
-
-    private void Cancel()
-    {
-        _popupCanvasGroup.alpha = 0;
-        _popupCanvasGroup.blocksRaycasts = false;
-        MenuCanvasGroup.alpha = 1;
-        MenuCanvasGroup.blocksRaycasts = true;
-        TitleCanvasGroup.alpha = 1;
-        TitleCanvasGroup.blocksRaycasts = true;
-        _popupYesButton.Click -= Authorize;
-        _popupNoButton.Click -= Cancel;
-    }
-
-    private void OpenHighScorePanel()
-    {
-        DifficultyLevelsPanelCanvasGroup.alpha = 0;
-        DifficultyLevelsPanelCanvasGroup.blocksRaycasts = false;
-        MenuCanvasGroup.alpha = 0;
-        MenuCanvasGroup.blocksRaycasts = false;
-        TitleCanvasGroup.alpha = 0;
-        TitleCanvasGroup.blocksRaycasts = false;
-        HighScorePanelCanvasGroup.alpha = 1;
-        HighScorePanelCanvasGroup.blocksRaycasts = true;
-    }
-
-    private void CloseHighScorePanel()
-    {
-        MenuCanvasGroup.alpha = 1;
-        MenuCanvasGroup.blocksRaycasts = true;
-        TitleCanvasGroup.alpha = 1;
-        TitleCanvasGroup.blocksRaycasts = true;
-        HighScorePanelCanvasGroup.alpha = 0;
-        HighScorePanelCanvasGroup.blocksRaycasts = false;
+        private void CloseHighScorePanel()
+        {
+            MenuCanvasGroup.alpha = 1;
+            MenuCanvasGroup.blocksRaycasts = true;
+            TitleCanvasGroup.alpha = 1;
+            TitleCanvasGroup.blocksRaycasts = true;
+            HighScorePanelCanvasGroup.alpha = 0;
+            HighScorePanelCanvasGroup.blocksRaycasts = false;
+        }
     }
 }

@@ -1,33 +1,24 @@
 using UnityEngine;
+using Storage;
 
-public class RangeWeaponReloading : Item
+namespace Menu.Shop.Items
 {
-    [SerializeField] private PlayerDataManager _playerDataManager;
-
-    private const string RANGE_WEAPON_RELOADING = "RANGE_WEAPON_RELOADING";
-
-    private void OnEnable()
+    public class RangeWeaponReloading : Item
     {
-        Button.onClick.AddListener(OnClick);
-        _playerDataManager.DataReceived += SetIndex;
-    }
+        private const string RANGE_WEAPON_RELOADING = "RANGE_WEAPON_RELOADING";
 
-    private void OnDisable()
-    {
-        Button.onClick.RemoveListener(OnClick);
-        _playerDataManager.DataReceived -= SetIndex;
-    }
+        public override void SetStatus()
+        {
+            base.SetStatus();
 
-    public override void SetStatus()
-    {
-        base.SetStatus();
+            _playerDataManager.Set(RANGE_WEAPON_RELOADING, IndexOfCost);
+        }
 
-        _playerDataManager.Set(RANGE_WEAPON_RELOADING, IndexOfCost);
-    }
+        protected override void SetIndex(PlayerData playerData)
+        {
+            IndexOfCost = playerData.RangeWeaponReloadingIndex;
 
-    private void SetIndex(PlayerData playerData)
-    {
-        IndexOfCost = playerData.RangeWeaponReloadingIndex;
-        SetCost();
+            base.SetIndex(playerData);
+        }
     }
 }

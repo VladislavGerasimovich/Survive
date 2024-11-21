@@ -1,10 +1,13 @@
 using Agava.YandexGames;
 using UnityEngine;
 
-public class PlatformMetrics : MonoBehaviour
+namespace YandexElements
 {
-    public void OnCallGameReadyButtonClick()
+    public class PlatformMetrics : MonoBehaviour
     {
-        YandexGamesSdk.GameReady();
+        public void OnCallGameReadyButtonClick()
+        {
+            YandexGamesSdk.GameReady();
+        }
     }
 }

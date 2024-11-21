@@ -1,18 +1,21 @@
 using UnityEngine;
 
-public class WeaponDamage : MonoBehaviour
+namespace Game.Weapons.Damage
 {
-    [SerializeField] protected int Damage;
-
-    public int Harm { get; private set; }
-
-    private void Awake()
+    public class WeaponDamage : MonoBehaviour
     {
-        Harm = Damage;
-    }
+        [SerializeField] protected int Damage;
 
-    public void SetDamage(int damage)
-    {
-        Harm = damage;
+        public int Harm { get; private set; }
+
+        private void Awake()
+        {
+            Harm = Damage;
+        }
+
+        public void Change(int damage)
+        {
+            Harm = damage;
+        }
     }
 }

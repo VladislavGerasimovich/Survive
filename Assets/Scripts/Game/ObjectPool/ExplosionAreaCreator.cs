@@ -1,15 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosionAreaCreator : ObjectPool
+namespace Game.ObjectPools
 {
-    [SerializeField] private GameObject _explosionArea;
-
-    private void Awake(){}
-
-    public void Run()
+    public class ExplosionAreaCreator : ObjectPool
     {
-        Pool = new List<GameObject>();
-        Initialize(_explosionArea);
+        [SerializeField] private GameObject _explosionArea;
+
+        private void Awake()
+        { }
+
+        public void Run()
+        {
+            Pool = new List<GameObject>();
+            Initialize(_explosionArea);
+        }
     }
 }

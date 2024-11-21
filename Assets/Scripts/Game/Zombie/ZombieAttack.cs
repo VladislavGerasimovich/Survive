@@ -1,42 +1,47 @@
 using System.Collections;
 using UnityEngine;
+using Game.Player;
+using CommonVariables;
 
-public class ZombieAttack : MonoBehaviour
+namespace Game.Zombie
 {
-    [SerializeField] private ZombieDamagee _zombieDamage;
-
-    private WaitForSeconds _delay;
-    private Coroutine _attackCoroutine;
-
-    private void Awake()
+    public class ZombieAttack : MonoBehaviour
     {
-        _delay = new WaitForSeconds(2);
-    }
+        [SerializeField] private ZombieDamage _zombieDamage;
 
-    public void StartAttackCoroutine(PlayerTakeDamage playerTakeDamage)
-    {
-        if(_attackCoroutine == null)
+        private Variables _variables;
+        private Coroutine _attackCoroutine;
+
+        private void Awake()
         {
-            _attackCoroutine = StartCoroutine(Attack(playerTakeDamage));
+            _variables = GetComponent<Variables>();
         }
-    }
 
-    public void StopAttackCoroutine()
-    {
-        if (_attackCoroutine != null)
+        public void StartAttackCoroutine(PlayerTakeDamage playerTakeDamage)
         {
-            StopCoroutine(_attackCoroutine);
-            _attackCoroutine = null;
+            if (_attackCoroutine == null)
+            {
+                _attackCoroutine = StartCoroutine(Attack(playerTakeDamage));
+            }
         }
-    }
 
-    private IEnumerator Attack(PlayerTakeDamage playerTakeDamage)
-    {
-        while (enabled)
+        public void StopAttackCoroutine()
         {
-            playerTakeDamage.Take(_zombieDamage.Harm);
+            if (_attackCoroutine != null)
+            {
+                StopCoroutine(_attackCoroutine);
+                _attackCoroutine = null;
+            }
+        }
 
-            yield return _delay;
+        private IEnumerator Attack(PlayerTakeDamage playerTakeDamage)
+        {
+            while (enabled)
+            {
+                playerTakeDamage.Take(_zombieDamage.Harm);
+
+                yield return _variables.Delay;
+            }
         }
     }
 }

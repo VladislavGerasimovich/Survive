@@ -1,54 +1,59 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using CommonVariables;
 
-[RequireComponent(typeof(Image))]
-public class TimeOfAction : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private CanvasGroup _canvasGroup;
-
-    private Image _image;
-    private bool _canUse;
-
-    private void Awake()
+    [RequireComponent(typeof(Variables))]
+    [RequireComponent(typeof(Image))]
+    public class TimeOfAction : MonoBehaviour
     {
-        _canUse = true;
-        _image = GetComponent<Image>();
-    }
+        [SerializeField] private CanvasGroup _canvasGroup;
 
-    public void StartRunCoroutine(float time)
-    {
-        StartCoroutine(Run(time));
-    }
+        private Image _image;
+        private Variables _variables;
 
-    public void AllowUse()
-    {
-        _canUse = true;
-    }
-
-    public void ProhibitUse()
-    {
-        _canUse = false;
-    }
-
-    private IEnumerator Run(float time)
-    {
-        _image.fillAmount = 0;
-        _canvasGroup.alpha = 1;
-        float duration = time;
-
-        while (duration >= 0)
+        private void Awake()
         {
-            if(_canUse == true)
-            {
-                duration -= Time.fixedDeltaTime;
-                _image.fillAmount += 0.35f / duration * Time.fixedDeltaTime;
-            }
-
-            yield return null;
+            _variables = GetComponent<Variables>();
+            _image = GetComponent<Image>();
         }
 
-        _image.fillAmount = 0;
-        _canvasGroup.alpha = 0;
+        public void StartRunCoroutine(float time)
+        {
+            StartCoroutine(Run(time));
+        }
+
+        public void AllowUse()
+        {
+            _variables.ChangeCanUse(true);
+        }
+
+        public void ProhibitUse()
+        {
+            _variables.ChangeCanUse(false);
+        }
+
+        private IEnumerator Run(float time)
+        {
+            _image.fillAmount = 0;
+            _canvasGroup.alpha = 1;
+            float duration = time;
+
+            while (duration >= 0)
+            {
+                if (_variables.CanUse == true)
+                {
+                    duration -= Time.fixedDeltaTime;
+                    _image.fillAmount += 0.35f / duration * Time.fixedDeltaTime;
+                }
+
+                yield return null;
+            }
+
+            _image.fillAmount = 0;
+            _canvasGroup.alpha = 0;
+        }
     }
 }

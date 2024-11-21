@@ -1,13 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Game.ObjectPools;
 
-public class BulletsCreator : BulletsPool
+namespace Game.Weapons
 {
-    [SerializeField] private GameObject _prefab;
-
-    private void Awake()
+    public class BulletsCreator : BulletsPool
     {
-        Pool = new List<GameObject>();
-        Initialize(_prefab);
+        [SerializeField] private GameObject _prefab;
+
+        private void Awake()
+        {
+            Pool = new List<GameObject>();
+            Initialize(_prefab);
+        }
     }
 }

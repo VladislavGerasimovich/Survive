@@ -1,88 +1,93 @@
 using System;
 using System.Collections.Generic;
+using Game.ObjectPools;
+using Game.ObjectPools.ZombiePools;
 using UnityEngine;
 
-public class PopUpWindowForGame : PopUpWindow
+namespace Menu.Shop
 {
-    [SerializeField] private ZombiesPools _zombiesPools;
-    [SerializeField] private AudioSource _shotSound;
-    [SerializeField] private GrenadesCreator _grenadesCreator;
-    [SerializeField] private AudioSource _playerHurt;
-    [SerializeField] private List<AudioSource> _woodBatsSound;
-
-    public new bool IsOpen { get; private set; }
-
-    public new event Action YesButtonClicked;
-    public new event Action NoButtonClicked;
-
-    private void Awake()
+    public class PopUpWindowForGame : PopUpWindow
     {
-        CanvasGroup = GetComponent<CanvasGroup>();
-    }
+        [SerializeField] private ZombiesPools _zombiesPools;
+        [SerializeField] private AudioSource _shotSound;
+        [SerializeField] private GrenadesCreator _grenadesCreator;
+        [SerializeField] private AudioSource _playerHurt;
+        [SerializeField] private List<AudioSource> _woodBatsSound;
 
-    private void OnEnable()
-    {
-        YesButton.onClick.AddListener(OnYesButtonClick);
-        NoButton.onClick.AddListener(OnNoButtonClick);
-    }
+        public new event Action YesButtonClicked;
+        public new event Action NoButtonClicked;
 
-    private void OnDisable()
-    {
-        YesButton.onClick.RemoveListener(OnYesButtonClick);
-        NoButton.onClick.RemoveListener(OnNoButtonClick);
-    }
-
-    public override void Open(string message = null)
-    {
-        YesButton.interactable = true;
-        IsOpen = true;
-        GameTime.Stop();
-        CanvasGroup.alpha = 1;
-        CanvasGroup.blocksRaycasts = true;
-        _zombiesPools.PauseSound();
-        _shotSound.Stop();
-        _shotSound.volume = 0;
-        _playerHurt.volume = 0;
-        _grenadesCreator.PauseSound();
-
-        foreach (AudioSource woodBatSound in _woodBatsSound)
+        private void Awake()
         {
-            woodBatSound.Stop();
-            woodBatSound.volume = 0;
+            CanvasGroup = GetComponent<CanvasGroup>();
         }
 
-        if (message != null)
+        private void OnEnable()
         {
-            Text.text = message;
+            YesButton.onClick.AddListener(OnYesButtonClick);
+            NoButton.onClick.AddListener(OnNoButtonClick);
         }
-    }
 
-    public override void Close()
-    {
-        IsOpen = false;
-        CanvasGroup.alpha = 0;
-        CanvasGroup.blocksRaycasts = false;
-        GameTime.Run();
-        _playerHurt.volume = 1;
-        _shotSound.volume = 1;
-        _zombiesPools.PlaySound();
-        _grenadesCreator.PlaySound();
-
-        foreach (AudioSource woodBatSound in _woodBatsSound)
+        private void OnDisable()
         {
-            woodBatSound.volume = 1;
+            YesButton.onClick.RemoveListener(OnYesButtonClick);
+            NoButton.onClick.RemoveListener(OnNoButtonClick);
         }
-    }
 
-    public override void OnYesButtonClick()
-    {
-        YesButton.interactable = false;
-        YesButtonClicked.Invoke();
-    }
+        public override void Open(string message = null)
+        {
+            YesButton.interactable = true;
+            _isOpen = true;
+            GameTime.Stop();
+            CanvasGroup.alpha = 1;
+            CanvasGroup.blocksRaycasts = true;
+            _zombiesPools.PauseSound();
+            _shotSound.Stop();
+            _shotSound.volume = 0;
+            _playerHurt.volume = 0;
+            _grenadesCreator.PauseSound();
 
-    public override void OnNoButtonClick()
-    {
-        Close();
-        NoButtonClicked.Invoke();
+            foreach (AudioSource woodBatSound in _woodBatsSound)
+            {
+                woodBatSound.Stop();
+                woodBatSound.volume = 0;
+            }
+
+            if (message != null)
+            {
+                Text.text = message;
+            }
+        }
+
+        public override void Close()
+        {
+            _isOpen = false;
+            CanvasGroup.alpha = 0;
+            CanvasGroup.blocksRaycasts = false;
+            GameTime.Run();
+            _playerHurt.volume = 1;
+            _shotSound.volume = 1;
+            _zombiesPools.PlaySound();
+            _grenadesCreator.PlaySound();
+
+            foreach (AudioSource woodBatSound in _woodBatsSound)
+            {
+                woodBatSound.volume = 1;
+            }
+        }
+
+        public override void OnYesButtonClick()
+        {
+            YesButton.interactable = false;
+            YesButtonClicked.Invoke();
+        }
+
+        public override void OnNoButtonClick()
+        {
+            Close();
+            NoButtonClicked.Invoke();
+        }
+
+        public new bool IsOpen => _isOpen;
     }
 }

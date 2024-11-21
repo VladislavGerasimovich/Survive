@@ -1,164 +1,175 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Game.Collision;
+using Game.Health;
+using Game.Player.Levels;
+using Game.UI;
+using Game.UI.Screens;
+using Game.Zombie;
+using YandexElements;
 
-public class ZombiePool : MonoBehaviour
+namespace Game.ObjectPools.ZombiePools
 {
-    [SerializeField] private GameObject _prefab;
-    [SerializeField] private int _capacity;
-    [SerializeField] private int _healthValue;
-    [SerializeField] private Transform _container;
-    [SerializeField] private List<Window> _windows;
-    [SerializeField] private VideoAd _videoAd;
-    [SerializeField] private InterstitialAd _interstitialAd;
-    [SerializeField] private GameTime _gameTime;
-
-    protected List<GameObject> Pool;
-    protected List<CharacterHealthSystemPresenter> HealthSystemPresenters;
-    protected List<ExperienceSystemPresenter> ExperienceSystemPresenters;
-
-    private void Awake()
+    public class ZombiePool : MonoBehaviour
     {
-        Pool = new List<GameObject>();
-        HealthSystemPresenters = new List<CharacterHealthSystemPresenter>();
-        ExperienceSystemPresenters = new List<ExperienceSystemPresenter>();
-    }
+        [SerializeField] private GameObject _prefab;
+        [SerializeField] private int _capacity;
+        [SerializeField] private int _healthValue;
+        [SerializeField] private Transform _container;
+        [SerializeField] private List<Window> _windows;
+        [SerializeField] private VideoAd _videoAd;
+        [SerializeField] private InterstitialAd _interstitialAd;
+        [SerializeField] private GameTime _gameTime;
 
-    private void OnEnable()
-    {
-        foreach (var window in _windows)
+        protected List<GameObject> Pool;
+        protected List<CharacterHealthPresenter> HealthSystemPresenters;
+        protected List<ExperiencePresenter> ExperienceSystemPresenters;
+
+        private void Awake()
         {
-            window.IsPanelOpen += PauseSound;
-            window.IsPanelClose += PlaySound;
+            Pool = new List<GameObject>();
+            HealthSystemPresenters = new List<CharacterHealthPresenter>();
+            ExperienceSystemPresenters = new List<ExperiencePresenter>();
         }
 
-        _videoAd.OnOpenAd += PauseSound;
-        _interstitialAd.OnOpenAd += PauseSound;
-        _videoAd.OnCloseAd += PlaySound;
-    }
-
-    private void OnDisable()
-    {
-        foreach (var window in _windows)
+        private void OnEnable()
         {
-            window.IsPanelOpen -= PauseSound;
-            window.IsPanelClose -= PlaySound;
-        }
-
-        _videoAd.OnOpenAd -= PauseSound;
-        _interstitialAd.OnOpenAd -= StopSound;
-        _videoAd.OnCloseAd -= PlaySound;
-
-        foreach (var presenter in HealthSystemPresenters)
-        {
-            presenter.Disable();
-        }
-
-        foreach (ExperienceSystemPresenter presenter in ExperienceSystemPresenters)
-        {
-            presenter.Disable();
-        }
-    }
-
-    public void CreateZombies(LevelSystem levelSystemModel)
-    {
-        for (int i = 0; i < _capacity; i++)
-        {
-            GameObject zombie = Instantiate(_prefab, _container);
-
-            HealthSystem healthSystemModel = new HealthSystem(_healthValue);
-            CharacterHealthSystemPresenter healthSystemPresenter = new CharacterHealthSystemPresenter(healthSystemModel, zombie.transform.Find("Collider").GetComponent<ZombieCollisionHandler>(), zombie.GetComponent<ZombieDied>(), zombie.GetComponent<EnemyBlink>());
-            HealthSystemPresenters.Add(healthSystemPresenter);
-
-            ExperienceSystemPresenter experienceSystemPresenter = new ExperienceSystemPresenter(levelSystemModel, zombie.GetComponent<ZombieDied>(), zombie.GetComponent<Experience>());
-            ExperienceSystemPresenters.Add(experienceSystemPresenter);
-
-            zombie.SetActive(false);
-            Pool.Add(zombie);
-        }
-
-        foreach (CharacterHealthSystemPresenter presenter in HealthSystemPresenters)
-        {
-            presenter.Enable();
-        }
-
-        foreach (ExperienceSystemPresenter presenter in ExperienceSystemPresenters)
-        {
-            presenter.Enable();
-        }
-    }
-
-    public bool TryGetObject(out GameObject result)
-    {
-        result = Pool.FirstOrDefault(p => p.activeSelf == false);
-        result.GetComponent<ZombieDied>().ReviveZombie();
-
-        return result != null;
-    }
-
-    public void DisableSound()
-    {
-        foreach (GameObject zombie in Pool)
-        {
-            AudioSource audio = zombie.GetComponent<AudioSource>();
-            audio.enabled = false;
-        }
-    }
-
-    public void EnableSound()
-    {
-        foreach (GameObject zombie in Pool)
-        {
-            AudioSource audio = zombie.GetComponent<AudioSource>();
-            audio.enabled = true;
-        }
-    }
-
-    public void PauseSound()
-    {
-        foreach (GameObject zombie in Pool)
-        {
-            AudioSource audio = zombie.GetComponent<AudioSource>();
-            audio.Pause();
-            audio.volume = 0;
-        }
-    }
-
-    public void PlaySound()
-    {
-        foreach (var window in _windows)
-        {
-            if(window.IsOpen == true)
+            foreach (var window in _windows)
             {
-                return;
+                window.IsPanelOpen += PauseSound;
+                window.IsPanelClose += PlaySound;
+            }
+
+            _videoAd.OnOpenAd += PauseSound;
+            _interstitialAd.OnOpenAd += PauseSound;
+            _videoAd.OnCloseAd += PlaySound;
+        }
+
+        private void OnDisable()
+        {
+            foreach (var window in _windows)
+            {
+                window.IsPanelOpen -= PauseSound;
+                window.IsPanelClose -= PlaySound;
+            }
+
+            _videoAd.OnOpenAd -= PauseSound;
+            _interstitialAd.OnOpenAd -= StopSound;
+            _videoAd.OnCloseAd -= PlaySound;
+
+            foreach (var presenter in HealthSystemPresenters)
+            {
+                presenter.Disable();
+            }
+
+            foreach (ExperiencePresenter presenter in ExperienceSystemPresenters)
+            {
+                presenter.Disable();
             }
         }
 
-        foreach (GameObject zombie in Pool)
+        public void CreateZombies(Level levelSystemModel)
         {
-            AudioSource audio = zombie.GetComponent<AudioSource>();
-            audio.volume = 1;
-        }
-
-        foreach (GameObject zombie in Pool)
-        {
-            AudioSource audio = zombie.GetComponent<AudioSource>();
-
-            if (audio.time != 0 && audio.enabled == true)
+            for (int i = 0; i < _capacity; i++)
             {
-                audio.Play();
-                return;
+                GameObject zombie = Instantiate(_prefab, _container);
+
+                HealthSystem healthSystemModel = new HealthSystem(_healthValue);
+                CharacterHealthPresenter healthSystemPresenter = new CharacterHealthPresenter(healthSystemModel, zombie.transform.Find("Collider")
+                .GetComponent<ZombieCollisionHandler>(), zombie.GetComponent<ZombieDied>(), zombie.GetComponent<EnemyBlink>());
+                HealthSystemPresenters.Add(healthSystemPresenter);
+
+                ExperiencePresenter experienceSystemPresenter = new ExperiencePresenter(levelSystemModel, zombie.GetComponent<ZombieDied>(), zombie.GetComponent<Experience>());
+                ExperienceSystemPresenters.Add(experienceSystemPresenter);
+
+                zombie.SetActive(false);
+                Pool.Add(zombie);
+            }
+
+            foreach (CharacterHealthPresenter presenter in HealthSystemPresenters)
+            {
+                presenter.Enable();
+            }
+
+            foreach (ExperiencePresenter presenter in ExperienceSystemPresenters)
+            {
+                presenter.Enable();
             }
         }
-    }
 
-    public void StopSound()
-    {
-        foreach (GameObject zombie in Pool)
+        public bool TryGetObject(out GameObject result)
         {
-            AudioSource audio = zombie.GetComponent<AudioSource>();
+            result = Pool.FirstOrDefault(p => p.activeSelf == false);
+            result.GetComponent<ZombieDied>().ReviveZombie();
 
-            audio.Stop();
+            return result != null;
+        }
+
+        public void DisableSound()
+        {
+            foreach (GameObject zombie in Pool)
+            {
+                AudioSource audio = zombie.GetComponent<AudioSource>();
+                audio.enabled = false;
+            }
+        }
+
+        public void EnableSound()
+        {
+            foreach (GameObject zombie in Pool)
+            {
+                AudioSource audio = zombie.GetComponent<AudioSource>();
+                audio.enabled = true;
+            }
+        }
+
+        public void PauseSound()
+        {
+            foreach (GameObject zombie in Pool)
+            {
+                AudioSource audio = zombie.GetComponent<AudioSource>();
+                audio.Pause();
+                audio.volume = 0;
+            }
+        }
+
+        public void PlaySound()
+        {
+            foreach (var window in _windows)
+            {
+                if (window.IsOpen == true)
+                {
+                    return;
+                }
+            }
+
+            foreach (GameObject zombie in Pool)
+            {
+                AudioSource audio = zombie.GetComponent<AudioSource>();
+                audio.volume = 1;
+            }
+
+            foreach (GameObject zombie in Pool)
+            {
+                AudioSource audio = zombie.GetComponent<AudioSource>();
+
+                if (audio.time != 0 && audio.enabled == true)
+                {
+                    audio.Play();
+                    return;
+                }
+            }
+        }
+
+        public void StopSound()
+        {
+            foreach (GameObject zombie in Pool)
+            {
+                AudioSource audio = zombie.GetComponent<AudioSource>();
+
+                audio.Stop();
+            }
         }
     }
 }

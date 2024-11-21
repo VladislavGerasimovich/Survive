@@ -1,7 +1,10 @@
-public class HealthBar : ExperienceBar
+namespace Game.UI
 {
-    private void Awake()
+    public class HealthBar : ExperienceBar
     {
-        SmoothSlider.value = 1;
+        private void Awake()
+        {
+            OnValueChanged(1);
+        }
     }
 }

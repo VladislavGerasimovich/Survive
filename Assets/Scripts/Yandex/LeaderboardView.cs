@@ -1,33 +1,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeaderboardView : MonoBehaviour
+namespace YandexElements
 {
-    [SerializeField] private Transform _container;
-    [SerializeField] private LeaderboardElement _leaderboardElementPrefab;
-
-    private List<LeaderboardElement> _spawnedElements = new();
-
-    public void Construct(List<LeaderboardPlayer> leaderboardPlayers)
+    public class LeaderboardView : MonoBehaviour
     {
-        Clear();
+        [SerializeField] private Transform _container;
+        [SerializeField] private LeaderboardElement _leaderboardElementPrefab;
 
-        foreach (LeaderboardPlayer player in leaderboardPlayers)
+        private List<LeaderboardElement> _spawnedElements = new();
+
+        public void Construct(List<LeaderboardPlayer> leaderboardPlayers)
         {
-            LeaderboardElement leaderboardElementInstance = Instantiate(_leaderboardElementPrefab, _container);
-            leaderboardElementInstance.Initialize(player.Name, player.Rank, player.Score);
+            Clear();
 
-            _spawnedElements.Add(leaderboardElementInstance);
-        }
-    }
+            foreach (LeaderboardPlayer player in leaderboardPlayers)
+            {
+                LeaderboardElement leaderboardElementInstance = Instantiate(_leaderboardElementPrefab, _container);
+                leaderboardElementInstance.Initialize(player.Name, player.Rank, player.Score);
 
-    private void Clear()
-    {
-        foreach (var element in _spawnedElements)
-        {
-            Destroy(element);
+                _spawnedElements.Add(leaderboardElementInstance);
+            }
         }
 
-        _spawnedElements = new List<LeaderboardElement>();
+        private void Clear()
+        {
+            foreach (var element in _spawnedElements)
+            {
+                Destroy(element);
+            }
+
+            _spawnedElements = new List<LeaderboardElement>();
+        }
     }
 }

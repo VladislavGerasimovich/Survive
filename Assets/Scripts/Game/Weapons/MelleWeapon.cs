@@ -1,18 +1,21 @@
 using UnityEngine;
 
-public class MelleWeapon : Weapon
+namespace Game.Weapons
 {
-    [SerializeField] private CapsuleCollider _collider;
-
-    public override void Show()
+    public class MelleWeapon : Weapon
     {
-        base.Show();
-        _collider.enabled = true;
-    }
+        [SerializeField] private CapsuleCollider _collider;
 
-    public override void Hide()
-    {
-        base.Hide();
-        _collider.enabled = false;
+        public override void Show()
+        {
+            base.Show();
+            _collider.enabled = true;
+        }
+
+        public override void Hide()
+        {
+            base.Hide();
+            _collider.enabled = false;
+        }
     }
 }

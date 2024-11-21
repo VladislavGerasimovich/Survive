@@ -1,36 +1,39 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerInput))]
-public class DesktopWASDPlayerInput : Input
+namespace Game.Player.Movement
 {
-    private PlayerInput _playerInput;
-    private InputAction _inputAction;
-    private string _actionName;
-
-    private void Awake()
+    [RequireComponent(typeof(UnityEngine.InputSystem.PlayerInput))]
+    public class DesktopWASDPlayerInput : PlayerInput
     {
-        _actionName = "Move";
-        _playerInput = GetComponent<PlayerInput>();
-        EnableInput();
-    }
+        private UnityEngine.InputSystem.PlayerInput _playerInput;
+        private InputAction _inputAction;
+        private string _actionName;
 
-    private void Start()
-    {
-        _inputAction = _playerInput.actions.FindAction(_actionName);
-    }
-
-    private void Update()
-    {
-        MovePlayer();
-    }
-
-    private void MovePlayer()
-    {
-        if(IsCan == true)
+        private void Awake()
         {
-            Vector2 direction = _inputAction.ReadValue<Vector2>();
-            SetMovementPosition(direction);
+            _actionName = "Move";
+            _playerInput = GetComponent<UnityEngine.InputSystem.PlayerInput>();
+            EnableInput();
+        }
+
+        private void Start()
+        {
+            _inputAction = _playerInput.actions.FindAction(_actionName);
+        }
+
+        private void Update()
+        {
+            MovePlayer();
+        }
+
+        private void MovePlayer()
+        {
+            if (IsCan == true)
+            {
+                Vector2 direction = _inputAction.ReadValue<Vector2>();
+                SetMovementPosition(direction);
+            }
         }
     }
 }

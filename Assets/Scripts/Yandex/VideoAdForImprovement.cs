@@ -1,50 +1,54 @@
 using UnityEngine;
 using UnityEngine.Events;
+using Game;
 
-[RequireComponent(typeof(AudioSource))]
-public class VideoAdForImprovement : MonoBehaviour
+namespace YandexElements
 {
-    [SerializeField] private GameTime _gameTime;
-
-    private AudioSource _mainMusic;
-
-    public event UnityAction RewardReceived;
-    public event UnityAction OnCloseAd;
-
-    public bool IsOpen { get; private set; }
-
-    private void Awake()
+    [RequireComponent(typeof(AudioSource))]
+    public class VideoAdForImprovement : MonoBehaviour
     {
-        _mainMusic = GetComponent<AudioSource>();
-    }
+        [SerializeField] private GameTime _gameTime;
 
-    public virtual void Show() =>
-        Agava.YandexGames.VideoAd.Show(OnOpenCallback, OnRewardCallback, OnCloseCallback);
+        private AudioSource _mainMusic;
 
-    private void OnOpenCallback()
-    {
-        IsOpen = true;
-        Time.timeScale = 0;
-        _gameTime.Stop();
-        AudioListener.volume = 0;
-        _mainMusic.Pause();
-    }
+        public event UnityAction RewardReceived;
+        public event UnityAction OnCloseAd;
 
-    private void OnRewardCallback()
-    {
-        RewardReceived.Invoke();
-    }
+        public bool IsOpen { get; private set; }
 
-    private void OnCloseCallback()
-    {
-        IsOpen = false;
-        OnCloseAd?.Invoke();
-        _gameTime.Stop();
-        AudioListener.volume = 1;
-
-        if (_mainMusic.enabled == true)
+        private void Awake()
         {
-            _mainMusic.Play();
+            _mainMusic = GetComponent<AudioSource>();
+        }
+
+        public virtual void Show() =>
+            Agava.YandexGames.VideoAd.Show(OnOpenCallback, OnRewardCallback, OnCloseCallback);
+
+        private void OnOpenCallback()
+        {
+            IsOpen = true;
+            Time.timeScale = 0;
+            _gameTime.Stop();
+            AudioListener.volume = 0;
+            _mainMusic.Pause();
+        }
+
+        private void OnRewardCallback()
+        {
+            RewardReceived.Invoke();
+        }
+
+        private void OnCloseCallback()
+        {
+            IsOpen = false;
+            OnCloseAd?.Invoke();
+            _gameTime.Stop();
+            AudioListener.volume = 1;
+
+            if (_mainMusic.enabled == true)
+            {
+                _mainMusic.Play();
+            }
         }
     }
 }

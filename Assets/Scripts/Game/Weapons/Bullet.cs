@@ -1,45 +1,49 @@
 using System.Collections;
 using UnityEngine;
+using CommonVariables;
 
-[RequireComponent(typeof(Rigidbody))]
-public class Bullet : MonoBehaviour
+namespace Game.Weapons
 {
-    [SerializeField] private ParticleSystem _trail;
-
-    private Rigidbody _rigidbody;
-    private WaitForSeconds _delay;
-
-    private void Awake()
+    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Variables))]
+    public class Bullet : MonoBehaviour
     {
-        _delay = new WaitForSeconds(4);
-        _rigidbody = GetComponent<Rigidbody>();
-    }
+        [SerializeField] private ParticleSystem _trail;
 
-    public void Shoot(Vector3 startPosition, Vector3 speed)
-    {
-        transform.position = startPosition;
-        _rigidbody.velocity = speed * 10;
-        _trail.Play();
-    }
+        private Rigidbody _rigidbody;
+        private Variables _variables;
 
-    public void SetActive()
-    {
-        gameObject.SetActive(true);
-        StartCoroutine(Die());
-    }
-
-    public void Died()
-    {
-        _trail.Stop();
-        gameObject.SetActive(false);
-    }
-
-    private IEnumerator Die()
-    {
-        while (enabled)
+        private void Awake()
         {
-            yield return _delay;
-            Died();
+            _rigidbody = GetComponent<Rigidbody>();
+        }
+
+        public void Shoot(Vector3 startPosition, Vector3 speed)
+        {
+            transform.position = startPosition;
+            _rigidbody.velocity = speed * 10;
+            _trail.Play();
+        }
+
+        public void SetActive()
+        {
+            gameObject.SetActive(true);
+            StartCoroutine(Die());
+        }
+
+        public void Died()
+        {
+            _trail.Stop();
+            gameObject.SetActive(false);
+        }
+
+        private IEnumerator Die()
+        {
+            while (enabled)
+            {
+                yield return _variables.Delay;
+                Died();
+            }
         }
     }
 }

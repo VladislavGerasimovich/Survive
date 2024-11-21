@@ -1,76 +1,23 @@
-using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
+using Storage;
 
-[RequireComponent(typeof(PressButton))]
-[RequireComponent(typeof(Image))]
-public class FirstAidKitCount : MonoBehaviour
+namespace Game.Buttons
 {
-    [SerializeField] private PlayerDataManager _playerDataManager;
-    [SerializeField] private TMP_Text _text;
-    [SerializeField] private Sprite _normalSprite;
-    [SerializeField] private Sprite _spriteForReward;
-
-    private const string FIRST_AID = "FIRST_AID";
-
-    private int _count;
-    private Image _image;
-
-    private void Awake()
+    public class FirstAidKitCount : CountOfExpendableItem
     {
-        _image = GetComponent<Image>();
-    }
+        private const string FIRST_AID = "FIRST_AID";
 
-    private void OnEnable()
-    {
-        _playerDataManager.DataReceived += SetCount;
-    }
-
-    private void OnDisable()
-    {
-        _playerDataManager.DataReceived -= SetCount;
-    }
-
-    public void ReduceCount()
-    {
-        if (_count > 0)
+        private void Awake()
         {
-            _count--;
-            _playerDataManager.Set(FIRST_AID, _count);
-            _text.text = _count.ToString();
-
-            if (_count <= 0)
-            {
-                _image.sprite = _spriteForReward;
-                _text.enabled = false;
-            }
-
-            return;
-        }
-    }
-
-    public bool IsCountGreaterThenZero()
-    {
-        return _count > 0;
-    }
-
-    private void SetCount(PlayerData playerData)
-    {
-        _count = playerData.FirstAidCount;
-
-        _text.text = _count.ToString();
-
-        if(_count <= 0)
-        {
-            _text.enabled = false;
+            _image = GetComponent<Image>();
+            _text = FIRST_AID;
         }
 
-        if (_count > 0)
+        protected override void SetCount(PlayerData playerData)
         {
-            _image.sprite = _normalSprite;
-            return;
-        }
+            _count = playerData.FirstAidCount;
 
-        _image.sprite = _spriteForReward;
+            base.SetCount(playerData);
+        }
     }
 }

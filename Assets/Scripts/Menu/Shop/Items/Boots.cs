@@ -1,33 +1,24 @@
 using UnityEngine;
+using Storage;
 
-public class Boots : Item
+namespace Menu.Shop.Items
 {
-    [SerializeField] private PlayerDataManager _playerDataManager;
-
-    private const string BOOTS = "BOOTS";
-
-    private void OnEnable()
+    public class Boots : Item
     {
-        Button.onClick.AddListener(OnClick);
-        _playerDataManager.DataReceived += SetIndex;
-    }
+        private const string BOOTS = "BOOTS";
 
-    private void OnDisable()
-    {
-        Button.onClick.RemoveListener(OnClick);
-        _playerDataManager.DataReceived -= SetIndex;
-    }
+        public override void SetStatus()
+        {
+            base.SetStatus();
 
-    public override void SetStatus()
-    {
-        base.SetStatus();
+            _playerDataManager.Set(BOOTS, IndexOfCost);
+        }
 
-        _playerDataManager.Set(BOOTS, IndexOfCost);
-    }
+        protected override void SetIndex(PlayerData playerData)
+        {
+            IndexOfCost = playerData.BootsIndex;
 
-    private void SetIndex(PlayerData playerData)
-    {
-        IndexOfCost = playerData.BootsIndex;
-        SetCost();
+            base.SetIndex(playerData);
+        }
     }
 }

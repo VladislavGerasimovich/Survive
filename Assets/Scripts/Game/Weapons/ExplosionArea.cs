@@ -1,35 +1,38 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(CapsuleCollider))]
-public class ExplosionArea : MonoBehaviour
+namespace Game.Weapons
 {
-    [SerializeField] private ParticleSystem _explosion;
-
-    private CapsuleCollider _collider;
-
-    private void Awake()
+    [RequireComponent(typeof(CapsuleCollider))]
+    public class ExplosionArea : MonoBehaviour
     {
-        _collider = GetComponent<CapsuleCollider>();
-    }
+        [SerializeField] private ParticleSystem _explosion;
 
-    public void Run(Vector3 position)
-    {
-        gameObject.SetActive(true);
-        transform.position = new Vector3(position.x, transform.position.y, position.z);
-        _explosion.transform.position = position;
-        _explosion.Play();
-        StartCoroutine(LifeCircle());
-    }
+        private CapsuleCollider _collider;
 
-    private IEnumerator LifeCircle()
-    {
-        yield return new WaitForSeconds(1);
-        _collider.enabled = false;
+        private void Awake()
+        {
+            _collider = GetComponent<CapsuleCollider>();
+        }
 
-        yield return new WaitForSeconds(1.5f);
-        transform.parent.gameObject.SetActive(false);
-        gameObject.SetActive(false);
-        _collider.enabled = true;
+        public void Run(Vector3 position)
+        {
+            gameObject.SetActive(true);
+            transform.position = new Vector3(position.x, transform.position.y, position.z);
+            _explosion.transform.position = position;
+            _explosion.Play();
+            StartCoroutine(LifeCircle());
+        }
+
+        private IEnumerator LifeCircle()
+        {
+            yield return new WaitForSeconds(1);
+            _collider.enabled = false;
+
+            yield return new WaitForSeconds(1.5f);
+            transform.parent.gameObject.SetActive(false);
+            gameObject.SetActive(false);
+            _collider.enabled = true;
+        }
     }
 }

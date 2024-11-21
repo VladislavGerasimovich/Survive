@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using TMPro;
+﻿using TMPro;
+using UnityEngine;
 
 namespace Lean.Localization
 {
@@ -25,6 +25,7 @@ namespace Lean.Localization
 			{
 				text.text = LeanTranslation.FormatText((string)translation.Data, text.text, this, gameObject);
 			}
+
 			// Use fallback?
 			else
 			{

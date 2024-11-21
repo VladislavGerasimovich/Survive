@@ -1,16 +1,19 @@
 using System;
 using UnityEngine;
 
-public class GrenadeCollisionHandler : MonoBehaviour
+namespace Game.Weapons
 {
-    public event Action<Vector3> TouchedGround;
-
-    private void OnTriggerEnter(Collider collision)
+    public class GrenadeCollisionHandler : MonoBehaviour
     {
-        if (collision.TryGetComponent(out Plane plane))
+        public event Action<Vector3> TouchedGround;
+
+        private void OnTriggerEnter(Collider collision)
         {
-            TouchedGround?.Invoke(transform.position);
-            gameObject.SetActive(false);
+            if (collision.TryGetComponent(out Plane plane))
+            {
+                TouchedGround?.Invoke(transform.position);
+                gameObject.SetActive(false);
+            }
         }
     }
 }

@@ -1,88 +1,91 @@
-using Agava.YandexGames;
 using System.Collections.Generic;
+using Agava.YandexGames;
 using UnityEngine;
 
-public class YandexLeaderboard : MonoBehaviour
+namespace YandexElements
 {
-    [SerializeField] private LeaderboardView _leaderboardView;
-    [SerializeField] private string _englishText;
-    [SerializeField] private string _turkishText;
-    [SerializeField] private string _russianText;
-
-    private const string LeaderboardName = "Leaderboard";
-    private const string English = "en";
-    private const string Turkish = "tr";
-    private const string Russian = "ru";
-
-    private readonly List<LeaderboardPlayer> _leaderboardPlayers = new();
-
-    private string AnonymousName;
-
-    private void Start()
+    public class YandexLeaderboard : MonoBehaviour
     {
-        string languageCode = YandexGamesSdk.Environment.i18n.lang;
+        private const string LeaderboardName = "Leaderboard";
+        private const string English = "en";
+        private const string Turkish = "tr";
+        private const string Russian = "ru";
 
-        ChangeLanguage(languageCode);
-    }
+        [SerializeField] private LeaderboardView _leaderboardView;
+        [SerializeField] private string _englishText;
+        [SerializeField] private string _turkishText;
+        [SerializeField] private string _russianText;
 
-    public void ChangeLanguage(string languageCode)
-    {
-        switch (languageCode)
+        private readonly List<LeaderboardPlayer> _leaderboardPlayers = new();
+
+        private string AnonymousName;
+
+        private void Start()
         {
-            case English:
-                AnonymousName = _englishText;
-                break;
-            case Turkish:
-                AnonymousName = _turkishText;
-                break;
-            case Russian:
-                AnonymousName = _russianText;
-                break;
-        }
-    }
+            string languageCode = YandexGamesSdk.Environment.i18n.lang;
 
-    public void SetPlayerScore(int score)
-    {
-        if (PlayerAccount.IsAuthorized == false)
-        {
-            return;
+            ChangeLanguage(languageCode);
         }
 
-        Leaderboard.GetPlayerEntry(LeaderboardName, (result) =>
+        public void ChangeLanguage(string languageCode)
         {
-            if (result == null || result.score < score)
+            switch (languageCode)
             {
-                Leaderboard.SetScore(LeaderboardName, score);
+                case English:
+                    AnonymousName = _englishText;
+                    break;
+                case Turkish:
+                    AnonymousName = _turkishText;
+                    break;
+                case Russian:
+                    AnonymousName = _russianText;
+                    break;
             }
-        });
-    }
-
-    public void Fill()
-    {
-        if (PlayerAccount.IsAuthorized == false)
-        {
-            return;
         }
 
-        _leaderboardPlayers.Clear();
-
-        Leaderboard.GetEntries(LeaderboardName, (result) =>
+        public void SetPlayerScore(int score)
         {
-            foreach (var entry in result.entries)
+            if (PlayerAccount.IsAuthorized == false)
             {
-                int rank = entry.rank;
-                int score = entry.score;
-                string name = entry.player.publicName;
+                return;
+            }
 
-                if(string.IsNullOrEmpty(name))
+            Leaderboard.GetPlayerEntry(LeaderboardName, (result) =>
+            {
+                if (result == null || result.score < score)
                 {
-                    name = AnonymousName;
+                    Leaderboard.SetScore(LeaderboardName, score);
+                }
+            });
+        }
+
+        public void Fill()
+        {
+            if (PlayerAccount.IsAuthorized == false)
+            {
+                return;
+            }
+
+            _leaderboardPlayers.Clear();
+
+            Leaderboard.GetEntries(LeaderboardName, (result) =>
+            {
+                foreach (var entry in result.entries)
+                {
+                    int rank = entry.rank;
+                    int score = entry.score;
+                    string name = entry.player.publicName;
+
+                    if (string.IsNullOrEmpty(name))
+                    {
+                        name = AnonymousName;
+                    }
+
+                    _leaderboardPlayers.Add(new LeaderboardPlayer(rank, name, score));
                 }
 
-                _leaderboardPlayers.Add(new LeaderboardPlayer(rank, name, score));
-            }
-
-            _leaderboardView.Construct(_leaderboardPlayers);
-        });
+                _leaderboardView.Construct(_leaderboardPlayers);
+            });
+        }
     }
 }

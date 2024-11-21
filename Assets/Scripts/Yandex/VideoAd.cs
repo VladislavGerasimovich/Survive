@@ -1,76 +1,80 @@
 using UnityEngine;
 using UnityEngine.Events;
+using Game;
 
-[RequireComponent(typeof(AudioSource))]
-public class VideoAd : MonoBehaviour
+namespace YandexElements
 {
-    [SerializeField] private AudioSource _shotSound;
-    [SerializeField] private GameTime _gameTime;
-
-    private AudioSource _mainMusic;
-
-    public event UnityAction OnOpenAd;
-    public event UnityAction OnRewardReceived;
-    public event UnityAction OnCloseAd;
-
-    public bool IsRewardReseived { get; private set; }
-    public bool IsOpen { get; private set; }
-
-    private void Awake()
+    [RequireComponent(typeof(AudioSource))]
+    public class VideoAd : MonoBehaviour
     {
-        _mainMusic = GetComponent<AudioSource>();
-    }
+        [SerializeField] private AudioSource _shotSound;
+        [SerializeField] private GameTime _gameTime;
 
-    public void Show() =>
-        Agava.YandexGames.VideoAd.Show(OnOpenCallback, OnRewardCallback, OnCloseCallback);
+        private AudioSource _mainMusic;
 
-    public void OnOpenCallback()
-    {
-        IsRewardReseived = false;
-        AudioListener.volume = 0;
+        public event UnityAction OnOpenAd;
+        public event UnityAction OnRewardReceived;
+        public event UnityAction OnCloseAd;
 
-        if (_gameTime != null)
+        public bool IsRewardReseived { get; private set; }
+        public bool IsOpen { get; private set; }
+
+        private void Awake()
         {
-            _gameTime.Stop();
+            _mainMusic = GetComponent<AudioSource>();
         }
 
-        IsOpen = true;
-        _mainMusic.Pause();
+        public void Show() =>
+            Agava.YandexGames.VideoAd.Show(OnOpenCallback, OnRewardCallback, OnCloseCallback);
 
-        if(_shotSound != null)
+        public void OnOpenCallback()
         {
-            _shotSound.Stop();
+            IsRewardReseived = false;
+            AudioListener.volume = 0;
+
+            if (_gameTime != null)
+            {
+                _gameTime.Stop();
+            }
+
+            IsOpen = true;
+            _mainMusic.Pause();
+
+            if (_shotSound != null)
+            {
+                _shotSound.Stop();
+            }
+
+            OnOpenAd.Invoke();
         }
 
-        OnOpenAd.Invoke();
-    }
-
-    public void OnRewardCallback()
-    {
-        OnRewardReceived.Invoke();
-        IsRewardReseived = true;
-    }
-
-    public void OnCloseCallback()
-    {
-        IsOpen = false;
-        OnCloseAd.Invoke();
-
-        if (_gameTime != null)
+        public void OnRewardCallback()
         {
-            _gameTime.Run();
+            OnRewardReceived.Invoke();
+            IsRewardReseived = true;
         }
 
-        AudioListener.volume = 1;
-
-        if(_mainMusic.enabled == true)
+        public void OnCloseCallback()
         {
-            _mainMusic.Play();
-        }
+            IsOpen = false;
+            OnCloseAd.Invoke();
 
-        if(_shotSound.time != 0 && _shotSound.enabled == true && _shotSound != null)
-        {
-            _shotSound.Play();
+            if (_gameTime != null)
+            {
+                _gameTime.Run();
+            }
+
+            AudioListener.volume = 1;
+
+            if (_mainMusic.enabled == true)
+            {
+                _mainMusic.Play();
+            }
+
+            if (_shotSound.time != 0 && _shotSound.enabled == true && _shotSound != null)
+            {
+                _shotSound.Play();
+            }
         }
     }
 }

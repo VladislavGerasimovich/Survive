@@ -4,76 +4,79 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
-[RequireComponent(typeof(Image))]
-public class PressButton : MonoBehaviour
+namespace Game.Buttons
 {
-    [SerializeField] private Image _adImage;
-    [SerializeField] private bool _interactable;
-
-    private Button _button;
-    private Image _image;
-
-    public bool Interactable { get; private set; }
-
-    public event Action Click;
-
-    private void Awake()
+    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(Image))]
+    public class PressButton : MonoBehaviour
     {
-        _button = GetComponent<Button>();
-        _image = GetComponent<Image>();
-        Interactable = _interactable;
-    }
+        [SerializeField] private Image _adImage;
+        [SerializeField] private bool _interactable;
 
-    private void OnEnable()
-    {
-        _button.onClick.AddListener(OnClick);
-    }
+        private Button _button;
+        private Image _image;
 
-    public void Disable()
-    {
-        transform.gameObject.SetActive(false);
-    }
+        public event Action Click;
 
-    public void Enable()
-    {
-        transform.gameObject.SetActive(true);
-    }
+        public bool Interactable { get; private set; }
 
-    public void StatusInteractableOn()
-    {
-        Interactable = true;
-    }
-
-    public void StatusInteractableOff()
-    {
-        Interactable = false;
-    }
-
-    public void InteractableOn()
-    {
-        _button.interactable = true;
-        _button.image.color = new Color(_button.image.color.r, _button.image.color.g, _button.image.color.b, 1);
-
-        if (_adImage != null)
+        private void Awake()
         {
-            _adImage.color = new Color(_adImage.color.r, _adImage.color.g, _adImage.color.b, 1);
+            _button = GetComponent<Button>();
+            _image = GetComponent<Image>();
+            Interactable = _interactable;
         }
-    }
 
-    public void InteractableOff()
-    {
-        _button.interactable = false;
-        _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, 0.3f);
-
-        if (_adImage != null)
+        private void OnEnable()
         {
-            _adImage.color = new Color(_adImage.color.r, _adImage.color.g, _adImage.color.b, 0.3f);
+            _button.onClick.AddListener(OnClick);
         }
-    }
 
-    private void OnClick()
-    {
-        Click?.Invoke();
+        public void Disable()
+        {
+            transform.gameObject.SetActive(false);
+        }
+
+        public void Enable()
+        {
+            transform.gameObject.SetActive(true);
+        }
+
+        public void StatusInteractableOn()
+        {
+            Interactable = true;
+        }
+
+        public void StatusInteractableOff()
+        {
+            Interactable = false;
+        }
+
+        public void InteractableOn()
+        {
+            _button.interactable = true;
+            ChangeColor(1);
+        }
+
+        public void InteractableOff()
+        {
+            _button.interactable = false;
+            ChangeColor(0.3f);
+        }
+
+        private void OnClick()
+        {
+            Click?.Invoke();
+        }
+
+        private void ChangeColor(float alphaChannelValue)
+        {
+            _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, alphaChannelValue);
+
+            if (_adImage != null)
+            {
+                _adImage.color = new Color(_adImage.color.r, _adImage.color.g, _adImage.color.b, alphaChannelValue);
+            }
+        }
     }
 }

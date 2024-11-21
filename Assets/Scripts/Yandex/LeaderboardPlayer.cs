@@ -1,15 +1,18 @@
 using UnityEngine;
 
-public class LeaderboardPlayer : MonoBehaviour
+namespace YandexElements
 {
-    public LeaderboardPlayer(int rank, string name, int score)
+    public class LeaderboardPlayer : MonoBehaviour
     {
-        Rank = rank;
-        Name = name;
-        Score = score;
-    }
+        public LeaderboardPlayer(int rank, string name, int score)
+        {
+            Rank = rank;
+            Name = name;
+            Score = score;
+        }
 
-    public int Rank { get; private set;}
-    public string Name { get; private set;}
-    public int Score { get; private set;}
+        public int Rank { get; private set; }
+        public string Name { get; private set; }
+        public int Score { get; private set; }
+    }
 }

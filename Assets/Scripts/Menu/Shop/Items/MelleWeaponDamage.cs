@@ -1,33 +1,24 @@
 using UnityEngine;
+using Storage;
 
-public class MelleWeaponDamage : Item
+namespace Menu.Shop.Items
 {
-    [SerializeField] private PlayerDataManager _playerDataManager;
-
-    private const string MELLE_WEAPON_DAMAGE = "MELLE_WEAPON_DAMAGE";
-
-    private void OnEnable()
+    public class MelleWeaponDamage : Item
     {
-        Button.onClick.AddListener(OnClick);
-        _playerDataManager.DataReceived += SetIndex;
-    }
+        private const string MELLE_WEAPON_DAMAGE = "MELLE_WEAPON_DAMAGE";
 
-    private void OnDisable()
-    {
-        Button.onClick.RemoveListener(OnClick);
-        _playerDataManager.DataReceived -= SetIndex;
-    }
+        public override void SetStatus()
+        {
+            base.SetStatus();
 
-    public override void SetStatus()
-    {
-        base.SetStatus();
+            _playerDataManager.Set(MELLE_WEAPON_DAMAGE, IndexOfCost);
+        }
 
-        _playerDataManager.Set(MELLE_WEAPON_DAMAGE, IndexOfCost);
-    }
+        protected override void SetIndex(PlayerData playerData)
+        {
+            IndexOfCost = playerData.MelleWeaponDamageIndex;
 
-    private void SetIndex(PlayerData playerData)
-    {
-        IndexOfCost = playerData.MelleWeaponDamageIndex;
-        SetCost();
+            base.SetIndex(playerData);
+        }
     }
 }

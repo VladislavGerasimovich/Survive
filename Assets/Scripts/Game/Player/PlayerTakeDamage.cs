@@ -1,25 +1,28 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
-public class PlayerTakeDamage : MonoBehaviour
+namespace Game.Player
 {
-    private AudioSource _audioSource;
-
-    public event Action<int> TakeDamage;
-
-    private void Awake()
+    [RequireComponent(typeof(AudioSource))]
+    public class PlayerTakeDamage : MonoBehaviour
     {
-        _audioSource = GetComponent<AudioSource>();
-    }
+        private AudioSource _audioSource;
 
-    public void Take(int damage)
-    {
-        TakeDamage.Invoke(damage);
+        public event Action<int> TakeDamage;
 
-        if(_audioSource.enabled == true)
+        private void Awake()
         {
-            _audioSource.Play();
+            _audioSource = GetComponent<AudioSource>();
+        }
+
+        public void Take(int damage)
+        {
+            TakeDamage.Invoke(damage);
+
+            if (_audioSource.enabled == true)
+            {
+                _audioSource.Play();
+            }
         }
     }
 }

@@ -1,3 +1,7 @@
 using UnityEngine;
 
-public class ExpendableItem : MonoBehaviour{}
+namespace Game.Buttons
+{
+    public class ExpendableItem : MonoBehaviour
+    { }
+}

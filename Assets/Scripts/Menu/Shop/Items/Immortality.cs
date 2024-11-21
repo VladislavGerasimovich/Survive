@@ -1,39 +1,23 @@
-using UnityEngine;
+using Storage;
 
-public class Immortality : ConsumableItem
+namespace Menu.Shop.Items
 {
-    [SerializeField] private PlayerDataManager _playerDataManager;
-
-    private const string IMMORTALITY = "IMMORTALITY";
-
-    private void OnEnable()
+    public class Immortality : ConsumableItem
     {
-        Button.onClick.AddListener(OnClick);
-        _playerDataManager.DataReceived += SetIndex;
-    }
+        private const string IMMORTALITY = "IMMORTALITY";
 
-    private void OnDisable()
-    {
-        Button.onClick.RemoveListener(OnClick);
-        _playerDataManager.DataReceived -= SetIndex;
-    }
-
-    public override void SetStatus()
-    {
-        base.SetStatus();
-
-        _playerDataManager.Set(IMMORTALITY, CurrentCount);
-    }
-
-    private void SetIndex(PlayerData playerData)
-    {
-        CurrentCount = playerData.ImmortalityCount;
-
-        if (CurrentCount >= MaxCount)
+        public override void SetStatus()
         {
-            Button.interactable = false;
+            base.SetStatus();
+
+            _playerDataManager.Set(IMMORTALITY, CurrentCount);
         }
 
-        SetTextOfCount();
+        protected override void SetIndex(PlayerData playerData)
+        {
+            CurrentCount = playerData.ImmortalityCount;
+
+            base.SetIndex(playerData);
+        }
     }
 }

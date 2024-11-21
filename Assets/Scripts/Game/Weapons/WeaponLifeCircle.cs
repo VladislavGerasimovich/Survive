@@ -2,78 +2,81 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
-public class WeaponLifeCircle : MonoBehaviour
+namespace Game.Weapons
 {
-    [SerializeField] private Weapon[] _weapons;
-    [SerializeField] private int _duration;
-    [SerializeField] private int _durationValue;
-
-    private WaitForSeconds _durationOfAttack;
-    private WaitForSeconds _durationOfReloading;
-    private Vector3 _nextValue;
-
-    private void Awake()
+    public class WeaponLifeCircle : MonoBehaviour
     {
-        _durationOfAttack = new WaitForSeconds(10);
-        _durationOfReloading = new WaitForSeconds(_durationValue);
-        _nextValue = new Vector3(0, 360, 0);
-    }
+        [SerializeField] private Weapon[] _weapons;
+        [SerializeField] private int _duration;
+        [SerializeField] private int _durationValue;
 
-    private void Start()
-    {
-        transform.DORotate(_nextValue, _duration, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart).SetLink(gameObject);
-    }
+        private WaitForSeconds _durationOfAttack;
+        private WaitForSeconds _reloadingDuration;
+        private Vector3 _nextValue;
 
-    private void OnDisable()
-    {
-        DOTween.Kill(transform, true);
-    }
-
-    public void Run()
-    {
-        StartCoroutine(MoveWeapon());
-    }
-
-    private IEnumerator MoveWeapon()
-    {
-        while (enabled)
+        private void Awake()
         {
-            yield return null;
+            _durationOfAttack = new WaitForSeconds(10);
+            _reloadingDuration = new WaitForSeconds(_durationValue);
+            _nextValue = new Vector3(0, 360, 0);
+        }
 
-            ShowAllWeapon();
+        private void Start()
+        {
+            transform.DORotate(_nextValue, _duration, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart).SetLink(gameObject);
+        }
 
-            yield return _durationOfAttack;
+        private void OnDisable()
+        {
+            DOTween.Kill(transform, true);
+        }
 
-            if(_durationValue > 0 )
+        public void Run()
+        {
+            StartCoroutine(MoveWeapon());
+        }
+
+        private IEnumerator MoveWeapon()
+        {
+            while (enabled)
             {
-                HideAllWeapon();
+                yield return null;
+
+                ShowAllWeapon();
+
+                yield return _durationOfAttack;
+
+                if (_durationValue > 0)
+                {
+                    HideAllWeapon();
+                }
+
+                yield return _reloadingDuration;
             }
 
-            yield return _durationOfReloading;
+            HideAllWeapon();
         }
 
-        HideAllWeapon();
-    }
-
-    protected virtual void ShowAllWeapon()
-    {
-        foreach (Weapon weapon in _weapons)
+        protected virtual void ShowAllWeapon()
         {
-            weapon.Show();
+            foreach (Weapon weapon in _weapons)
+            {
+                weapon.Show();
+            }
         }
-    }
 
-    protected virtual void HideAllWeapon()
-    {
-        foreach (Weapon weapon in _weapons)
+        protected virtual void HideAllWeapon()
         {
-            weapon.Hide();
+            foreach (Weapon weapon in _weapons)
+            {
+                weapon.Hide();
+            }
         }
-    }
 
-    public void ChangeDurationOfReloading(int value)
-    {
-        _durationOfReloading = new WaitForSeconds(value);
-        _durationValue = value;
+        public void ChangeDurationOfReloading(int value)
+        {
+            _reloadingDuration = new WaitForSeconds(value);
+            _durationValue = value;
+        }
     }
 }

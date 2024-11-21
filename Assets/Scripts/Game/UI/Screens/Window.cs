@@ -1,24 +1,27 @@
 using System;
 using UnityEngine;
 
-public abstract class Window : MonoBehaviour
+namespace Game.UI.Screens
 {
-    [SerializeField] protected CanvasGroup CanvasGroup;
-
-    public bool IsOpen { get; private set; }
-
-    public event Action IsPanelOpen;
-    public event Action IsPanelClose;
-
-    public virtual void Open()
+    public abstract class Window : MonoBehaviour
     {
-        IsOpen = true;
-        IsPanelOpen.Invoke();
-    }
+        [SerializeField] protected CanvasGroup CanvasGroup;
 
-    public virtual void Close()
-    {
-        IsOpen = false;
-        IsPanelClose.Invoke();
+        public event Action IsPanelOpen;
+        public event Action IsPanelClose;
+
+        public bool IsOpen { get; private set; }
+
+        public virtual void Open()
+        {
+            IsOpen = true;
+            IsPanelOpen.Invoke();
+        }
+
+        public virtual void Close()
+        {
+            IsOpen = false;
+            IsPanelClose.Invoke();
+        }
     }
 }
