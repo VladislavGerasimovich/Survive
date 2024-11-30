@@ -7,7 +7,6 @@ namespace Game.Collision
     {
         public virtual event Action<int> Collided;
 
-        public virtual void OnTriggerEnter(Collider collision)
-        { }
+        public virtual void OnTriggerEnter(Collider collision) { }
     }
 }

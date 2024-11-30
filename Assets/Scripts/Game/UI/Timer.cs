@@ -1,7 +1,7 @@
 using System.Collections;
+using Game.UI.Screens;
 using TMPro;
 using UnityEngine;
-using Game.UI.Screens;
 
 namespace Game.UI
 {

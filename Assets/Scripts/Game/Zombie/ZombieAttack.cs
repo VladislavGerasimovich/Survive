@@ -1,7 +1,7 @@
 using System.Collections;
-using UnityEngine;
-using Game.Player;
 using CommonVariables;
+using Game.Player;
+using UnityEngine;
 
 namespace Game.Zombie
 {
@@ -14,7 +14,7 @@ namespace Game.Zombie
 
         private void Awake()
         {
-            _variables = GetComponent<Variables>();
+            _variables = new Variables();
         }
 
         public void StartAttackCoroutine(PlayerTakeDamage playerTakeDamage)

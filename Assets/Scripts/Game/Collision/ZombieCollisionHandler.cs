@@ -1,8 +1,8 @@
 using System;
-using UnityEngine;
 using Game.Player;
 using Game.Weapons.Damage;
 using Game.Zombie;
+using UnityEngine;
 
 namespace Game.Collision
 {

@@ -51,7 +51,10 @@ namespace Game.Player.Movement
 
             float scaledMoveSpeed = _moveSpeed * Time.deltaTime;
             Vector3 offset = new Vector3(_playerInput.MovementAmount.x, 0f, _playerInput.MovementAmount.y);
-            Vector3 targetDirection = Vector3.RotateTowards(_characterController.transform.forward, offset, _rotationSpeed * Time.deltaTime, 0.0f);
+            Vector3 targetDirection = Vector3.RotateTowards(
+                _characterController.transform.forward,
+                offset,
+                _rotationSpeed * Time.deltaTime, 0.0f);
             _characterController.transform.rotation = Quaternion.LookRotation(targetDirection);
             _characterController.Move(offset * scaledMoveSpeed);
         }

@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using CommonVariables;
+using UnityEngine;
 
 namespace Game.Player
 {
-    [RequireComponent(typeof(Variables))]
     public class PlayerBlink : MonoBehaviour
     {
         [SerializeField] private Material _newMaterial;
@@ -19,7 +18,7 @@ namespace Game.Player
 
         private void Awake()
         {
-            _variables = GetComponent<Variables>();
+            _variables = new Variables();
             _currentMaterials = new Material[_meshRenderers.Count];
             _currentSkinnedMaterial = _skinnedMeshRenderer.material;
 

@@ -19,6 +19,8 @@ namespace UI
             OrientationChanged += (s, e) => IsVertical = e;
         }
 
+        private static event EventHandler<bool> OrientationChanged;
+
         private void Awake()
         {
             _rect = GetComponent<RectTransform>();
@@ -52,8 +54,7 @@ namespace UI
             OrientationChanged -= OnOrientationChanged;
         }
 
-        // Static
-        private static event EventHandler<bool> OrientationChanged;
-        public static void FireOrientationChanged(object s, bool isVertical) => OrientationChanged?.Invoke(s, isVertical);
+        public static void FireOrientationChanged(object s, bool isVertical)
+            => OrientationChanged?.Invoke(s, isVertical);
     }
 }

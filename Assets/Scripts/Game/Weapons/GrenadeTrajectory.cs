@@ -1,6 +1,7 @@
 using System.Collections;
-using UnityEngine;
+using CommonVariables;
 using Game.ObjectPools;
+using UnityEngine;
 
 namespace Game.Weapons
 {
@@ -10,12 +11,23 @@ namespace Game.Weapons
         [SerializeField] private float _angle;
         [SerializeField] private GrenadesCreator _grenadesCreator;
 
+        private int _startValueOfDuration;
+        private int _delayBeforeThrowing;
+        private int _power;
+        private int _tangentMultiplier;
+        private int _piMultiplier;
         private float _gravity = Physics.gravity.y;
-        private int _durationOfReloading;
+        private Variables _variables;
 
         private void Awake()
         {
-            _durationOfReloading = 18;
+            _startValueOfDuration = 18;
+            _tangentMultiplier = 2;
+            _power = 2;
+            _piMultiplier = 180;
+            _delayBeforeThrowing = 1;
+            _variables = new Variables();
+            _variables.ChangeDurationOfReloading(_startValueOfDuration);
         }
 
         public void Throw()
@@ -25,18 +37,18 @@ namespace Game.Weapons
 
         public void ChangeDurationOfReloading(int value)
         {
-            _durationOfReloading = value;
+            _variables.ChangeDurationOfReloading(value);
         }
 
         private IEnumerator ThrowCoroutine()
         {
             while (enabled)
             {
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(_delayBeforeThrowing);
 
                 Shot();
 
-                yield return new WaitForSeconds(_durationOfReloading);
+                yield return _variables.DurationOfReloading;
             }
         }
 
@@ -50,12 +62,15 @@ namespace Game.Weapons
             float x = directionXZ.magnitude;
             float y = direction.y;
 
-            float angleInRadians = _angle * Mathf.PI / 180;
+            float angleInRadians = _angle * Mathf.PI / _piMultiplier;
 
-            float v2 = (_gravity * x * x) / (2 * (y - Mathf.Tan(angleInRadians) * x) * Mathf.Pow(Mathf.Cos(angleInRadians), 2));
+            float v2 =
+                (_gravity * x * x)
+                / (_tangentMultiplier * (y - Mathf.Tan(angleInRadians) * x)
+                * Mathf.Pow(Mathf.Cos(angleInRadians), _power));
             float v = Mathf.Sqrt(Mathf.Abs(v2));
 
-            _grenadesCreator.TryGetObject(out GameObject grenade);
+            _grenadesCreator.TryGet(out GameObject grenade);
 
             if (grenade != null)
             {

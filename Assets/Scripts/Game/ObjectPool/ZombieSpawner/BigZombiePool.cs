@@ -1,5 +1,4 @@
 namespace Game.ObjectPools.ZombiePools
 {
-    public class BigZombiePool : ZombiePool
-    { }
+    public class BigZombiePool : ZombiePool { }
 }

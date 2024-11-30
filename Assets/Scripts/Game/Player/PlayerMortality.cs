@@ -1,12 +1,11 @@
 using System;
 using System.Collections;
-using UnityEngine;
-using UI;
 using CommonVariables;
+using UI;
+using UnityEngine;
 
 namespace Game.Player
 {
-    [RequireComponent(typeof(Variables))]
     [RequireComponent(typeof(PlayerBlink))]
     public class PlayerMortality : MonoBehaviour
     {
@@ -20,7 +19,7 @@ namespace Game.Player
 
         private void Awake()
         {
-            _variables = GetComponent<Variables>();
+            _variables = new Variables();
             _playerBlink = GetComponent<PlayerBlink>();
         }
 

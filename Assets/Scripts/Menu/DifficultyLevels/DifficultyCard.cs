@@ -1,7 +1,7 @@
 using System;
+using Game.Buttons;
 using TMPro;
 using UnityEngine;
-using Game.Buttons;
 
 namespace Menu.DifficultyLevels
 {

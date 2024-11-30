@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using Agava.WebUtility;
-using UnityEngine;
 using Game;
 using Game.Music;
 using Game.ObjectPools.ZombiePools;
 using Game.UI.Screens;
 using Menu.Shop;
 using UI;
+using UnityEngine;
 
 namespace YandexElements
 {
@@ -111,7 +111,10 @@ namespace YandexElements
                 _shotSound.Stop();
                 _mainMusic.Pause();
 
-                if (value == false && _videoAd.IsOpen == false && _videoAdForChoosingTwoCards.IsOpen == false && _videoAdForShuffleCards.IsOpen == false)
+                if (value == false
+                    && _videoAd.IsOpen == false
+                    && _videoAdForChoosingTwoCards.IsOpen == false
+                    && _videoAdForShuffleCards.IsOpen == false)
                 {
                     if (_allGameMusic.CanPlay == true)
                     {

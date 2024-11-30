@@ -7,6 +7,7 @@ namespace Menu.Shop.Items
 {
     public class Money : Item
     {
+        private const string MONEY = "MONEY";
         [SerializeField] private YandexElements.VideoAd _videoAd;
 
         private bool _isRewardReceived;
@@ -15,6 +16,7 @@ namespace Menu.Shop.Items
 
         private void Awake()
         {
+            Text = MONEY;
             Background = GetComponent<Image>();
             Button = GetComponent<Button>();
             Class = Type;
@@ -26,9 +28,6 @@ namespace Menu.Shop.Items
         {
             Button.onClick.AddListener(OnClick);
         }
-
-        private void Start()
-        { }
 
         private void OnDisable()
         {

@@ -1,5 +1,5 @@
-using UnityEngine.UI;
 using Storage;
+using UnityEngine.UI;
 
 namespace Game.Buttons
 {
@@ -9,15 +9,8 @@ namespace Game.Buttons
 
         private void Awake()
         {
-            _image = GetComponent<Image>();
-            _text = IMMORTALITY;
-        }
-
-        protected override void SetCount(PlayerData playerData)
-        {
-            _count = playerData.ImmortalityCount;
-
-            base.SetCount(playerData);
+            Image = GetComponent<Image>();
+            Text = IMMORTALITY;
         }
     }
 }

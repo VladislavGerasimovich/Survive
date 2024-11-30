@@ -1,8 +1,8 @@
-using UnityEngine;
-using UnityEngine.UI;
 using Game.Buttons;
 using Game.Player;
 using TypedScenes;
+using UnityEngine;
+using UnityEngine.UI;
 using UI;
 
 namespace Game.UI.Screens

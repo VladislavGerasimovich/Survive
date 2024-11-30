@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace CommonVariables
@@ -10,6 +8,12 @@ namespace CommonVariables
         [SerializeField] private bool _canUse;
 
         private WaitForSeconds _delay;
+        private WaitForSeconds _durationOfReloading;
+
+        public bool IsPlaying => _isPlaying;
+        public bool CanUse => _canUse;
+        public WaitForSeconds Delay => _delay;
+        public WaitForSeconds DurationOfReloading => _durationOfReloading;
 
         public void ChangeDelay(float value)
         {
@@ -26,8 +30,9 @@ namespace CommonVariables
             _canUse = value;
         }
 
-        public WaitForSeconds Delay => _delay;
-        public bool IsPlaying => _isPlaying;
-        public bool CanUse => _canUse;
+        public void ChangeDurationOfReloading(int value)
+        {
+            _durationOfReloading = new WaitForSeconds(value);
+        }
     }
 }

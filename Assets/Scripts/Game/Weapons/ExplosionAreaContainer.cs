@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using UnityEngine;
 using Game.Weapons.Damage;
+using UnityEngine;
 
 namespace Game.Weapons
 {

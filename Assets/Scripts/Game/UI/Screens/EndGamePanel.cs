@@ -1,10 +1,10 @@
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
 using Game.Buttons;
 using Game.Player;
+using TMPro;
 using TypedScenes;
 using UI;
+using UnityEngine;
+using UnityEngine.UI;
 using YandexElements;
 
 namespace Game.UI.Screens

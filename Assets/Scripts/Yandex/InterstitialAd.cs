@@ -17,7 +17,11 @@ namespace YandexElements
             _mainMusic = GetComponent<AudioSource>();
         }
 
-        public void Show() => Agava.YandexGames.InterstitialAd.Show(OnOpenCallback, OnCloseCallback, OnErrorCallback, OnOfflineCallback);
+        public void Show() => Agava.YandexGames.InterstitialAd.Show(
+            OnOpenCallback,
+            OnCloseCallback,
+            OnErrorCallback,
+            OnOfflineCallback);
 
         private void OnOpenCallback()
         {

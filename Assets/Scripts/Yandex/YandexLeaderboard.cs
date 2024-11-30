@@ -16,9 +16,9 @@ namespace YandexElements
         [SerializeField] private string _turkishText;
         [SerializeField] private string _russianText;
 
-        private readonly List<LeaderboardPlayer> _leaderboardPlayers = new();
-
         private string AnonymousName;
+
+        private readonly List<LeaderboardPlayer> _leaderboardPlayers = new List<LeaderboardPlayer>();
 
         private void Start()
         {

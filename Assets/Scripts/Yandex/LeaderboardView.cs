@@ -8,7 +8,7 @@ namespace YandexElements
         [SerializeField] private Transform _container;
         [SerializeField] private LeaderboardElement _leaderboardElementPrefab;
 
-        private List<LeaderboardElement> _spawnedElements = new();
+        private List<LeaderboardElement> _spawnedElements = new List<LeaderboardElement>();
 
         public void Construct(List<LeaderboardPlayer> leaderboardPlayers)
         {

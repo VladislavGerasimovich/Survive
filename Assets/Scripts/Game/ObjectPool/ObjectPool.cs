@@ -21,7 +21,7 @@ namespace Game.ObjectPools
             }
         }
 
-        public virtual bool TryGetObject(out GameObject result)
+        public virtual bool TryGet(out GameObject result)
         {
             result = Pool.FirstOrDefault(p => p.activeSelf == false);
             return result != null;

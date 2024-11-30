@@ -1,21 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using Game.Zombie;
 using CommonVariables;
+using Game.Zombie;
+using UnityEngine;
 
 namespace Game.ObjectPools.ZombiePools
 {
-    [RequireComponent(typeof(Variables))]
     public class ZombieSpawner : MonoBehaviour
     {
         private const string LEVEL = "DIFFICULTY_LEVEL";
+        private const int ZEROZOMBIETYPE = 0;
+        private const int FIRSTZOMBIETYPE = 1;
+        private const int SECONDZOMBIETYPE = 2;
+        private const int THIRDZOMBIETYPE = 3;
+        private const int FIRSTDELAYVALUE = 3;
+        private const int SECONDDELAYVALUE = 2;
 
         [SerializeField] private List<GameObject> _startPositions;
         [SerializeField] private List<GameObject> _targetPositions;
         [SerializeField] private List<GameObject> _firstZombiePositions;
         [SerializeField] private ZombiesPools _zombiesPools;
 
+        private int _startPositionsCountMultiplier;
+        private int _minSelectableStartPosition;
+        private int _randomMultiplier;
         private int _firstZombieIndex;
         private List<int> _typesOfZombies;
         private int _currentDifficultyLevel;
@@ -32,6 +40,9 @@ namespace Game.ObjectPools.ZombiePools
 
         private void Awake()
         {
+            _startPositionsCountMultiplier = 1;
+            _minSelectableStartPosition = 1;
+            _randomMultiplier = 1;
             _currentDifficultyLevel = PlayerPrefs.GetInt(LEVEL, 0);
             _firstZombieIndex = 1;
             _firstTimeToIncreaseDifficulty = 30;
@@ -40,12 +51,18 @@ namespace Game.ObjectPools.ZombiePools
             _fourthTimeToIncreaseDifficulty = 120;
             _fifthTimeToIncreaseDifficulty = 150;
             _typesOfZombiesDependingOfDifficultyLevel = new List<List<List<int>>>();
-            _firstDifficultyLevel = new List<List<int>>() { new List<int> { 1, 1, 1, 2 }, new List<int> { 1, 1, 2, 2 }, new List<int> { 1, 2, 2, 2 } };
+            _firstDifficultyLevel = new List<List<int>>() {
+                new List<int> { 1, 1, 1, 2 },
+                new List<int> { 1, 1, 2, 2 },
+                new List<int> { 1, 2, 2, 2 } };
             _typesOfZombiesDependingOfDifficultyLevel.Add(_firstDifficultyLevel);
-            _secondDifficultyLevel = new List<List<int>>() { new List<int> { 1, 2, 2, 3 }, new List<int> { 1, 2, 3, 3 }, new List<int> { 2, 2, 3, 3 } };
+            _secondDifficultyLevel = new List<List<int>>() {
+                new List<int> { 1, 2, 2, 3 },
+                new List<int> { 1, 2, 3, 3 },
+                new List<int> { 2, 2, 3, 3 } };
             _typesOfZombiesDependingOfDifficultyLevel.Add(_secondDifficultyLevel);
             _typesOfZombies = _typesOfZombiesDependingOfDifficultyLevel[_currentDifficultyLevel][0];
-            _variables = GetComponent<Variables>();
+            _variables = new Variables();
             _variables.ChangeDelay(5);
         }
 
@@ -53,7 +70,10 @@ namespace Game.ObjectPools.ZombiePools
         {
             for (int i = 0; i < _firstZombiePositions.Count; i++)
             {
-                CreateZombie(_firstZombieIndex, _firstZombiePositions[i].transform.position, _firstZombiePositions[i].transform.position);
+                CreateZombie(
+                    _firstZombieIndex,
+                    _firstZombiePositions[i].transform.position,
+                    _firstZombiePositions[i].transform.position);
             }
 
             StartCoroutine(Run());
@@ -70,9 +90,11 @@ namespace Game.ObjectPools.ZombiePools
             {
                 System.Random random = new System.Random();
 
-                for (int i = _startPositions.Count - 1; i >= 1; i--)
+                for (int i = _startPositions.Count - _startPositionsCountMultiplier;
+                    i >= _minSelectableStartPosition;
+                    i--)
                 {
-                    int j = random.Next(i + 1);
+                    int j = random.Next(i + _randomMultiplier);
                     GameObject tempStartPosition = _startPositions[j];
                     _startPositions[j] = _startPositions[i];
                     _startPositions[i] = tempStartPosition;
@@ -83,7 +105,9 @@ namespace Game.ObjectPools.ZombiePools
 
                 for (int i = 0; i < _startPositions.Count; i++)
                 {
-                    CreateZombie(_typesOfZombies[i], _startPositions[i].transform.position, _targetPositions[i].transform.position);
+                    CreateZombie(_typesOfZombies[i],
+                        _startPositions[i].transform.position,
+                        _targetPositions[i].transform.position);
                 }
 
                 SetValues();
@@ -94,21 +118,21 @@ namespace Game.ObjectPools.ZombiePools
 
         private void CreateZombie(int typeOfZombies, Vector3 position, Vector3 targetPosition)
         {
-            if (typeOfZombies == 1)
+            if (typeOfZombies == FIRSTZOMBIETYPE)
             {
                 _zombiesPools.TryGetSimpleZombie(out GameObject zombie);
                 zombie.GetComponent<ZombieMovement>().SetTargetPlace(targetPosition);
                 zombie.transform.position = position;
                 zombie.SetActive(true);
             }
-            else if (typeOfZombies == 2)
+            else if (typeOfZombies == SECONDZOMBIETYPE)
             {
                 _zombiesPools.TryGetFastZombie(out GameObject zombie);
                 zombie.GetComponent<ZombieMovement>().SetTargetPlace(targetPosition);
                 zombie.transform.position = position;
                 zombie.SetActive(true);
             }
-            else if (typeOfZombies == 3)
+            else if (typeOfZombies == THIRDZOMBIETYPE)
             {
                 _zombiesPools.TryGetBigZombie(out GameObject zombie);
                 zombie.GetComponent<ZombieMovement>().SetTargetPlace(targetPosition);
@@ -121,23 +145,23 @@ namespace Game.ObjectPools.ZombiePools
         {
             if (_pastTime < _firstTimeToIncreaseDifficulty)
             {
-                _typesOfZombies = _typesOfZombiesDependingOfDifficultyLevel[_currentDifficultyLevel][0];
+                _typesOfZombies = _typesOfZombiesDependingOfDifficultyLevel[_currentDifficultyLevel][ZEROZOMBIETYPE];
             }
             else if (_pastTime >= _firstTimeToIncreaseDifficulty && _pastTime < _secondTimeToIncreaseDifficulty)
             {
-                _typesOfZombies = _typesOfZombiesDependingOfDifficultyLevel[_currentDifficultyLevel][1];
-                _variables.ChangeDelay(3);
+                _typesOfZombies = _typesOfZombiesDependingOfDifficultyLevel[_currentDifficultyLevel][FIRSTZOMBIETYPE];
+                _variables.ChangeDelay(FIRSTDELAYVALUE);
             }
             else if (_pastTime >= _secondTimeToIncreaseDifficulty && _pastTime < _thirdTimeToIncreaseDifficulty)
             {
-                _typesOfZombies = _typesOfZombiesDependingOfDifficultyLevel[_currentDifficultyLevel][2];
+                _typesOfZombies = _typesOfZombiesDependingOfDifficultyLevel[_currentDifficultyLevel][SECONDZOMBIETYPE];
             }
             else if (_pastTime >= _thirdTimeToIncreaseDifficulty && _pastTime < _fourthTimeToIncreaseDifficulty)
             {
             }
             else if (_pastTime >= _fourthTimeToIncreaseDifficulty && _pastTime < _fifthTimeToIncreaseDifficulty)
             {
-                _variables.ChangeDelay(2);
+                _variables.ChangeDelay(SECONDDELAYVALUE);
             }
         }
     }

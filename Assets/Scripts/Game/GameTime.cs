@@ -1,7 +1,7 @@
-using UnityEngine;
 using Game.Player.Movement;
 using Game.UI.Screens;
 using Menu.Shop;
+using UnityEngine;
 
 namespace Game
 {

@@ -1,5 +1,5 @@
-using UnityEngine;
 using Game.UI;
+using UnityEngine;
 
 namespace Game.DeathOfAllCharacters
 {
@@ -8,8 +8,6 @@ namespace Game.DeathOfAllCharacters
         protected AnimatorData AnimatorData;
         protected Animator Animator;
 
-        public virtual void Died()
-        {
-        }
+        public virtual void Died() { }
     }
 }

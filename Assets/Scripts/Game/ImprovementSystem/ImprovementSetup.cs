@@ -1,13 +1,13 @@
 using System.Collections.Generic;
-using UnityEngine;
 using Agava.YandexGames;
-using Storage;
 using Game.Buttons;
 using Game.Health;
 using Game.UI.Screens;
 using Game.Weapons;
 using Game.Weapons.Damage;
 using Lean.Localization;
+using Storage;
+using UnityEngine;
 using YandexElements;
 
 namespace Game.Improvements
@@ -103,7 +103,13 @@ namespace Game.Improvements
             _allImprovements.Add(improvement);
         }
 
-        private void CreateCard(Sprite image, string text, int countOfLevels, string type, bool canUse, Transform mainContainer)
+        private void CreateCard(
+            Sprite image,
+            string text,
+            int countOfLevels,
+            string type,
+            bool canUse,
+            Transform mainContainer)
         {
             ImprovementCard card = Instantiate(_improvementCard, _container.transform).GetComponent<ImprovementCard>();
             card.Render(image, text, countOfLevels, type, canUse, mainContainer);
@@ -113,34 +119,132 @@ namespace Game.Improvements
         private void Create(PlayerData playerData)
         {
             int indexOfMelleWeaponDamage = playerData.MelleWeaponDamageIndex + 1;
-            CreateImprovement(_melleDamageValues, _melleWeaponDamage.Level, indexOfMelleWeaponDamage, _melleWeaponDamage.Type);
-            CreateCard(_melleWeaponDamage.Icon, _melleWeaponDamage.Text, indexOfMelleWeaponDamage, _melleWeaponDamage.Type, true, _mainContainer);
+            CreateImprovement(
+                _melleDamageValues,
+                _melleWeaponDamage.Level,
+                indexOfMelleWeaponDamage,
+                _melleWeaponDamage.Type);
+            CreateCard(
+                _melleWeaponDamage.Icon,
+                _melleWeaponDamage.Text,
+                indexOfMelleWeaponDamage,
+                _melleWeaponDamage.Type,
+                true,
+                _mainContainer);
 
             int indexOfRangeWeaponDamage = playerData.RangeWeaponDamageIndex + 1;
-            CreateImprovement(_rangeDamageValues, _rangeWeaponDamage.Level, indexOfRangeWeaponDamage, _rangeWeaponDamage.Type);
-            CreateCard(_rangeWeaponDamage.Icon, _rangeWeaponDamage.Text, indexOfRangeWeaponDamage, _rangeWeaponDamage.Type, true, _mainContainer);
+            CreateImprovement(
+                _rangeDamageValues,
+                _rangeWeaponDamage.Level,
+                indexOfRangeWeaponDamage,
+                _rangeWeaponDamage.Type);
+            CreateCard(
+                _rangeWeaponDamage.Icon,
+                _rangeWeaponDamage.Text,
+                indexOfRangeWeaponDamage,
+                _rangeWeaponDamage.Type,
+                true,
+                _mainContainer);
 
             int indexOfThrowingWeaponDamage = playerData.ThrowingWeaponDamageIndex + 1;
-            CreateImprovement(_throwingDamageValues, _throwingWeaponDamage.Level, indexOfThrowingWeaponDamage, _throwingWeaponDamage.Type);
-            CreateCard(_throwingWeaponDamage.Icon, _throwingWeaponDamage.Text, indexOfThrowingWeaponDamage, _throwingWeaponDamage.Type, true, _mainContainer);
+            CreateImprovement(
+                _throwingDamageValues,
+                _throwingWeaponDamage.Level,
+                indexOfThrowingWeaponDamage,
+                _throwingWeaponDamage.Type);
+            CreateCard(
+                _throwingWeaponDamage.Icon,
+                _throwingWeaponDamage.Text,
+                indexOfThrowingWeaponDamage,
+                _throwingWeaponDamage.Type,
+                true,
+                _mainContainer);
 
             int indexOfMelleWeaponReloading = playerData.MelleWeaponReloadingIndex + 1;
-            CreateImprovement(_MelleWeaponReloadingValues, _melleWeaponReloading.Level, indexOfMelleWeaponReloading, _melleWeaponReloading.Type);
-            CreateCard(_melleWeaponReloading.Icon, _melleWeaponReloading.Text, indexOfMelleWeaponReloading, _melleWeaponReloading.Type, true, _mainContainer);
+            CreateImprovement(
+                _MelleWeaponReloadingValues,
+                _melleWeaponReloading.Level,
+                indexOfMelleWeaponReloading,
+                _melleWeaponReloading.Type);
+            CreateCard(
+                _melleWeaponReloading.Icon,
+                _melleWeaponReloading.Text,
+                indexOfMelleWeaponReloading,
+                _melleWeaponReloading.Type,
+                true,
+                _mainContainer);
 
             int indexOfRangeWeaponReloading = playerData.RangeWeaponReloadingIndex + 1;
-            CreateImprovement(_RangeWeaponReloadingValues, _rangeWeaponReloading.Level, indexOfRangeWeaponReloading, _rangeWeaponReloading.Type);
-            CreateCard(_rangeWeaponReloading.Icon, _rangeWeaponReloading.Text, indexOfRangeWeaponReloading, _rangeWeaponReloading.Type, true, _mainContainer);
+            CreateImprovement(
+                _RangeWeaponReloadingValues,
+                _rangeWeaponReloading.Level,
+                indexOfRangeWeaponReloading,
+                _rangeWeaponReloading.Type);
+            CreateCard(
+                _rangeWeaponReloading.Icon,
+                _rangeWeaponReloading.Text,
+                indexOfRangeWeaponReloading,
+                _rangeWeaponReloading.Type,
+                true,
+                _mainContainer);
 
             int indexOfThrowingWeaponReloading = playerData.ThrowingWeaponReloadingIndex + 1;
-            CreateImprovement(_ThrowingWeaponReloadingValues, _throwingWeaponReloading.Level, indexOfThrowingWeaponReloading, _throwingWeaponReloading.Type);
-            CreateCard(_throwingWeaponReloading.Icon, _throwingWeaponReloading.Text, indexOfThrowingWeaponReloading, _throwingWeaponReloading.Type, true, _mainContainer);
+            CreateImprovement(
+                _ThrowingWeaponReloadingValues,
+                _throwingWeaponReloading.Level,
+                indexOfThrowingWeaponReloading,
+                _throwingWeaponReloading.Type);
+            CreateCard(
+                _throwingWeaponReloading.Icon,
+                _throwingWeaponReloading.Text,
+                indexOfThrowingWeaponReloading,
+                _throwingWeaponReloading.Type,
+                true,
+                _mainContainer);
 
-            CreateCard(_rangeWeaponImprovement.Icon, _rangeWeaponImprovement.Text, 1, _rangeWeaponImprovement.Type, true, _mainContainer);
-            CreateCard(_throwingWeaponImprovement.Icon, _throwingWeaponImprovement.Text, 1, _throwingWeaponImprovement.Type, true, _mainContainer);
-            CreateCard(_firstAidIcon, _firstAidCardInfo, 0, _firstAidType, false, _mainContainer);
+            CreateCard(
+                _rangeWeaponImprovement.Icon,
+                _rangeWeaponImprovement.Text, 1,
+                _rangeWeaponImprovement.Type,
+                true,
+                _mainContainer);
+            CreateCard(
+                _throwingWeaponImprovement.Icon,
+                _throwingWeaponImprovement.Text,
+                1,
+                _throwingWeaponImprovement.Type,
+                true,
+                _mainContainer);
+            CreateCard(
+                _firstAidIcon,
+                _firstAidCardInfo,
+                0,
+                _firstAidType,
+                false,
+                _mainContainer);
 
-            _presenter = new ImprovementPresenter(_videoAdForIncreaseMaxCountOfCards, _videoAdForShuffleCards, _playerHealthSystemSetup.HealthSystem, _shuffleCardsButton, _twoCardsButton, _firstAidButton, _menuButton, _melleWeapon, _rangeWeaponLifeCyrcle, _throwingWeapon, _gameTime, _improvementPanel, _allImprovements, _allCards, _melleWeaponsDamage, _countOfCards, _weaponLifeCircle, _bulletsContainer, _rangeWeaponLifeCircle, _explosionAreaContainer, _grenadesTrajectory);
+            _presenter = new ImprovementPresenter(
+                _videoAdForIncreaseMaxCountOfCards,
+                _videoAdForShuffleCards,
+                _playerHealthSystemSetup.HealthSystem,
+                _shuffleCardsButton,
+                _twoCardsButton,
+                _firstAidButton,
+                _menuButton,
+                _melleWeapon,
+                _rangeWeaponLifeCyrcle,
+                _throwingWeapon,
+                _gameTime,
+                _improvementPanel,
+                _allImprovements,
+                _allCards,
+                _melleWeaponsDamage,
+                _countOfCards,
+                _weaponLifeCircle,
+                _bulletsContainer,
+                _rangeWeaponLifeCircle,
+                _explosionAreaContainer,
+                _grenadesTrajectory);
 
             _presenter.Enable();
         }

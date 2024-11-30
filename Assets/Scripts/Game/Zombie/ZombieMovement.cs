@@ -41,7 +41,10 @@ namespace Game.Zombie
             }
 
             transform.LookAt(_player.transform.position);
-            transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                _player.transform.position,
+                _speed * Time.deltaTime);
         }
 
         public void SetTargetPlace(Vector3 targetPlace)

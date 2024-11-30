@@ -1,15 +1,14 @@
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+using CommonVariables;
 using Game.ObjectPools;
 using Game.ObjectPools.ZombiePools;
-using CommonVariables;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game.Music
 {
     [RequireComponent(typeof(Button))]
     [RequireComponent(typeof(Image))]
-    [RequireComponent(typeof(Variables))]
     public class AllGameMusic : MonoBehaviour
     {
         private const string SOUND = "SOUND";
@@ -33,7 +32,7 @@ namespace Game.Music
         {
             _image = GetComponent<Image>();
             _button = GetComponent<Button>();
-            _variables = GetComponent<Variables>();
+            _variables = new Variables();
             bool isPlaying = PlayerPrefs.GetInt(SOUND, 1) == 1 ? true : false;
             _variables.ChangeIsPlaying(isPlaying);
             SetIcon();

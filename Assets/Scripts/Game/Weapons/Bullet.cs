@@ -1,11 +1,10 @@
 using System.Collections;
-using UnityEngine;
 using CommonVariables;
+using UnityEngine;
 
 namespace Game.Weapons
 {
     [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(Variables))]
     public class Bullet : MonoBehaviour
     {
         [SerializeField] private ParticleSystem _trail;
@@ -15,6 +14,7 @@ namespace Game.Weapons
 
         private void Awake()
         {
+            _variables = new Variables();
             _rigidbody = GetComponent<Rigidbody>();
         }
 

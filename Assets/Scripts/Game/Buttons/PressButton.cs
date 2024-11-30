@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,6 +28,11 @@ namespace Game.Buttons
         private void OnEnable()
         {
             _button.onClick.AddListener(OnClick);
+        }
+
+        private void OnDisable()
+        {
+            _button.onClick.RemoveListener(OnClick);
         }
 
         public void Disable()
@@ -71,12 +74,17 @@ namespace Game.Buttons
 
         private void ChangeColor(float alphaChannelValue)
         {
-            _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, alphaChannelValue);
+            SetColor(_image, alphaChannelValue);
 
             if (_adImage != null)
             {
-                _adImage.color = new Color(_adImage.color.r, _adImage.color.g, _adImage.color.b, alphaChannelValue);
+                SetColor(_adImage, alphaChannelValue);
             }
+        }
+
+        private void SetColor(Image image, float alphaChannelValue)
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, alphaChannelValue);
         }
     }
 }

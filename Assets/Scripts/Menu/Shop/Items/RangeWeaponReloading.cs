@@ -1,5 +1,7 @@
+using Agava.YandexGames;
+using System.Collections.Generic;
 using UnityEngine;
-using Storage;
+using UnityEngine.UI;
 
 namespace Menu.Shop.Items
 {
@@ -7,18 +9,25 @@ namespace Menu.Shop.Items
     {
         private const string RANGE_WEAPON_RELOADING = "RANGE_WEAPON_RELOADING";
 
-        public override void SetStatus()
+        private void Awake()
         {
-            base.SetStatus();
+            Text = RANGE_WEAPON_RELOADING;
 
-            _playerDataManager.Set(RANGE_WEAPON_RELOADING, IndexOfCost);
-        }
+            Colors = new List<Color>
+            {
+                new Color32(125, 120, 126, 255),
+                new Color32(170, 238, 147, 255),
+                new Color32(54, 189, 240, 255),
+                new Color32(244, 105, 255, 255),
+                new Color32(229, 214, 75, 255),
+            };
 
-        protected override void SetIndex(PlayerData playerData)
-        {
-            IndexOfCost = playerData.RangeWeaponReloadingIndex;
-
-            base.SetIndex(playerData);
+            Background = GetComponent<Image>();
+            Button = GetComponent<Button>();
+            Class = Type;
+            string languageCode = YandexGamesSdk.Environment.i18n.lang;
+            ChangeLanguage(languageCode);
+            CostCountMultiplier = 1;
         }
     }
 }

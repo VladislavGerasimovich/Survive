@@ -6,18 +6,9 @@ namespace Menu.Shop.Items
     {
         private const string IMMORTALITY = "IMMORTALITY";
 
-        public override void SetStatus()
+        private void Awake()
         {
-            base.SetStatus();
-
-            _playerDataManager.Set(IMMORTALITY, CurrentCount);
-        }
-
-        protected override void SetIndex(PlayerData playerData)
-        {
-            CurrentCount = playerData.ImmortalityCount;
-
-            base.SetIndex(playerData);
+            Text = IMMORTALITY;
         }
     }
 }

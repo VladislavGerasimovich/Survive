@@ -1,8 +1,8 @@
 using System.Collections.Generic;
+using Menu.Shop.Items;
+using Storage;
 using TMPro;
 using UnityEngine;
-using Storage;
-using Menu.Shop.Items;
 
 namespace Menu.Shop
 {
@@ -17,7 +17,12 @@ namespace Menu.Shop
         private int _itemCost;
         private string _itemType;
 
-        public ShopPresenter(Wallet shop, List<Item> items, TMP_Text moneyText, PlayerDataManager playerDataManager, PopUpWindow popUpWindow)
+        public ShopPresenter(
+            Wallet shop,
+            List<Item> items,
+            TMP_Text moneyText,
+            PlayerDataManager playerDataManager,
+            PopUpWindow popUpWindow)
         {
             _shop = shop;
             _items = items;

@@ -16,10 +16,10 @@ namespace Game.Improvements
             Type = type;
         }
 
-        public string Type { get; private set; }
-
         public event Action<int, string> LevelIncreased;
         public event Action<string> MaxLevelReached;
+
+        public string Type { get; private set; }
 
         public void IncreaseLevel()
         {

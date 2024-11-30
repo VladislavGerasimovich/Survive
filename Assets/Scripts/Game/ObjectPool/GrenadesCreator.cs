@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using UnityEngine;
 using Game.UI.Screens;
+using UnityEngine;
 using YandexElements;
 
 namespace Game.ObjectPools

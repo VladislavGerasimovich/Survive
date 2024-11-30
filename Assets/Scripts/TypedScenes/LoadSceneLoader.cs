@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using Agava.YandexGames;
+using Game.Buttons;
+using Menu.DifficultyLevels;
+using Storage;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Storage;
-using Game.Buttons;
-using Menu.DifficultyLevels;
 using YandexElements;
 
 namespace TypedScenes

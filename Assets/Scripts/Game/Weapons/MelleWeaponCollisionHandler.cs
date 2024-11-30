@@ -1,6 +1,6 @@
-using UnityEngine;
 using Game.Music;
 using Game.Zombie;
+using UnityEngine;
 
 namespace Game.Weapons
 {
@@ -16,7 +16,7 @@ namespace Game.Weapons
 
         private void OnTriggerEnter(Collider collision)
         {
-            if (collision.TryGetComponent(out ZombieDied zombieDied))
+            if (collision.TryGetComponent(out ZombieDead zombieDied))
             {
                 _audio.Play();
             }

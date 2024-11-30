@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
-using UnityEngine;
 using Game.DeathOfAllCharacters;
 using Game.Player;
 using Game.UI;
+using UnityEngine;
 
 namespace Game.Zombie
 {
@@ -15,7 +15,7 @@ namespace Game.Zombie
     [RequireComponent(typeof(Score))]
     [RequireComponent(typeof(EnemyBlink))]
     [RequireComponent(typeof(ZombieAttack))]
-    public class ZombieDied : Death
+    public class ZombieDead : Death
     {
         [SerializeField] private CapsuleCollider _triggerCollider;
 

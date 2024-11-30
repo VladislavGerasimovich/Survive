@@ -14,6 +14,8 @@ namespace Menu.Shop
         [SerializeField] private AudioSource _playerHurt;
         [SerializeField] private List<AudioSource> _woodBatsSound;
 
+        public new bool IsOpen => _isOpen;
+
         public new event Action YesButtonClicked;
         public new event Action NoButtonClicked;
 
@@ -87,7 +89,5 @@ namespace Menu.Shop
             Close();
             NoButtonClicked.Invoke();
         }
-
-        public new bool IsOpen => _isOpen;
     }
 }

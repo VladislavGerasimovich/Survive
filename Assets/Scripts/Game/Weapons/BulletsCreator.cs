@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using UnityEngine;
 using Game.ObjectPools;
+using UnityEngine;
 
 namespace Game.Weapons
 {
-    public class BulletsCreator : BulletsPool
+    public class BulletsCreator : ObjectPool
     {
         [SerializeField] private GameObject _prefab;
 

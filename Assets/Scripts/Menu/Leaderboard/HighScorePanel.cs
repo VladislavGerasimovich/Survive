@@ -2,6 +2,5 @@ using UnityEngine;
 
 namespace Menu.Leaderboard
 {
-    public class HighScorePanel : MonoBehaviour
-    { }
+    public class HighScorePanel : MonoBehaviour { }
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using CommonVariables;
 using DG.Tweening;
 using UnityEngine;
 
@@ -10,20 +11,24 @@ namespace Game.Weapons
         [SerializeField] private int _duration;
         [SerializeField] private int _durationValue;
 
+        private Variables _variables;
         private WaitForSeconds _durationOfAttack;
-        private WaitForSeconds _reloadingDuration;
         private Vector3 _nextValue;
 
         private void Awake()
         {
+            _variables = new Variables();
             _durationOfAttack = new WaitForSeconds(10);
-            _reloadingDuration = new WaitForSeconds(_durationValue);
+            _variables.ChangeDurationOfReloading(_durationValue);
             _nextValue = new Vector3(0, 360, 0);
         }
 
         private void Start()
         {
-            transform.DORotate(_nextValue, _duration, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart).SetLink(gameObject);
+            transform.DORotate(
+                _nextValue,
+                _duration,
+                RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart).SetLink(gameObject);
         }
 
         private void OnDisable()
@@ -51,7 +56,7 @@ namespace Game.Weapons
                     HideAllWeapon();
                 }
 
-                yield return _reloadingDuration;
+                yield return _variables.DurationOfReloading;
             }
 
             HideAllWeapon();
@@ -75,7 +80,7 @@ namespace Game.Weapons
 
         public void ChangeDurationOfReloading(int value)
         {
-            _reloadingDuration = new WaitForSeconds(value);
+            _variables.ChangeDurationOfReloading(value);
             _durationValue = value;
         }
     }

@@ -1,21 +1,24 @@
+using Storage;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Storage;
 
 namespace Game.Buttons
 {
     [RequireComponent(typeof(Image))]
     public class CountOfExpendableItem : MonoBehaviour
     {
+        private const string FIRST_AID = "FIRST_AID";
+        private const string IMMORTALITY = "IMMORTALITY";
+
         [SerializeField] private PlayerDataManager _playerDataManager;
         [SerializeField] private TMP_Text _infoText;
         [SerializeField] private Sprite _normalSprite;
         [SerializeField] private Sprite _spriteForReward;
 
-        protected int _count;
-        protected Image _image;
-        protected string _text;
+        protected int Count;
+        protected Image Image;
+        protected string Text;
 
         private void OnEnable()
         {
@@ -29,15 +32,15 @@ namespace Game.Buttons
 
         public void ReduceCount()
         {
-            if (_count > 0)
+            if (Count > 0)
             {
-                _count--;
-                _playerDataManager.Set(_text, _count);
-                _infoText.text = _count.ToString();
+                Count--;
+                _playerDataManager.Set(Text, Count);
+                _infoText.text = Count.ToString();
 
-                if (_count <= 0)
+                if (Count <= 0)
                 {
-                    _image.sprite = _spriteForReward;
+                    Image.sprite = _spriteForReward;
                     _infoText.enabled = false;
                 }
             }
@@ -45,25 +48,42 @@ namespace Game.Buttons
 
         public bool IsCountGreaterThenZero()
         {
-            return _count > 0;
+            return Count > 0;
         }
 
-        protected virtual void SetCount(PlayerData playerData)
+        private void SetCount(PlayerData playerData)
         {
-            _infoText.text = _count.ToString();
+            switch (Text)
+            {
+                case FIRST_AID:
+                    Count = playerData.FirstAidCount;
+                    break;
+                case IMMORTALITY:
+                    Count = playerData.ImmortalityCount;
+                    break;
+                default:
+                    break;
+            }
 
-            if (_count <= 0)
+            SetUserInterface();
+        }
+
+        private void SetUserInterface()
+        {
+            _infoText.text = Count.ToString();
+
+            if (Count <= 0)
             {
                 _infoText.enabled = false;
             }
 
-            if (_count > 0)
+            if (Count > 0)
             {
-                _image.sprite = _normalSprite;
+                Image.sprite = _normalSprite;
                 return;
             }
 
-            _image.sprite = _spriteForReward;
+            Image.sprite = _spriteForReward;
         }
     }
 }

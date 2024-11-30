@@ -1,7 +1,7 @@
-using UnityEngine;
 using Game.Buttons;
 using Game.Player;
 using UI;
+using UnityEngine;
 
 namespace Game.UI.Screens
 {

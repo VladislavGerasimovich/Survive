@@ -1,8 +1,8 @@
 using System.Collections.Generic;
+using Menu.Shop.Items;
+using Storage;
 using TMPro;
 using UnityEngine;
-using Storage;
-using Menu.Shop.Items;
 
 namespace Menu.Shop
 {

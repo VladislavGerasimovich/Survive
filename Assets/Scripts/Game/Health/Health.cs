@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Health
 {
-    public class HealthSystem : MonoBehaviour
+    public class Health : MonoBehaviour
     {
         private int _value;
         private int _maxValue;
@@ -11,7 +11,7 @@ namespace Game.Health
 
         public bool IsImmortal;
 
-        public HealthSystem(int value)
+        public Health(int value)
         {
             _maxValue = value;
             _value = value;

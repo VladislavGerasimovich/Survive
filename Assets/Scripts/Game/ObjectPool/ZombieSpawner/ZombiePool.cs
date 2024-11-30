@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using Game.Collision;
 using Game.Health;
 using Game.Player.Levels;
 using Game.UI;
 using Game.UI.Screens;
 using Game.Zombie;
+using UnityEngine;
 using YandexElements;
 
 namespace Game.ObjectPools.ZombiePools
@@ -75,12 +75,19 @@ namespace Game.ObjectPools.ZombiePools
             {
                 GameObject zombie = Instantiate(_prefab, _container);
 
-                HealthSystem healthSystemModel = new HealthSystem(_healthValue);
-                CharacterHealthPresenter healthSystemPresenter = new CharacterHealthPresenter(healthSystemModel, zombie.transform.Find("Collider")
-                .GetComponent<ZombieCollisionHandler>(), zombie.GetComponent<ZombieDied>(), zombie.GetComponent<EnemyBlink>());
+                Health.Health healthSystemModel = new Health.Health(_healthValue);
+                CharacterHealthPresenter healthSystemPresenter = new CharacterHealthPresenter(
+                    healthSystemModel,
+                    zombie.transform.Find("Collider")
+                .GetComponent<ZombieCollisionHandler>(),
+                zombie.GetComponent<ZombieDead>(),
+                zombie.GetComponent<EnemyBlink>());
                 HealthSystemPresenters.Add(healthSystemPresenter);
 
-                ExperiencePresenter experienceSystemPresenter = new ExperiencePresenter(levelSystemModel, zombie.GetComponent<ZombieDied>(), zombie.GetComponent<Experience>());
+                ExperiencePresenter experienceSystemPresenter = new ExperiencePresenter(
+                    levelSystemModel,
+                    zombie.GetComponent<ZombieDead>(),
+                    zombie.GetComponent<Experience>());
                 ExperienceSystemPresenters.Add(experienceSystemPresenter);
 
                 zombie.SetActive(false);
@@ -101,7 +108,7 @@ namespace Game.ObjectPools.ZombiePools
         public bool TryGetObject(out GameObject result)
         {
             result = Pool.FirstOrDefault(p => p.activeSelf == false);
-            result.GetComponent<ZombieDied>().ReviveZombie();
+            result.GetComponent<ZombieDead>().ReviveZombie();
 
             return result != null;
         }

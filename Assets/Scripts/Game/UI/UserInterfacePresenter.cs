@@ -1,18 +1,23 @@
-using TMPro;
 using Game.Player.Levels;
 using Game.UI.Screens;
+using TMPro;
 
 namespace Game.UI
 {
     public class UserInterfacePresenter
     {
-        private ExperienceBar _experienceBar;
+        private Bar _experienceBar;
         private TMP_Text _text;
         private ImprovementPanel _improvementPanel;
         private GameTime _gameTime;
         private Level _levelSystem;
 
-        public UserInterfacePresenter(Level levelSystem, ExperienceBar experienceBar, TMP_Text text, ImprovementPanel improvementPanel, GameTime gameTime)
+        public UserInterfacePresenter(
+            Level levelSystem,
+            Bar experienceBar,
+            TMP_Text text,
+            ImprovementPanel improvementPanel,
+            GameTime gameTime)
         {
             _levelSystem = levelSystem;
             _experienceBar = experienceBar;

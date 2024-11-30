@@ -1,8 +1,8 @@
 using System;
+using Game;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Game;
 
 namespace Menu.Shop
 {
@@ -16,6 +16,8 @@ namespace Menu.Shop
 
         protected CanvasGroup CanvasGroup;
         protected bool _isOpen;
+
+        public bool IsOpen => _isOpen;
 
         public event Action YesButtonClicked;
         public event Action NoButtonClicked;
@@ -65,7 +67,5 @@ namespace Menu.Shop
             CanvasGroup.blocksRaycasts = false;
             GameTime.Run();
         }
-
-        public bool IsOpen => _isOpen;
     }
 }

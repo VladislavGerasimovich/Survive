@@ -1,11 +1,10 @@
 using System.Collections;
+using CommonVariables;
 using UnityEngine;
 using UnityEngine.UI;
-using CommonVariables;
 
 namespace UI
 {
-    [RequireComponent(typeof(Variables))]
     [RequireComponent(typeof(Image))]
     public class TimeOfAction : MonoBehaviour
     {
@@ -16,7 +15,7 @@ namespace UI
 
         private void Awake()
         {
-            _variables = GetComponent<Variables>();
+            _variables = new Variables();
             _image = GetComponent<Image>();
         }
 

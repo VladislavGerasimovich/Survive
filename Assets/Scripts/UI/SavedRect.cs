@@ -16,9 +16,6 @@ namespace UI
         public Vector3 Rotation;
         public Vector3 Scale;
 
-        /// <summary>
-        /// Сохраняет данные из RectTransform в этот объект.
-        /// </summary>
         public void SaveDataFromRectTransform(RectTransform rect)
         {
             if (rect == null)
@@ -35,9 +32,6 @@ namespace UI
             Scale = rect.localScale;
         }
 
-        /// <summary>
-        /// Выгружает данные из этого объекта в RectTransform.
-        /// </summary>
         public void PutDataToRectTransform(RectTransform rect)
         {
             if (rect == null || !IsInitialized)

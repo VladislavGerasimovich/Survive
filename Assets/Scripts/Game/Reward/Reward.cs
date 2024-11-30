@@ -1,6 +1,6 @@
+using Storage;
 using TMPro;
 using UnityEngine;
-using Storage;
 
 namespace Game.Reward
 {

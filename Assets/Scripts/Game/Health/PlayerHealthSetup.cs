@@ -1,10 +1,10 @@
-using UnityEngine;
-using Storage;
 using Game.Buttons;
 using Game.Player;
 using Game.UI;
 using Localization;
 using Menu.Shop;
+using Storage;
+using UnityEngine;
 using YandexElements;
 
 namespace Game.Health
@@ -18,7 +18,7 @@ namespace Game.Health
         [SerializeField] private PlayerMortality _playerMortality;
         [SerializeField] private ImmortalityCount _immortalityCount;
         [SerializeField] private FirstAidKitCount _firstAidKitCount;
-        [SerializeField] private HealthBar _healthBar;
+        [SerializeField] private Bar _healthBar;
         [SerializeField] private Vignette _vignette;
         [SerializeField] private PressButton _firstAidButton;
         [SerializeField] private PressButton _reliveButton;
@@ -29,7 +29,7 @@ namespace Game.Health
         [SerializeField] private Language _immortalityText;
         [SerializeField] private Language _firstAidText;
 
-        public HealthSystem HealthSystem;
+        public Health HealthSystem;
 
         private PlayerDataManager _playerDataManager;
         private PlayerHealthPresenter _presenter;
@@ -58,8 +58,22 @@ namespace Game.Health
             _healthCount += playerData.BodyArmorIndex;
             _healthCount += playerData.BootsIndex;
 
-            HealthSystem = new HealthSystem(_healthCount);
-            _presenter = new PlayerHealthPresenter(_firstAidKitCount, _immortalityCount, _playerMortality, _playerTakeDamage, _videoAd, _reliveButton, _firstAidButton, _immortalityButton, HealthSystem, _playerDied, _healthBar, _vignette, _immortalityPopUpWindow, _firstAidPopUpWindow);
+            HealthSystem = new Health(_healthCount);
+            _presenter = new PlayerHealthPresenter(
+                _firstAidKitCount,
+                _immortalityCount,
+                _playerMortality,
+                _playerTakeDamage,
+                _videoAd,
+                _reliveButton,
+                _firstAidButton,
+                _immortalityButton,
+                HealthSystem,
+                _playerDied,
+                _healthBar,
+                _vignette,
+                _immortalityPopUpWindow,
+                _firstAidPopUpWindow);
             _presenter.Enable();
         }
     }

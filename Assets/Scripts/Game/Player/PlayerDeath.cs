@@ -1,5 +1,5 @@
-using UnityEngine;
 using Game.UI.Screens;
+using UnityEngine;
 
 namespace Game.Player
 {

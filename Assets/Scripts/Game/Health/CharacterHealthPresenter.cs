@@ -1,17 +1,21 @@
 using Game.Collision;
-using Game.UI;
 using Game.DeathOfAllCharacters;
+using Game.UI;
 
 namespace Game.Health
 {
     public class CharacterHealthPresenter
     {
-        private HealthSystem _healthSystem;
+        private Health _healthSystem;
         private CollisionHandler _collisionHandler;
         private Death _characterDied;
         private EnemyBlink _enemyBlink;
 
-        public CharacterHealthPresenter(HealthSystem model, CollisionHandler collisionHandler, Death die, EnemyBlink enemyBlink)
+        public CharacterHealthPresenter(
+            Health model,
+            CollisionHandler collisionHandler,
+            Death die,
+            EnemyBlink enemyBlink)
         {
             _healthSystem = model;
             _collisionHandler = collisionHandler;

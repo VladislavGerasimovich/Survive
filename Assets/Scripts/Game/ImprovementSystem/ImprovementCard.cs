@@ -40,7 +40,13 @@ namespace Game.Improvements
             _iconsColor = new List<Image>();
         }
 
-        public void Render(Sprite icon, string text, int countOfLevels, string type, bool canUse, Transform mainContainer)
+        public void Render(
+            Sprite icon,
+            string text,
+            int countOfLevels,
+            string type,
+            bool canUse,
+            Transform mainContainer)
         {
             for (int i = 0; i < countOfLevels; i++)
             {

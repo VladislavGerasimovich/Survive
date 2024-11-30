@@ -1,7 +1,7 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
 using Game;
 using Game.Player;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using YandexElements;
 
 namespace TypedScenes

@@ -1,6 +1,6 @@
 using System;
-using UnityEngine;
 using Game.Zombie;
+using UnityEngine;
 
 namespace Game.Collision
 {

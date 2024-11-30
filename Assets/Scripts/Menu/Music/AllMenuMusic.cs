@@ -1,12 +1,11 @@
+using CommonVariables;
 using UnityEngine;
 using UnityEngine.UI;
-using CommonVariables;
 
 namespace Menu.Music
 {
     [RequireComponent(typeof(Button))]
     [RequireComponent(typeof(Image))]
-    [RequireComponent(typeof(Variables))]
     public class AllMenuMusic : MonoBehaviour
     {
         private const string SOUND = "SOUND";
@@ -23,7 +22,7 @@ namespace Menu.Music
         {
             _image = GetComponent<Image>();
             _button = GetComponent<Button>();
-            _variables = GetComponent<Variables>();
+            _variables = new Variables();
             bool isPlaying = PlayerPrefs.GetInt(SOUND, 1) == 1 ? true : false;
             _variables.ChangeIsPlaying(isPlaying);
             SetIcon();

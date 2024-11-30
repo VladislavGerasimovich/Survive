@@ -35,23 +35,17 @@ namespace Game.Player.Movement
             MovementAmount = movementAmount;
         }
 
-        public virtual void OnFingerMove(Finger finger)
-        { }
+        public virtual void OnFingerMove(Finger finger) { }
 
-        public virtual void OnFingerMove()
-        { }
+        public virtual void OnFingerMove() { }
 
-        public virtual void OnFingerUp(Finger finger)
-        { }
+        public virtual void OnFingerUp(Finger finger) { }
 
-        public virtual void OnFingerUp()
-        { }
+        public virtual void OnFingerUp() { }
 
-        public virtual void OnFingerDown(Finger finger)
-        { }
+        public virtual void OnFingerDown(Finger finger) { }
 
-        public virtual void OnFingerDown(Vector2 position)
-        { }
+        public virtual void OnFingerDown(Vector2 position) { }
 
         public Vector2 ClampStartPosition(Vector2 startPosition)
         {

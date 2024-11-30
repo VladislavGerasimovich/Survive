@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using Game.Buttons;
 using Game.Health;
 using Game.UI.Screens;
 using Game.Weapons;
 using Game.Weapons.Damage;
+using UnityEngine;
 using YandexElements;
 
 namespace Game.Improvements
@@ -32,7 +32,7 @@ namespace Game.Improvements
         private PressButton _shuffleCardsButton;
         private PressButton _firstAidButton;
         private PressButton _menuButton;
-        private HealthSystem _healthSystem;
+        private Health.Health _healthSystem;
         private bool _isFirstFilling;
         private bool _isFilling;
         private int _countOfUnfilledPanel;
@@ -42,7 +42,7 @@ namespace Game.Improvements
         public ImprovementPresenter(
             VideoAdForImprovement videoAdForIncreaseMaxCountOfCards,
             VideoAdForImprovement videoAdForShuffleCards,
-            HealthSystem healthSystem,
+            Health.Health healthSystem,
             PressButton shuffleCardsButton,
             PressButton twoCardsButton,
             PressButton firstAidButton,

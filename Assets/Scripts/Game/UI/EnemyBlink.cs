@@ -1,10 +1,9 @@
 using System.Collections;
-using UnityEngine;
 using CommonVariables;
+using UnityEngine;
 
 namespace Game.UI
 {
-    [RequireComponent(typeof(Variables))]
     public class EnemyBlink : MonoBehaviour
     {
         [SerializeField] private Material _newMaterial;
@@ -16,7 +15,7 @@ namespace Game.UI
 
         private void Awake()
         {
-            _variables = GetComponent<Variables>();
+            _variables = new Variables();
             _currentMaterial = _skinnedMeshRenderer.material;
         }
 

@@ -1,10 +1,9 @@
 using System.Collections;
-using UnityEngine;
 using CommonVariables;
+using UnityEngine;
 
 namespace Game.Weapons
 {
-    [RequireComponent(typeof(Variables))]
     public class Attack : MonoBehaviour
     {
         [SerializeField] private Transform _shootPoint;
@@ -18,7 +17,7 @@ namespace Game.Weapons
         private void Awake()
         {
             _bulletsCreator = GameObject.Find("Setups").GetComponent<BulletsCreator>();
-            _variables = GetComponent<Variables>();
+            _variables = new Variables();
         }
 
         public void Enable()
@@ -42,7 +41,7 @@ namespace Game.Weapons
         {
             while (enabled)
             {
-                _bulletsCreator.TryGetObject(out GameObject bullet);
+                _bulletsCreator.TryGet(out GameObject bullet);
                 bullet.GetComponent<Bullet>().SetActive();
                 bullet.GetComponent<Bullet>().Shoot(_shootPoint.position, _shootPoint.transform.forward);
                 _smoke.Play();

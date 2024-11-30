@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Agava.YandexGames;
 using Storage;
 using TMPro;
 using UnityEngine;
@@ -12,11 +11,21 @@ namespace Menu.Shop.Items
     [RequireComponent(typeof(Image))]
     public class Item : MonoBehaviour
     {
+        private const string BODY_ARMOR = "BODY_ARMOR";
+        private const string BOOTS = "BOOTS";
+        private const string HELMET = "HELMET";
+        private const string MELLE_WEAPON_DAMAGE = "MELLE_WEAPON_DAMAGE";
+        private const string MELLE_WEAPON_RELOADING = "MELLE_WEAPON_RELOADING";
+        private const string MONEY = "MONEY";
+        private const string RANGE_WEAPON_DAMAGE = "RANGE_WEAPON_DAMAGE";
+        private const string RANGE_WEAPON_RELOADING = "RANGE_WEAPON_RELOADING";
+        private const string THROWING_WEAPON_DAMAGE = "THROWING_WEAPON_DAMAGE";
+        private const string THROWING_WEAPON_RELOADING = "THROWING_WEAPON_RELOADING";
         private const string English = "en";
         private const string Turkish = "tr";
         private const string Russian = "ru";
 
-        [SerializeField] protected TMP_Text Text;
+        [SerializeField] protected TMP_Text InfoText;
         [SerializeField] protected List<string> Cost;
         [SerializeField] protected string Type;
         [SerializeField] protected PopUpWindow PopUpWindow;
@@ -27,31 +36,16 @@ namespace Menu.Shop.Items
 
         protected Image Background;
         protected Button Button;
-        protected int IndexOfCost;
         protected List<Color> Colors;
+        protected string Text;
+        protected int CostCountMultiplier;
+
+        private int _indexOfCost;
 
         public virtual event Action<string, string> Clicked;
 
         public string TranslatedText { get; private set; }
         public string Class { get; protected set; }
-
-        private void Awake()
-        {
-            Colors = new List<Color>
-        {
-            new Color32(125, 120, 126, 255),
-            new Color32(170, 238, 147, 255),
-            new Color32(54, 189, 240, 255),
-            new Color32(244, 105, 255, 255),
-            new Color32(229, 214, 75, 255),
-        };
-
-            Background = GetComponent<Image>();
-            Button = GetComponent<Button>();
-            Class = Type;
-            string languageCode = YandexGamesSdk.Environment.i18n.lang;
-            ChangeLanguage(languageCode);
-        }
 
         private void OnEnable()
         {
@@ -61,7 +55,10 @@ namespace Menu.Shop.Items
 
         private void Start()
         {
-            SetCost();
+            if(Text != MONEY)
+            {
+                SetCost();
+            }
         }
 
         private void OnDisable()
@@ -88,10 +85,10 @@ namespace Menu.Shop.Items
 
         public virtual void SetCost()
         {
-            Text.text = Cost[IndexOfCost];
-            Background.color = Colors[IndexOfCost];
+            InfoText.text = Cost[_indexOfCost];
+            Background.color = Colors[_indexOfCost];
 
-            if (IndexOfCost == Cost.Count - 1)
+            if (_indexOfCost == Cost.Count - CostCountMultiplier)
             {
                 Button.interactable = false;
             }
@@ -99,29 +96,62 @@ namespace Menu.Shop.Items
 
         public virtual void SetStatus()
         {
-            if (IndexOfCost < Cost.Count)
+            if (_indexOfCost < Cost.Count)
             {
-                IndexOfCost++;
+                _indexOfCost++;
 
-                if (IndexOfCost != Cost.Count)
+                if (_indexOfCost != Cost.Count)
                 {
                     SetCost();
                 }
 
-                if (IndexOfCost == Cost.Count - 1)
+                if (_indexOfCost == Cost.Count - CostCountMultiplier)
                 {
                     Button.interactable = false;
                 }
             }
+
+            _playerDataManager.Set(Text, _indexOfCost);
         }
 
         public virtual void OnClick()
         {
-            Clicked?.Invoke(Cost[IndexOfCost], Type);
+            Clicked?.Invoke(Cost[_indexOfCost], Type);
         }
 
         protected virtual void SetIndex(PlayerData playerData)
         {
+            switch (Text)
+            {
+                case BODY_ARMOR:
+                    _indexOfCost = playerData.BodyArmorIndex;
+                    break;
+                case BOOTS:
+                    _indexOfCost = playerData.BootsIndex;
+                    break;
+                case HELMET:
+                    _indexOfCost = playerData.HelmetIndex;
+                    break;
+                case MELLE_WEAPON_DAMAGE:
+                    _indexOfCost = playerData.MelleWeaponDamageIndex;
+                    break;
+                case MELLE_WEAPON_RELOADING:
+                    _indexOfCost = playerData.MelleWeaponReloadingIndex;
+                    break;
+                case RANGE_WEAPON_DAMAGE:
+                    _indexOfCost = playerData.RangeWeaponDamageIndex;
+                    break;
+                case RANGE_WEAPON_RELOADING:
+                    _indexOfCost = playerData.RangeWeaponReloadingIndex;
+                    break;
+                case THROWING_WEAPON_DAMAGE:
+                    _indexOfCost = playerData.ThrowingWeaponDamageIndex;
+                    break;
+                case THROWING_WEAPON_RELOADING:
+                    _indexOfCost = playerData.ThrowingWeaponReloadingIndex;
+                    break;
+            }
+
             SetCost();
         }
     }

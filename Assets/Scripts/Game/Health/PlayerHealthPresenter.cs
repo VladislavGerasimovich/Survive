@@ -1,8 +1,8 @@
-using UnityEngine;
 using Game.Buttons;
 using Game.Player;
 using Game.UI;
 using Menu.Shop;
+using UnityEngine;
 using YandexElements;
 
 namespace Game.Health
@@ -10,8 +10,8 @@ namespace Game.Health
     public class PlayerHealthPresenter : MonoBehaviour
     {
         private VideoAd _videoAd;
-        private HealthSystem _healthSystem;
-        private ExperienceBar _healthBar;
+        private Health _healthSystem;
+        private Bar _healthBar;
         private PlayerDeath _playerDied;
         private Vignette _vignette;
         private PressButton _firstAidButton;
@@ -25,16 +25,18 @@ namespace Game.Health
         private PopUpWindowForGame _firstAidPopUpWindow;
         private int _countOfClick;
 
-        public PlayerHealthPresenter(FirstAidKitCount firstAidKitCount,
+        public PlayerHealthPresenter(
+            FirstAidKitCount firstAidKitCount,
             ImmortalityCount immortalityCount,
             PlayerMortality playerMortality,
             PlayerTakeDamage playerTakeDamage,
-            VideoAd videoAd, PressButton reliveButton,
+            VideoAd videoAd,
+            PressButton reliveButton,
             PressButton firstAidButton,
             PressButton immortalityButton,
-            HealthSystem healthSystem,
+            Health healthSystem,
             PlayerDeath died,
-            HealthBar healthBar,
+            Bar healthBar,
             Vignette vignette,
             PopUpWindowForGame immortalityPopUpWindow,
             PopUpWindowForGame firstAidPopUpWindow)

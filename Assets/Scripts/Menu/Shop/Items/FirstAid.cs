@@ -6,18 +6,9 @@ namespace Menu.Shop.Items
     {
         private const string FIRST_AID = "FIRST_AID";
 
-        public override void SetStatus()
+        private void Awake()
         {
-            base.SetStatus();
-
-            _playerDataManager.Set(FIRST_AID, CurrentCount);
-        }
-
-        protected override void SetIndex(PlayerData playerData)
-        {
-            CurrentCount = playerData.FirstAidCount;
-
-            base.SetIndex(playerData);
+            Text = FIRST_AID;
         }
     }
 }

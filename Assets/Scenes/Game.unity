@@ -282,24 +282,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.4, y: 0.18}
-    maxAnchor: {x: 0.6, y: 0.33}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.7, y: 0.33}
-    maxAnchor: {x: 0.8, y: 0.51}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &48395714
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,24 +448,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0, y: 0.32}
-    maxAnchor: {x: 0.5, y: 0.49}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0, y: 0.37}
-    maxAnchor: {x: 0.5, y: 0.55}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!114 &48395719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1166,24 +1166,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.1, y: 0.2}
-    maxAnchor: {x: 0.9, y: 0.6}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.35, y: 0.2}
-    maxAnchor: {x: 0.65, y: 0.65}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &196854483
 GameObject:
   m_ObjectHideFlags: 0
@@ -1268,7 +1268,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 41.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1735,24 +1735,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0, y: 0.6}
-    maxAnchor: {x: 1, y: 0.8}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 0
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0, y: 0}
-    maxAnchor: {x: 0, y: 0}
-    pivot: {x: 0, y: 0}
-    rotation: {x: 0, y: 0, z: 0}
-    scale: {x: 0, y: 0, z: 0}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &247983422
 GameObject:
   m_ObjectHideFlags: 0
@@ -2205,7 +2205,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 41.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2515,7 +2515,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 41.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2682,24 +2682,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.035185188, y: 0.25}
-    maxAnchor: {x: 0.9592593, y: 0.75}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.035185188, y: 0.1}
-    maxAnchor: {x: 0.9592593, y: 0.9}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!4 &296943862 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4671271844842164, guid: 0931ee8cbbf53854a8ee49bdd9194045, type: 3}
@@ -2945,24 +2945,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.87, y: 0.02}
-    maxAnchor: {x: 0.96, y: 0.07}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.925, y: 0.02}
-    maxAnchor: {x: 0.98, y: 0.11}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!4 &335400380 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4671271844842164, guid: 0931ee8cbbf53854a8ee49bdd9194045, type: 3}
@@ -3020,24 +3020,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.05, y: 0.55}
-    maxAnchor: {x: 0.95, y: 0.75}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.05, y: 0.15}
-    maxAnchor: {x: 0.45, y: 0.65}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &346728993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3392,24 +3392,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.06, y: 0.35000002}
-    maxAnchor: {x: 0.22, y: 0.71000004}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.06, y: 0.3}
-    maxAnchor: {x: 0.155, y: 0.7}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!114 &371434364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3532,7 +3532,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 72
   m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3594,24 +3594,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.05, y: 0.35}
-    maxAnchor: {x: 0.95, y: 0.55}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.55, y: 0.6}
-    maxAnchor: {x: 0.95, y: 0.9}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!4 &374673845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4671271844842164, guid: 0931ee8cbbf53854a8ee49bdd9194045, type: 3}
@@ -4703,17 +4703,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3325606659216768533, guid: 613717ca4d462644abf28e62fc8b8eaf, type: 3}
   m_PrefabInstance: {fileID: 485217027}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &485217029 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2911096192974951976, guid: 613717ca4d462644abf28e62fc8b8eaf, type: 3}
-  m_PrefabInstance: {fileID: 485217027}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &485217030 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9204432098238779676, guid: 613717ca4d462644abf28e62fc8b8eaf, type: 3}
@@ -4733,28 +4722,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: ImmortalityPopUpWindow
   FallbackText: New Text
---- !u!114 &485217032 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7276388298921451747, guid: 613717ca4d462644abf28e62fc8b8eaf, type: 3}
-  m_PrefabInstance: {fileID: 485217027}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &485217033 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4939816022857018837, guid: 613717ca4d462644abf28e62fc8b8eaf, type: 3}
-  m_PrefabInstance: {fileID: 485217027}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 485217030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &485217034 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8900759777980573564, guid: 613717ca4d462644abf28e62fc8b8eaf, type: 3}
@@ -4772,10 +4739,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682bb270831765b439973398e5356904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 485217033}
-  _yesButton: {fileID: 485217032}
-  _noButton: {fileID: 485217029}
-  _gameTime: {fileID: 1063970067}
+  Text: {fileID: 0}
+  YesButton: {fileID: 0}
+  NoButton: {fileID: 0}
+  GameTime: {fileID: 0}
   _zombiesPools: {fileID: 808968118}
   _shotSound: {fileID: 2132668451}
   _grenadesCreator: {fileID: 986445822}
@@ -4902,24 +4869,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0, y: 0.15}
-    maxAnchor: {x: 1, y: 0.45}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0, y: 0}
-    maxAnchor: {x: 1, y: 0.45}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!114 &520003039 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8656440681778570968, guid: d00da9038ed1f5e488ca63d48d1916ca, type: 3}
@@ -5084,7 +5051,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 58.6
+  m_fontSize: 32.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5146,24 +5113,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 1, y: -0.2}
-    maxAnchor: {x: 1.8, y: 0.6}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 1, y: -0.2}
-    maxAnchor: {x: 1.8, y: 0.6}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!4 &544593231 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4671271844842164, guid: 0931ee8cbbf53854a8ee49bdd9194045, type: 3}
@@ -5219,24 +5186,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.86, y: 0.845}
-    maxAnchor: {x: 1, y: 0.905}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.93, y: 0.74}
-    maxAnchor: {x: 1, y: 0.84}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!114 &553801755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5473,39 +5440,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: FirstAidPopUpWindow
   FallbackText: New Text
---- !u!114 &583043127 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2911096192974951976, guid: 613717ca4d462644abf28e62fc8b8eaf, type: 3}
-  m_PrefabInstance: {fileID: 583043123}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &583043128 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7276388298921451747, guid: 613717ca4d462644abf28e62fc8b8eaf, type: 3}
-  m_PrefabInstance: {fileID: 583043123}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &583043129 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4939816022857018837, guid: 613717ca4d462644abf28e62fc8b8eaf, type: 3}
-  m_PrefabInstance: {fileID: 583043123}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 583043125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &583043130 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8900759777980573564, guid: 613717ca4d462644abf28e62fc8b8eaf, type: 3}
@@ -5523,10 +5457,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682bb270831765b439973398e5356904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 583043129}
-  _yesButton: {fileID: 583043128}
-  _noButton: {fileID: 583043127}
-  _gameTime: {fileID: 1063970067}
+  Text: {fileID: 0}
+  YesButton: {fileID: 0}
+  NoButton: {fileID: 0}
+  GameTime: {fileID: 0}
   _zombiesPools: {fileID: 808968118}
   _shotSound: {fileID: 2132668451}
   _grenadesCreator: {fileID: 986445822}
@@ -6674,7 +6608,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 64.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6736,24 +6670,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.72, y: 0.845}
-    maxAnchor: {x: 0.855, y: 0.905}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.85, y: 0.74}
-    maxAnchor: {x: 0.93, y: 0.84}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &668693688
 GameObject:
   m_ObjectHideFlags: 0
@@ -7106,24 +7040,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.03, y: 0.84}
-    maxAnchor: {x: 0.131, y: 0.89}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.02, y: 0.74}
-    maxAnchor: {x: 0.077, y: 0.84}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &683568896 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4672690297037824711, guid: fc47f9f8ad73f8541ad6cb61d43fa45e, type: 3}
@@ -7244,7 +7178,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.75
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7324,24 +7258,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.1, y: 0.65}
-    maxAnchor: {x: 0.9, y: 1}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.1, y: 0.65}
-    maxAnchor: {x: 0.9, y: 1}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1001 &699198492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8118,24 +8052,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.03518519, y: 0.25}
-    maxAnchor: {x: 0.9592593, y: 0.75}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.03518519, y: 0.1}
-    maxAnchor: {x: 0.9592593, y: 0.9}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!114 &795012875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8252,7 +8186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _experienceBar: {fileID: 520003039}
   _text: {fileID: 522409566}
-  ImprovementPanel: {fileID: 238080731}
+  _improvementPanel: {fileID: 0}
   _gameTime: {fileID: 1063970067}
 --- !u!114 &808968119
 MonoBehaviour:
@@ -8498,7 +8432,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 58.6
+  m_fontSize: 32.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8560,24 +8494,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 1, y: -0.2}
-    maxAnchor: {x: 1.8, y: 0.6}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 1, y: -0.2}
-    maxAnchor: {x: 1.8, y: 0.6}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &849147295
 GameObject:
   m_ObjectHideFlags: 0
@@ -8702,24 +8636,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 300, y: -100, z: 0}
-    sizeDelta: {x: 130, y: 130}
-    minAnchor: {x: 0, y: 1}
-    maxAnchor: {x: 0, y: 1}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 330, y: -100, z: 0}
-    sizeDelta: {x: 130, y: 130}
-    minAnchor: {x: 0, y: 1}
-    maxAnchor: {x: 0, y: 1}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &868970031
 GameObject:
   m_ObjectHideFlags: 0
@@ -8776,24 +8710,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.03518519, y: 0.2}
-    maxAnchor: {x: 0.9592593, y: 0.8}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.03518519, y: 0.1}
-    maxAnchor: {x: 0.9592593, y: 0.9}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!114 &868970034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8959,7 +8893,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9516,6 +9450,7 @@ GameObject:
   - component: {fileID: 986445838}
   - component: {fileID: 986445840}
   - component: {fileID: 986445839}
+  - component: {fileID: 986445841}
   m_Layer: 0
   m_Name: Setups
   m_TagString: Untagged
@@ -9540,7 +9475,7 @@ MonoBehaviour:
   _playerMortality: {fileID: 95630019597796694}
   _immortalityCount: {fileID: 2085642371}
   _firstAidKitCount: {fileID: 1397771262}
-  _healthBar: {fileID: 1153887702}
+  _healthBar: {fileID: 2073187607174969758}
   _vignette: {fileID: 1597185658}
   _firstAidButton: {fileID: 1397771257}
   _reliveButton: {fileID: 123179283}
@@ -9606,8 +9541,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 592bca8536a9ada4c9c7a272e8ca4d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _container: {fileID: 1120991263}
-  _capacity: 50
+  Container: {fileID: 0}
+  Capacity: 0
   _prefab: {fileID: 2663820969575085064, guid: 67b906a8e055895479c5a9e6ee4fda86, type: 3}
 --- !u!114 &986445819
 MonoBehaviour:
@@ -9685,8 +9620,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59da8385e0cbbf4793e87c8b69575c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _container: {fileID: 1361359925}
-  _capacity: 12
+  Container: {fileID: 0}
+  Capacity: 0
   _grenade: {fileID: 167116200819723710, guid: f938ab8f06b191d40b9c864367474e66, type: 3}
   _windows:
   - {fileID: 238080731}
@@ -9917,7 +9852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54374c9ba830d944d8ca449759ab4c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerDataManager: {fileID: 986445837}
+  _playerDataManager: {fileID: 0}
   _text: {fileID: 667334271}
 --- !u!114 &986445836
 MonoBehaviour:
@@ -9943,6 +9878,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de79a77894d2b8946b6bc92fe1421e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Money: 0
+  HelmetIndex: 0
+  BodyArmorIndex: 0
+  BootsIndex: 0
+  MelleWeaponDamageIndex: 0
+  MelleWeaponReloadingIndex: 0
+  RangeWeaponDamageIndex: 0
+  RangeWeaponReloadingIndex: 0
+  ThrowingWeaponDamageIndex: 0
+  ThrowingWeaponReloadingIndex: 0
+  FirstAidCount: 0
+  ImmortalityCount: 0
 --- !u!114 &986445838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9990,6 +9937,18 @@ MonoBehaviour:
   _englishText: Enable invulnerability for watching ads?
   _turkishText: "Reklamlar\u0131 izlemek i\xE7in g\xFCvenlik a\xE7\u0131\u011F\u0131
     etkinle\u015Ftirilsin mi?"
+--- !u!114 &986445841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986445814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5e7e12b068abf146b1a181816577680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &987341879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11323,17 +11282,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1041890083}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1153887702 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7832476548196029665, guid: 5a7ab41b302c8844494c043d8aaa453e, type: 3}
-  m_PrefabInstance: {fileID: 2073187607174969756}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66fc3257fd1a2e0419f18f989e8af439, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1165178622
 GameObject:
   m_ObjectHideFlags: 0
@@ -12834,24 +12782,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.03, y: 0.02}
-    maxAnchor: {x: 0.131, y: 0.08}
-    pivot: {x: 0, y: 0}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.02, y: 0.02}
-    maxAnchor: {x: 0.077, y: 0.11}
-    pivot: {x: 0, y: 0}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!114 &1397771262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12864,8 +12812,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e99ff7e8225119459dd25f63d6d3669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerDataManager: {fileID: 986445837}
-  _text: {fileID: 542755366}
+  _playerDataManager: {fileID: 0}
+  _infoText: {fileID: 0}
   _normalSprite: {fileID: 21300000, guid: 2d601f6fa70e0224cb9ca9132e061777, type: 3}
   _spriteForReward: {fileID: 21300000, guid: 6829b4eca382c924aa655cccd27473b1, type: 3}
 --- !u!1001 &1398775280
@@ -13088,7 +13036,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 130.05
+  m_fontSize: 110.2
   m_fontSizeBase: 44
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13150,24 +13098,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0.000015258789, y: 0}
-    minAnchor: {x: 0.6, y: 0.88600004}
-    maxAnchor: {x: 0.97, y: 1}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.6, y: 0.83322227}
-    maxAnchor: {x: 0.98, y: 0.9857408}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!4 &1426952001 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4671271844842164, guid: 0931ee8cbbf53854a8ee49bdd9194045, type: 3}
@@ -13426,24 +13374,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.55, y: 0.15}
-    maxAnchor: {x: 0.9, y: 0.25}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.55, y: 0.15}
-    maxAnchor: {x: 0.85, y: 0.25}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1001 &1491867041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14295,24 +14243,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0.17089844, y: -0.5, z: 0}
-    sizeDelta: {x: -0.3418007, y: 1}
-    minAnchor: {x: 0.2057143, y: 0.105000004}
-    maxAnchor: {x: 0.99, y: 1}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0.17089844, y: -0.5, z: 0}
-    sizeDelta: {x: -0.3418007, y: 1}
-    minAnchor: {x: 0.2057143, y: 0.105000004}
-    maxAnchor: {x: 0.99, y: 1}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &1699964835
 GameObject:
   m_ObjectHideFlags: 0
@@ -14594,7 +14542,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -15164,24 +15112,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: -0.0000076293945}
-    minAnchor: {x: 0, y: 0.4}
-    maxAnchor: {x: 1, y: 1}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 64.80005, z: 0}
-    sizeDelta: {x: 0, y: -129.6}
-    minAnchor: {x: 0.05, y: 0.4}
-    maxAnchor: {x: 0.95, y: 1}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &1763983841
 GameObject:
   m_ObjectHideFlags: 0
@@ -15365,24 +15313,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.014285716, y: 0.35000002}
-    maxAnchor: {x: 0.13000001, y: 0.71000004}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.03, y: 0.35000002}
-    maxAnchor: {x: 0.115, y: 0.71000004}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1001 &1803478838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15694,24 +15642,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.5, y: 0.32}
-    maxAnchor: {x: 1, y: 0.49}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.5, y: 0.37}
-    maxAnchor: {x: 0.8, y: 0.55}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!23 &1833444742 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4728217339216529825, guid: fdc6f0ded37a28c44b1513de347afb9a, type: 3}
@@ -15907,7 +15855,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.3
+  m_fontSize: 72
   m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -15985,24 +15933,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.05, y: 0.75}
-    maxAnchor: {x: 0.95, y: 0.9}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.05, y: 0.7}
-    maxAnchor: {x: 0.45, y: 0.9}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &1868086202
 GameObject:
   m_ObjectHideFlags: 0
@@ -16131,24 +16079,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.014285716, y: 0.35000002}
-    maxAnchor: {x: 0.13000001, y: 0.71000004}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.03, y: 0.35000002}
-    maxAnchor: {x: 0.115, y: 0.71000004}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1001 &1903002387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16326,24 +16274,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.06, y: 0.35000002}
-    maxAnchor: {x: 0.175, y: 0.71000004}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.06, y: 0.35000002}
-    maxAnchor: {x: 0.175, y: 0.71000004}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &1928701854
 GameObject:
   m_ObjectHideFlags: 0
@@ -16545,24 +16493,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.87, y: 0.085}
-    maxAnchor: {x: 0.96, y: 0.135}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.93, y: 0.13}
-    maxAnchor: {x: 0.98, y: 0.22}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!114 &1942655094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16788,24 +16736,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.03518519, y: 0.25}
-    maxAnchor: {x: 0.9592593, y: 0.75}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.03518519, y: 0.1}
-    maxAnchor: {x: 0.9592593, y: 0.9}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &1969017350
 GameObject:
   m_ObjectHideFlags: 0
@@ -17469,7 +17417,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 41.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -17692,24 +17640,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.03, y: 0.1}
-    maxAnchor: {x: 0.131, y: 0.16}
-    pivot: {x: 0, y: 0}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.02, y: 0.14}
-    maxAnchor: {x: 0.077, y: 0.23}
-    pivot: {x: 0, y: 0}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!114 &2085642367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17818,8 +17766,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed2920cb08216b4b8eeee2fe892f33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerDataManager: {fileID: 986445837}
-  _text: {fileID: 828525290}
+  _playerDataManager: {fileID: 0}
+  _infoText: {fileID: 0}
   _normalSprite: {fileID: 21300000, guid: 4480ca3ec521cf049b68ba22e4bb3e5a, type: 3}
   _spriteForReward: {fileID: 21300000, guid: b261896faaa4e064e8ce90b5fd5c8be9, type: 3}
 --- !u!4 &2090996072 stripped
@@ -17844,24 +17792,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.1, y: 0.15}
-    maxAnchor: {x: 0.45, y: 0.25}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.15, y: 0.15}
-    maxAnchor: {x: 0.45, y: 0.25}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!224 &2101126821 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5932176446214324528, guid: 1110c1a6424ff444a9201e7758d20437, type: 3}
@@ -17890,24 +17838,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.21, y: 0.06}
-    maxAnchor: {x: 0.79, y: 0.43}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.33, y: 0.1}
-    maxAnchor: {x: 0.67, y: 0.39}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1 &2111991356
 GameObject:
   m_ObjectHideFlags: 0
@@ -18959,15 +18907,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1300617967084186151, guid: 5a7ab41b302c8844494c043d8aaa453e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.543
       objectReference: {fileID: 0}
     - target: {fileID: 1300617967084186151, guid: 5a7ab41b302c8844494c043d8aaa453e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1300617967084186151, guid: 5a7ab41b302c8844494c043d8aaa453e, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.543
       objectReference: {fileID: 0}
     - target: {fileID: 2076533774524674551, guid: 5a7ab41b302c8844494c043d8aaa453e, type: 3}
       propertyPath: m_Enabled
@@ -19105,11 +19053,33 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7832476548196029665, guid: 5a7ab41b302c8844494c043d8aaa453e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6836740622680530497, guid: 5a7ab41b302c8844494c043d8aaa453e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2073187607174969758}
   m_SourcePrefab: {fileID: 100100000, guid: 5a7ab41b302c8844494c043d8aaa453e, type: 3}
+--- !u!1 &2073187607174969757 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6836740622680530497, guid: 5a7ab41b302c8844494c043d8aaa453e, type: 3}
+  m_PrefabInstance: {fileID: 2073187607174969756}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2073187607174969758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073187607174969757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86f9bb11f31510f4eb02d0cebaa16c7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _value: 1
 --- !u!1001 &2518152611874482341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19160,15 +19130,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6093951286616605665, guid: d00da9038ed1f5e488ca63d48d1916ca, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.543
       objectReference: {fileID: 0}
     - target: {fileID: 6093951286616605665, guid: d00da9038ed1f5e488ca63d48d1916ca, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6093951286616605665, guid: d00da9038ed1f5e488ca63d48d1916ca, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.543
       objectReference: {fileID: 0}
     - target: {fileID: 6629352829681453033, guid: d00da9038ed1f5e488ca63d48d1916ca, type: 3}
       propertyPath: m_Enabled
@@ -19240,7 +19210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6780866979710986996, guid: d00da9038ed1f5e488ca63d48d1916ca, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 24.95
+      value: 24.949951
       objectReference: {fileID: 0}
     - target: {fileID: 6780866979710986996, guid: d00da9038ed1f5e488ca63d48d1916ca, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -19831,24 +19801,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20a644e7f77ec4479bf44fde047daba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.21, y: 0.56}
-    maxAnchor: {x: 0.79, y: 0.93}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  horizontalRect:
-    isInitialized: 1
-    anchoredPosition: {x: 0, y: 0, z: 0}
-    sizeDelta: {x: 0, y: 0}
-    minAnchor: {x: 0.33, y: 0.55}
-    maxAnchor: {x: 0.67, y: 0.84}
-    pivot: {x: 0.5, y: 0.5}
-    rotation: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+  VerticalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
+  HorizontalRect:
+    IsInitialized: 0
+    AnchoredPosition: {x: 0, y: 0, z: 0}
+    SizeDelta: {x: 0, y: 0}
+    MinAnchor: {x: 0, y: 0}
+    MaxAnchor: {x: 0, y: 0}
+    Pivot: {x: 0, y: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
