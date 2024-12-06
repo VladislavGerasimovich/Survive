@@ -6,9 +6,6 @@ namespace Game.Reward
 {
     public class Reward : MonoBehaviour
     {
-        private const string REWARD = "CURRENTREWARD";
-        private const string MONEY = "MONEY";
-
         [SerializeField] private PlayerDataManager _playerDataManager;
         [SerializeField] private TMP_Text _text;
 
@@ -21,7 +18,7 @@ namespace Game.Reward
 
         private void Awake()
         {
-            _normalLevelReward = PlayerPrefs.GetInt(REWARD, 0);
+            _normalLevelReward = PlayerPrefs.GetInt(Constants.Reward, 0);
             ExtraLevelReward = _normalLevelReward / 4;
             _text.text = AllRewards.ToString();
         }
@@ -53,7 +50,7 @@ namespace Game.Reward
             AllRewards += _normalLevelReward;
             _text.text = AllRewards.ToString();
             _playerData.Money += _normalLevelReward;
-            _playerDataManager.Set(MONEY, _playerData.Money);
+            _playerDataManager.Set(Constants.Money, _playerData.Money);
         }
 
         private void AddExtraLevelReward()
@@ -61,7 +58,7 @@ namespace Game.Reward
             AllRewards += ExtraLevelReward;
             _text.text = AllRewards.ToString();
             _playerData.Money += ExtraLevelReward;
-            _playerDataManager.Set(MONEY, _playerData.Money);
+            _playerDataManager.Set(Constants.Money, _playerData.Money);
         }
 
         private void SetPlayerData(PlayerData playerData)

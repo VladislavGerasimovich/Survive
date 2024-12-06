@@ -8,9 +8,6 @@ namespace Game.Buttons
     [RequireComponent(typeof(Image))]
     public class CountOfExpendableItem : MonoBehaviour
     {
-        private const string FIRST_AID = "FIRST_AID";
-        private const string IMMORTALITY = "IMMORTALITY";
-
         [SerializeField] private PlayerDataManager _playerDataManager;
         [SerializeField] private TMP_Text _infoText;
         [SerializeField] private Sprite _normalSprite;
@@ -19,6 +16,11 @@ namespace Game.Buttons
         protected int Count;
         protected Image Image;
         protected string Text;
+
+        private void Awake()
+        {
+            Image = GetComponent<Image>();
+        }
 
         private void OnEnable()
         {
@@ -55,10 +57,10 @@ namespace Game.Buttons
         {
             switch (Text)
             {
-                case FIRST_AID:
+                case Constants.FirstAid:
                     Count = playerData.FirstAidCount;
                     break;
-                case IMMORTALITY:
+                case Constants.Immortality:
                     Count = playerData.ImmortalityCount;
                     break;
                 default:

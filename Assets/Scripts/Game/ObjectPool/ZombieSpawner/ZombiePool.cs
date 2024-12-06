@@ -80,13 +80,13 @@ namespace Game.ObjectPools.ZombiePools
                     healthSystemModel,
                     zombie.transform.Find("Collider")
                 .GetComponent<ZombieCollisionHandler>(),
-                zombie.GetComponent<ZombieDead>(),
+                zombie.GetComponent<ZombieDeath>(),
                 zombie.GetComponent<EnemyBlink>());
                 HealthSystemPresenters.Add(healthSystemPresenter);
 
                 ExperiencePresenter experienceSystemPresenter = new ExperiencePresenter(
                     levelSystemModel,
-                    zombie.GetComponent<ZombieDead>(),
+                    zombie.GetComponent<ZombieDeath>(),
                     zombie.GetComponent<Experience>());
                 ExperienceSystemPresenters.Add(experienceSystemPresenter);
 
@@ -108,7 +108,7 @@ namespace Game.ObjectPools.ZombiePools
         public bool TryGetObject(out GameObject result)
         {
             result = Pool.FirstOrDefault(p => p.activeSelf == false);
-            result.GetComponent<ZombieDead>().ReviveZombie();
+            result.GetComponent<ZombieDeath>().ReviveZombie();
 
             return result != null;
         }

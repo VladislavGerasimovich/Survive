@@ -11,8 +11,6 @@ namespace Game.UI.Screens
 {
     public class GameOverPanel : Window
     {
-        private const string MONEY = "MONEY";
-
         [SerializeField] private CanvasGroup _improvementPanelCanvasGroup;
         [SerializeField] private CanvasGroup _gameMenuPanelCanvasGroup;
         [SerializeField] private CanvasGroup _continueGamePanelCanvasGroup;
@@ -68,8 +66,8 @@ namespace Game.UI.Screens
             _zombiesPools.StopSound();
             _shotSound.Stop();
             _gameTime.Stop();
-            int money = PlayerPrefs.GetInt(MONEY) + _reward.AllRewards;
-            PlayerPrefs.SetInt(MONEY, money);
+            int money = PlayerPrefs.GetInt(Constants.Money) + _reward.AllRewards;
+            PlayerPrefs.SetInt(Constants.Money, money);
             PlayerPrefs.Save();
         }
 

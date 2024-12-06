@@ -13,6 +13,8 @@ namespace Game.Buttons
 
         private Button _button;
         private Image _image;
+        private float _minAlphaChannelValue;
+        private float _maxAlphaChannelValue;
 
         public event Action Click;
 
@@ -23,6 +25,8 @@ namespace Game.Buttons
             _button = GetComponent<Button>();
             _image = GetComponent<Image>();
             Interactable = _interactable;
+            _minAlphaChannelValue = 0.3f;
+            _maxAlphaChannelValue = 1.0f;
         }
 
         private void OnEnable()
@@ -57,14 +61,12 @@ namespace Game.Buttons
 
         public void InteractableOn()
         {
-            _button.interactable = true;
-            ChangeColor(1);
+            SetColorAndInteractivity(true, _maxAlphaChannelValue);
         }
 
         public void InteractableOff()
         {
-            _button.interactable = false;
-            ChangeColor(0.3f);
+            SetColorAndInteractivity(false, _minAlphaChannelValue);
         }
 
         private void OnClick()
@@ -85,6 +87,12 @@ namespace Game.Buttons
         private void SetColor(Image image, float alphaChannelValue)
         {
             image.color = new Color(image.color.r, image.color.g, image.color.b, alphaChannelValue);
+        }
+
+        private void SetColorAndInteractivity(bool value, float alphaChannelValue)
+        {
+            _button.interactable = value;
+            ChangeColor(alphaChannelValue);
         }
     }
 }

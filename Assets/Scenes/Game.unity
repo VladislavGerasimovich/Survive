@@ -9543,6 +9543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 0}
   Capacity: 0
+  Pool: []
   _prefab: {fileID: 2663820969575085064, guid: 67b906a8e055895479c5a9e6ee4fda86, type: 3}
 --- !u!114 &986445819
 MonoBehaviour:
@@ -18907,15 +18908,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1300617967084186151, guid: 5a7ab41b302c8844494c043d8aaa453e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.543
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1300617967084186151, guid: 5a7ab41b302c8844494c043d8aaa453e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1300617967084186151, guid: 5a7ab41b302c8844494c043d8aaa453e, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.543
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2076533774524674551, guid: 5a7ab41b302c8844494c043d8aaa453e, type: 3}
       propertyPath: m_Enabled
@@ -19130,15 +19131,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6093951286616605665, guid: d00da9038ed1f5e488ca63d48d1916ca, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.543
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093951286616605665, guid: d00da9038ed1f5e488ca63d48d1916ca, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093951286616605665, guid: d00da9038ed1f5e488ca63d48d1916ca, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.543
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6629352829681453033, guid: d00da9038ed1f5e488ca63d48d1916ca, type: 3}
       propertyPath: m_Enabled

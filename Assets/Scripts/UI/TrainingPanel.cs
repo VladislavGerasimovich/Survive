@@ -6,8 +6,6 @@ namespace UI
 {
     public class TrainingPanel : MonoBehaviour
     {
-        private const string LeaderboardName = "Leaderboard";
-
         [SerializeField] private CanvasGroup _trainingPanelDesktop;
         [SerializeField] private CanvasGroup _trainingPanelMobile;
         [SerializeField] private GameTime _gameTime;
@@ -35,7 +33,7 @@ namespace UI
                 return;
             }
 
-            Leaderboard.GetPlayerEntry(LeaderboardName, (result) =>
+            Leaderboard.GetPlayerEntry(Constants.LeaderboardName, (result) =>
             {
                 if (result == null || result.score == 0)
                 {

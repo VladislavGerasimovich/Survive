@@ -6,11 +6,6 @@ namespace YandexElements
 {
     public class YandexLeaderboard : MonoBehaviour
     {
-        private const string LeaderboardName = "Leaderboard";
-        private const string English = "en";
-        private const string Turkish = "tr";
-        private const string Russian = "ru";
-
         [SerializeField] private LeaderboardView _leaderboardView;
         [SerializeField] private string _englishText;
         [SerializeField] private string _turkishText;
@@ -31,13 +26,13 @@ namespace YandexElements
         {
             switch (languageCode)
             {
-                case English:
+                case Constants.English:
                     AnonymousName = _englishText;
                     break;
-                case Turkish:
+                case Constants.Turkish:
                     AnonymousName = _turkishText;
                     break;
-                case Russian:
+                case Constants.Russian:
                     AnonymousName = _russianText;
                     break;
             }
@@ -50,11 +45,11 @@ namespace YandexElements
                 return;
             }
 
-            Leaderboard.GetPlayerEntry(LeaderboardName, (result) =>
+            Leaderboard.GetPlayerEntry(Constants.LeaderboardName, (result) =>
             {
                 if (result == null || result.score < score)
                 {
-                    Leaderboard.SetScore(LeaderboardName, score);
+                    Leaderboard.SetScore(Constants.LeaderboardName, score);
                 }
             });
         }
@@ -68,7 +63,7 @@ namespace YandexElements
 
             _leaderboardPlayers.Clear();
 
-            Leaderboard.GetEntries(LeaderboardName, (result) =>
+            Leaderboard.GetEntries(Constants.LeaderboardName, (result) =>
             {
                 foreach (var entry in result.entries)
                 {

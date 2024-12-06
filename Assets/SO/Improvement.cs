@@ -14,23 +14,19 @@ public class ImprovementInfo : ScriptableObject
     [SerializeField] private string _turkishText;
     [SerializeField] private string _russianText;
 
-    private const string English = "en";
-    private const string Turkish = "tr";
-    private const string Russian = "ru";
-
     private string _text;
 
     public void ChangeLanguage(string languageCode)
     {
         switch (languageCode)
         {
-            case English:
+            case Constants.English:
                 _text = _englishText;
                 break;
-            case Turkish:
+            case Constants.Turkish:
                 _text = _turkishText;
                 break;
-            case Russian:
+            case Constants.Russian:
                 _text = _russianText;
                 break;
         }

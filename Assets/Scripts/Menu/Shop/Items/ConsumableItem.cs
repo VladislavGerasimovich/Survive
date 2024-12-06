@@ -8,9 +8,6 @@ namespace Menu.Shop.Items
 {
     public class ConsumableItem : Item
     {
-        private const string FIRST_AID = "FIRST_AID";
-        private const string IMMORTALITY = "IMMORTALITY";
-
         [SerializeField] protected TMP_Text TextOfCount;
         [SerializeField] protected int CurrentCount;
         [SerializeField] protected int MaxCount;
@@ -27,7 +24,7 @@ namespace Menu.Shop.Items
                 Button.interactable = false;
             }
 
-            _playerDataManager.Set(Text, CurrentCount);
+            _playerDataManager.Set(Type, CurrentCount);
         }
 
         public void SetTextOfCount()
@@ -53,12 +50,12 @@ namespace Menu.Shop.Items
 
         protected override void SetIndex(PlayerData playerData)
         {
-            switch (Text)
+            switch (Type)
             {
-                case FIRST_AID:
+                case Constants.FirstAid:
                     CurrentCount = playerData.FirstAidCount;
                     break;
-                case IMMORTALITY:
+                case Constants.Immortality:
                     CurrentCount = playerData.ImmortalityCount;
                     break;
                 default:

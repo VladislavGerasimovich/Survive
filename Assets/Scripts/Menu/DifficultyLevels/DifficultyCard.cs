@@ -8,9 +8,6 @@ namespace Menu.DifficultyLevels
     [RequireComponent(typeof(PressButton))]
     public class DifficultyCard : MonoBehaviour
     {
-        private const string LEVEL = "DIFFICULTY_LEVEL";
-        private const string REWARD = "CURRENTREWARD";
-
         [SerializeField] private int _reward;
         [SerializeField] private TMP_Text _text;
         [SerializeField] private int _level;
@@ -38,8 +35,8 @@ namespace Menu.DifficultyLevels
         private void OnCardClick()
         {
             Click?.Invoke();
-            PlayerPrefs.SetInt(LEVEL, _level);
-            PlayerPrefs.SetInt(REWARD, _reward);
+            PlayerPrefs.SetInt(Constants.Level, _level);
+            PlayerPrefs.SetInt(Constants.Reward, _reward);
             PlayerPrefs.Save();
         }
     }

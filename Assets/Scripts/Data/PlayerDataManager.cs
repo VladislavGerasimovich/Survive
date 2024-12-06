@@ -6,19 +6,6 @@ namespace Storage
 {
     public class PlayerDataManager : MonoBehaviour
     {
-        private const string Money = "MONEY";
-        private const string HelmetIndex = "HELMET";
-        private const string BodyArmorIndex = "BODY_ARMOR";
-        private const string BootsIndex = "BOOTS";
-        private const string MelleWeaponDamageIndex = "MELLE_WEAPON_DAMAGE";
-        private const string MelleWeaponReloadingIndex = "MELLE_WEAPON_RELOADING";
-        private const string RangeWeaponDamageIndex = "RANGE_WEAPON_DAMAGE";
-        private const string RangeWeaponReloadingIndex = "RANGE_WEAPON_RELOADING";
-        private const string ThrowingWeaponDamageIndex = "THROWING_WEAPON_DAMAGE";
-        private const string ThrowingWeaponReloadingIndex = "THROWING_WEAPON_RELOADING";
-        private const string FirstAidCount = "FIRST_AID";
-        private const string ImmortalityCount = "IMMORTALITY";
-
         private PlayerData _playerData;
 
         public event Action<PlayerData> DataReceived;
@@ -33,40 +20,40 @@ namespace Storage
         {
             switch (key)
             {
-                case Money:
+                case Constants.Money:
                     _playerData.Money = value;
                     break;
-                case HelmetIndex:
+                case Constants.Helmet:
                     _playerData.HelmetIndex = value;
                     break;
-                case BodyArmorIndex:
+                case Constants.BodyArmor:
                     _playerData.BodyArmorIndex = value;
                     break;
-                case BootsIndex:
+                case Constants.Boots:
                     _playerData.BootsIndex = value;
                     break;
-                case MelleWeaponDamageIndex:
+                case Constants.MelleWeaponDamage:
                     _playerData.MelleWeaponDamageIndex = value;
                     break;
-                case MelleWeaponReloadingIndex:
+                case Constants.MelleWeaponReloading:
                     _playerData.MelleWeaponReloadingIndex = value;
                     break;
-                case RangeWeaponDamageIndex:
+                case Constants.RangeWeaponDamage:
                     _playerData.RangeWeaponDamageIndex = value;
                     break;
-                case RangeWeaponReloadingIndex:
+                case Constants.RangeWeaponReloading:
                     _playerData.RangeWeaponReloadingIndex = value;
                     break;
-                case ThrowingWeaponDamageIndex:
+                case Constants.ThrowingWeaponDamage:
                     _playerData.ThrowingWeaponDamageIndex = value;
                     break;
-                case ThrowingWeaponReloadingIndex:
+                case Constants.ThrowingWeaponReloading:
                     _playerData.ThrowingWeaponReloadingIndex = value;
                     break;
-                case FirstAidCount:
+                case Constants.FirstAid:
                     _playerData.FirstAidCount = value;
                     break;
-                case ImmortalityCount:
+                case Constants.Immortality:
                     _playerData.ImmortalityCount = value;
                     break;
             }

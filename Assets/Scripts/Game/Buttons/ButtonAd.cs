@@ -7,10 +7,6 @@ namespace Game.Buttons
     [RequireComponent(typeof(PressButton))]
     public class ButtonAd : MonoBehaviour
     {
-        private const string English = "en";
-        private const string Turkish = "tr";
-        private const string Russian = "ru";
-
         [SerializeField] private YandexElements.VideoAd _videoAd;
         [SerializeField] private GameTime _gameTime;
         [SerializeField] private PopUpWindow _popUpWindow;
@@ -46,13 +42,13 @@ namespace Game.Buttons
         {
             switch (languageCode)
             {
-                case English:
+                case Constants.English:
                     _translatedText = _englishText;
                     break;
-                case Turkish:
+                case Constants.Turkish:
                     _translatedText = _turkishText;
                     break;
-                case Russian:
+                case Constants.Russian:
                     _translatedText = _russianText;
                     break;
             }

@@ -11,8 +11,6 @@ namespace Game.Music
     [RequireComponent(typeof(Image))]
     public class AllGameMusic : MonoBehaviour
     {
-        private const string SOUND = "SOUND";
-
         [SerializeField] private AudioSource _mainMusic;
         [SerializeField] private Sprite _soundOn;
         [SerializeField] private Sprite _soundOff;
@@ -33,7 +31,7 @@ namespace Game.Music
             _image = GetComponent<Image>();
             _button = GetComponent<Button>();
             _variables = new Variables();
-            bool isPlaying = PlayerPrefs.GetInt(SOUND, 1) == 1 ? true : false;
+            bool isPlaying = PlayerPrefs.GetInt(Constants.Sound, 1) == 1 ? true : false;
             _variables.ChangeIsPlaying(isPlaying);
             SetIcon();
         }
@@ -71,7 +69,7 @@ namespace Game.Music
         {
             bool isPlaying = !_variables.IsPlaying;
             _variables.ChangeIsPlaying(isPlaying);
-            PlayerPrefs.SetInt(SOUND, _variables.IsPlaying ? 1 : 0);
+            PlayerPrefs.SetInt(Constants.Sound, _variables.IsPlaying ? 1 : 0);
             PlayerPrefs.Save();
             SetIcon();
             SetVolume();

@@ -8,7 +8,6 @@ namespace Game.ObjectPools.ZombiePools
 {
     public class ZombieSpawner : MonoBehaviour
     {
-        private const string LEVEL = "DIFFICULTY_LEVEL";
         private const int ZEROZOMBIETYPE = 0;
         private const int FIRSTZOMBIETYPE = 1;
         private const int SECONDZOMBIETYPE = 2;
@@ -43,7 +42,7 @@ namespace Game.ObjectPools.ZombiePools
             _startPositionsCountMultiplier = 1;
             _minSelectableStartPosition = 1;
             _randomMultiplier = 1;
-            _currentDifficultyLevel = PlayerPrefs.GetInt(LEVEL, 0);
+            _currentDifficultyLevel = PlayerPrefs.GetInt(Constants.Level, 0);
             _firstZombieIndex = 1;
             _firstTimeToIncreaseDifficulty = 30;
             _secondTimeToIncreaseDifficulty = 60;

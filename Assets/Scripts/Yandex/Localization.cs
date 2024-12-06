@@ -9,9 +9,6 @@ namespace YandexElements
         private const string EnglishCode = "English";
         private const string TurkishCode = "Turkish";
         private const string RussianCode = "Russian";
-        private const string English = "en";
-        private const string Turkish = "tr";
-        private const string Russian = "ru";
 
         [SerializeField] private LeanLocalization _leanLocalization;
 
@@ -35,13 +32,13 @@ namespace YandexElements
 
             switch (languageCode)
             {
-                case English:
+                case Constants.English:
                     _leanLocalization.SetCurrentLanguage(EnglishCode);
                     break;
-                case Turkish:
+                case Constants.Turkish:
                     _leanLocalization.SetCurrentLanguage(TurkishCode);
                     break;
-                case Russian:
+                case Constants.Russian:
                     _leanLocalization.SetCurrentLanguage(RussianCode);
                     break;
             }

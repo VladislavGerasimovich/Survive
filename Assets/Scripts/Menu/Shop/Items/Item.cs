@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Agava.YandexGames;
 using Storage;
 using TMPro;
 using UnityEngine;
@@ -11,33 +12,18 @@ namespace Menu.Shop.Items
     [RequireComponent(typeof(Image))]
     public class Item : MonoBehaviour
     {
-        private const string BODY_ARMOR = "BODY_ARMOR";
-        private const string BOOTS = "BOOTS";
-        private const string HELMET = "HELMET";
-        private const string MELLE_WEAPON_DAMAGE = "MELLE_WEAPON_DAMAGE";
-        private const string MELLE_WEAPON_RELOADING = "MELLE_WEAPON_RELOADING";
-        private const string MONEY = "MONEY";
-        private const string RANGE_WEAPON_DAMAGE = "RANGE_WEAPON_DAMAGE";
-        private const string RANGE_WEAPON_RELOADING = "RANGE_WEAPON_RELOADING";
-        private const string THROWING_WEAPON_DAMAGE = "THROWING_WEAPON_DAMAGE";
-        private const string THROWING_WEAPON_RELOADING = "THROWING_WEAPON_RELOADING";
-        private const string English = "en";
-        private const string Turkish = "tr";
-        private const string Russian = "ru";
-
         [SerializeField] protected TMP_Text InfoText;
         [SerializeField] protected List<string> Cost;
         [SerializeField] protected string Type;
         [SerializeField] protected PopUpWindow PopUpWindow;
         [SerializeField] protected PlayerDataManager _playerDataManager;
+        [SerializeField] protected List<Color> Colors;
         [SerializeField] private string _englishText;
         [SerializeField] private string _turkishText;
         [SerializeField] private string _russianText;
 
         protected Image Background;
         protected Button Button;
-        protected List<Color> Colors;
-        protected string Text;
         protected int CostCountMultiplier;
 
         private int _indexOfCost;
@@ -47,6 +33,16 @@ namespace Menu.Shop.Items
         public string TranslatedText { get; private set; }
         public string Class { get; protected set; }
 
+        private void Awake()
+        {
+            Background = GetComponent<Image>();
+            Button = GetComponent<Button>();
+            Class = Type;
+            string languageCode = YandexGamesSdk.Environment.i18n.lang;
+            ChangeLanguage(languageCode);
+            CostCountMultiplier = 1;
+        }
+
         private void OnEnable()
         {
             Button.onClick.AddListener(OnClick);
@@ -55,7 +51,7 @@ namespace Menu.Shop.Items
 
         private void Start()
         {
-            if(Text != MONEY)
+            if(Type != Constants.Money)
             {
                 SetCost();
             }
@@ -71,13 +67,13 @@ namespace Menu.Shop.Items
         {
             switch (languageCode)
             {
-                case English:
+                case Constants.English:
                     TranslatedText = _englishText;
                     break;
-                case Turkish:
+                case Constants.Turkish:
                     TranslatedText = _turkishText;
                     break;
-                case Russian:
+                case Constants.Russian:
                     TranslatedText = _russianText;
                     break;
             }
@@ -111,7 +107,7 @@ namespace Menu.Shop.Items
                 }
             }
 
-            _playerDataManager.Set(Text, _indexOfCost);
+            _playerDataManager.Set(Type, _indexOfCost);
         }
 
         public virtual void OnClick()
@@ -121,33 +117,33 @@ namespace Menu.Shop.Items
 
         protected virtual void SetIndex(PlayerData playerData)
         {
-            switch (Text)
+            switch (Type)
             {
-                case BODY_ARMOR:
+                case Constants.BodyArmor:
                     _indexOfCost = playerData.BodyArmorIndex;
                     break;
-                case BOOTS:
+                case Constants.Boots:
                     _indexOfCost = playerData.BootsIndex;
                     break;
-                case HELMET:
+                case Constants.Helmet:
                     _indexOfCost = playerData.HelmetIndex;
                     break;
-                case MELLE_WEAPON_DAMAGE:
+                case Constants.MelleWeaponDamage:
                     _indexOfCost = playerData.MelleWeaponDamageIndex;
                     break;
-                case MELLE_WEAPON_RELOADING:
+                case Constants.MelleWeaponReloading:
                     _indexOfCost = playerData.MelleWeaponReloadingIndex;
                     break;
-                case RANGE_WEAPON_DAMAGE:
+                case Constants.RangeWeaponDamage:
                     _indexOfCost = playerData.RangeWeaponDamageIndex;
                     break;
-                case RANGE_WEAPON_RELOADING:
+                case Constants.RangeWeaponReloading:
                     _indexOfCost = playerData.RangeWeaponReloadingIndex;
                     break;
-                case THROWING_WEAPON_DAMAGE:
+                case Constants.ThrowingWeaponDamage:
                     _indexOfCost = playerData.ThrowingWeaponDamageIndex;
                     break;
-                case THROWING_WEAPON_RELOADING:
+                case Constants.ThrowingWeaponReloading:
                     _indexOfCost = playerData.ThrowingWeaponReloadingIndex;
                     break;
             }

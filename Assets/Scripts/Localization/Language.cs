@@ -5,10 +5,6 @@ namespace Localization
 {
     public class Language : MonoBehaviour
     {
-        private const string English = "en";
-        private const string Turkish = "tr";
-        private const string Russian = "ru";
-
         [SerializeField] private string _russianText;
         [SerializeField] private string _englishText;
         [SerializeField] private string _turkishText;
@@ -25,13 +21,13 @@ namespace Localization
         {
             switch (languageCode)
             {
-                case English:
+                case Constants.English:
                     TranslatedText = _englishText;
                     break;
-                case Turkish:
+                case Constants.Turkish:
                     TranslatedText = _turkishText;
                     break;
-                case Russian:
+                case Constants.Russian:
                     TranslatedText = _russianText;
                     break;
             }

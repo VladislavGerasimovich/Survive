@@ -4,10 +4,10 @@ using Game.Zombie;
 public class ExperiencePresenter
 {
     private Level _levelSystem;
-    private ZombieDead _die;
+    private ZombieDeath _die;
     private Experience _experience;
 
-    public ExperiencePresenter(Level levelSystem, ZombieDead die, Experience experience)
+    public ExperiencePresenter(Level levelSystem, ZombieDeath die, Experience experience)
     {
         _levelSystem = levelSystem;
         _die = die;

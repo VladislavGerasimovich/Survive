@@ -16,8 +16,8 @@ namespace Game.Health
         [SerializeField] private PlayerTakeDamage _playerTakeDamage;
         [SerializeField] private PlayerDeath _playerDied;
         [SerializeField] private PlayerMortality _playerMortality;
-        [SerializeField] private ImmortalityCount _immortalityCount;
-        [SerializeField] private FirstAidKitCount _firstAidKitCount;
+        [SerializeField] private CountOfExpendableItem _immortalityCount;
+        [SerializeField] private CountOfExpendableItem _firstAidKitCount;
         [SerializeField] private Bar _healthBar;
         [SerializeField] private Vignette _vignette;
         [SerializeField] private PressButton _firstAidButton;

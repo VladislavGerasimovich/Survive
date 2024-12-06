@@ -16,7 +16,7 @@ namespace Game.Weapons
 
         private void OnTriggerEnter(Collider collision)
         {
-            if (collision.TryGetComponent(out ZombieDead zombieDied))
+            if (collision.TryGetComponent(out ZombieDeath zombieDied))
             {
                 _audio.Play();
             }

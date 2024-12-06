@@ -15,7 +15,7 @@ namespace Game.Zombie
     [RequireComponent(typeof(Score))]
     [RequireComponent(typeof(EnemyBlink))]
     [RequireComponent(typeof(ZombieAttack))]
-    public class ZombieDead : Death
+    public class ZombieDeath : Death
     {
         [SerializeField] private CapsuleCollider _triggerCollider;
 
@@ -27,6 +27,11 @@ namespace Game.Zombie
         private Score _score;
         private EnemyBlink _enemyBlink;
         private ZombieAttack _zombieAttack;
+        private AnimatorData _animatorData;
+        private int _heightOfFall;
+        private int _twoSecDelay;
+        private int _fourSecDelay;
+        private float _stoppingDistance;
 
         public event Action OnDied;
 
@@ -43,6 +48,11 @@ namespace Game.Zombie
             _score = GetComponent<Score>();
             _enemyBlink = GetComponent<EnemyBlink>();
             _zombieAttack = GetComponent<ZombieAttack>();
+            _animatorData = new AnimatorData();
+            _heightOfFall = -2;
+            _twoSecDelay = 2;
+            _fourSecDelay = 4;
+            _stoppingDistance = 0.1f;
         }
 
         public override void Died()
@@ -72,31 +82,31 @@ namespace Game.Zombie
             _movement.enabled = false;
             _rigidbody.constraints = RigidbodyConstraints.None;
             _rigidbody.isKinematic = true;
-            Animator.SetBool("Died", true);
+            Animator.SetBool(_animatorData.Died, true);
             _zombieAttack.StopAttackCoroutine();
 
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(_fourSecDelay);
 
-            transform.Translate(0, -2 * Time.deltaTime, 0);
+            transform.Translate(0, _heightOfFall * Time.deltaTime, 0);
             Vector3 startPosition = transform.position;
-            Vector3 endPosition = new Vector3(startPosition.x, startPosition.y - 2, startPosition.z);
+            Vector3 endPosition = new Vector3(startPosition.x, startPosition.y + _heightOfFall, startPosition.z);
             float progress = 0;
             float step = 0.0001f;
 
-            while (Vector3.Distance(transform.position, endPosition) > 0.1f)
+            while (Vector3.Distance(transform.position, endPosition) > _stoppingDistance)
             {
                 transform.position = Vector3.Lerp(transform.position, endPosition, progress);
                 progress += step;
                 yield return null;
             }
 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(_twoSecDelay);
 
             transform.position = new Vector3(924, 483, 0);
             _enemyBlink.EnableBlink();
             _rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             gameObject.SetActive(false);
-            Animator.SetBool("Died", false);
+            Animator.SetBool(_animatorData.Died, false);
             _rigidbody.isKinematic = false;
             _triggerCollider.enabled = true;
             _capsuleCollider.enabled = true;

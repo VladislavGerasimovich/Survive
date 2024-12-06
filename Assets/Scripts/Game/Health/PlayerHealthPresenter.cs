@@ -19,15 +19,15 @@ namespace Game.Health
         private PressButton _immortalityButton;
         private PlayerTakeDamage _playerTakeDamage;
         private PlayerMortality _playerMortality;
-        private ImmortalityCount _immortalityCount;
-        private FirstAidKitCount _firstAidKitCount;
+        private CountOfExpendableItem _immortalityCount;
+        private CountOfExpendableItem _firstAidKitCount;
         private PopUpWindowForGame _immortalityPopUpWindow;
         private PopUpWindowForGame _firstAidPopUpWindow;
         private int _countOfClick;
 
         public PlayerHealthPresenter(
-            FirstAidKitCount firstAidKitCount,
-            ImmortalityCount immortalityCount,
+            CountOfExpendableItem firstAidKitCount,
+            CountOfExpendableItem immortalityCount,
             PlayerMortality playerMortality,
             PlayerTakeDamage playerTakeDamage,
             VideoAd videoAd,
